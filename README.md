@@ -2,7 +2,7 @@
 
 Exploration of links in different web frameworks, using [big-data graph DB](https://github.com/dgoldstein1/graphApi) as a backend.
 
-[![CircleCI](https://circleci.com/gh/dgoldstein1/crawler.svg?style=svg)]()
+[![CircleCI](https://circleci.com/gh/dgoldstein1/links.svg?style=svg)](https://circleci.com/gh/dgoldstein1/links)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/7c7755873079fb9318cd/maintainability)](https://codeclimate.com/github/dgoldstein1/links/maintainability)
 

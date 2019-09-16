@@ -121,15 +121,10 @@ workflows:
           requires:
             - build
 
-      - integration-tests:
-          requires:
-            - build
-
 
       - push-docker-image:
           requires:
             - unit-tests
-            - integration-tests
           filters:
             branches:
               only: master
@@ -137,7 +132,6 @@ workflows:
       - publish-github-release:
           requires:
             - unit-tests
-            - integration-tests
 
           filters:
             branches:
