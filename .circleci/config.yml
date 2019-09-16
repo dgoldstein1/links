@@ -2,7 +2,6 @@
 defaults: &defaults
   docker:
     - image: circleci/node:10
-  working_directory: /app
 
 version: 2
 jobs:
