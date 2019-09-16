@@ -1,0 +1,24 @@
+{
+  "name": "links",
+  "version": "0.0.1",
+  "description": "ui to show links in graph",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dgoldstein1/links.git"
+  },
+  "keywords": [
+    "link",
+    "graph",
+    "ui"
+  ],
+  "author": "David Goldstein",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dgoldstein1/links/issues"
+  },
+  "homepage": "https://github.com/dgoldstein1/links#readme"
+}
