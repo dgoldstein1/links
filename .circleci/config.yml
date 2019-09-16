@@ -1,0 +1,145 @@
+
+defaults: &defaults
+  docker:
+    - image: circleci/node:10
+  working_directory: /app
+
+version: 2
+jobs:
+
+  ###################
+  ## Core Utilties ##
+  ###################
+
+  # install depdencencies
+  install:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - node-v1-{{ .Branch }}-
+            - node-v1-
+      - save_cache:
+          paths:
+            - ~/usr/local/lib/node_modules  # location depends on npm version
+          key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+
+      - run: npm install
+      - persist_to_workspace:
+          root : .
+          paths:
+            - ./node_modules
+
+
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./build
+
+
+  #############
+  ## Testing ##
+  #############
+
+  # run unit tests
+  unit-tests:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name : "run unit tests"
+          command : |
+             npm test -- --coverage --watchAll=false
+
+      - run:
+          name : "Push results to code coverage (master only)"
+          command : |
+            if [[ "$CIRCLE_BRANCH" == "master" ]]; then
+              curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+              chmod +x ./cc-test-reporter
+              ./cc-test-reporter format-coverage  coverage/lcov.info  -t lcov
+              ./cc-test-reporter upload-coverage
+            fi
+
+
+  ############################
+  ## Tasks for New Releases ##
+  ############################
+
+  push-docker-image:
+    machine : true
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name : "build and push docker images"
+          command : |
+              export $(cat VERSION | xargs)
+              docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+              docker build . -t dgoldstein1/links:$VERSION -t dgoldstein1/links:latest
+              docker push dgoldstein1/links:$VERSION
+              docker push dgoldstein1/links:latest
+
+  # publish github release with binary
+  publish-github-release:
+    docker:
+      - image: cibuilds/github:0.10
+    steps:
+      - checkout
+      # get binaries
+      - attach_workspace:
+          at: .
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            export $(cat VERSION | xargs)
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./build/links
+
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - install
+      - build:
+          requires:
+            - install
+
+      - unit-tests:
+          requires:
+            - build
+
+      - integration-tests:
+          requires:
+            - build
+
+
+      - push-docker-image:
+          requires:
+            - unit-tests
+            - integration-tests
+          filters:
+            branches:
+              only: master
+
+      - publish-github-release:
+          requires:
+            - unit-tests
+            - integration-tests
+
+          filters:
+            branches:
+              only: master
