@@ -23,6 +23,14 @@ services:
   ## Services ##
   ##############
 
+  edge:
+    image: dgoldstein1/edge-dev
+    build:
+      context: .
+      dockerfile: ./docker/edge/dockerfile
+    ports:
+      - 8443:80
+
   links:
     image: links-ui:dev
     build:
