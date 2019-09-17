@@ -1,0 +1,15 @@
+{
+  "name": "edge",
+  "version": "1.0.0",
+  "description": "simple http edge proxy",
+  "main": "run_proxy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Goldstein",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^0.20.0"
+  }
+}
