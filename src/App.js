@@ -10,7 +10,7 @@ import MainView from './containers/mainView';
 import { InitAapp } from './actions/appStateActions';
 
 class App extends Component {
-  componentWillMount() {
+  componentDidMount() {
     InitAapp();
   }
 
