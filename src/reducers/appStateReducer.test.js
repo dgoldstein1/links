@@ -11,9 +11,8 @@ describe('reducers',() => {
 	describe('appStateReducer',() => {
 
 		const initialState = {
-		  availableViews : ["visits", "map"], // list of views available 
-		  loading : false, // the app is / isn't loading
-		  view : "visits" // the current view
+		  loading : true, // the app is / isn't loading
+		  view : "main"
 		}
 
 		it('initializes with correct state',() => {
@@ -24,9 +23,12 @@ describe('reducers',() => {
 			it('updates the store with a new view',() => {
 				let action = {
 					type : UPDATE_VIEW,
-					view : "map"
+					view : "newView"
 				}
-				expect(appStateReducer(undefined, action)).toEqual({ view : "map", availableViews : ["visits", "map"], loading : false})
+				expect(appStateReducer(undefined, action)).toEqual({
+					...initialState,
+					view : "newView"
+				})
 			})
 		})
 		describe('SET_LOADING',() => {
@@ -35,7 +37,10 @@ describe('reducers',() => {
 					type : SET_LOADING,
 					loading : true
 				}
-				expect(appStateReducer(undefined, action)).toEqual({ view : "visits", availableViews : ["visits", "map"], loading : true})
+				expect(appStateReducer(undefined, action)).toEqual({
+					...initialState,
+					loading : true
+				})
 			})
 		})
 	})
