@@ -30,6 +30,7 @@ services:
       dockerfile: ./docker/edge/dockerfile
     ports:
       - 8443:80
+    restart: always
 
   links:
     image: links-ui:dev
