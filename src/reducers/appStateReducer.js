@@ -4,7 +4,7 @@ import {
  } from '../actions/appStateActions';
 
 const initialState = {
-  loading : false, // the app is / isn't loading
+  loading : true, // the app is / isn't loading
   view : "main" // the current view
 };
 

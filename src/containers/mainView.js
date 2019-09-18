@@ -6,7 +6,6 @@ import '../css/MainView.css'
 
 class MainView extends React.Component {
 	render(props) {
-		console.log(props)
 		return (
       <div>
         GOT HERE

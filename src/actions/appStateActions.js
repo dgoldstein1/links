@@ -1,5 +1,8 @@
 // appStateActions.js
 
+// store
+import { store } from '../reducers/index';
+
 /**
  * actions updating the curren app's state
  * created by David Goldstein on 2/8/2018
@@ -22,8 +25,9 @@ export function setLoading(loading) {
   };
 }
 
-
 // initializes app on first load
 export function InitAapp() {
-	// fetch things from API here
+  store.dispatch(setLoading(true))
+  // fetch things from API here
+  store.dispatch(setLoading(false))
 }
