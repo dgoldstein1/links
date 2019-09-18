@@ -11,6 +11,7 @@ RUN npm run build
 # production environment
 FROM nginx:1.16.0-alpine
 COPY --from=build /app/build /usr/share/nginx/html
+ENV REACT_APP_ENV "production"
 RUN rm /etc/nginx/conf.d/default.conf
 COPY docker/nginx/nginx.conf /etc/nginx/conf.d
 EXPOSE 80
