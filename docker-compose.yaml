@@ -44,6 +44,7 @@ services:
     environment:
       - REACT_APP_ENV=development
       - REACT_APP_TWOWAYKV_ENDPOINT=/services/twowaykv
+      - REACT_APP_BIGGRAPH_ENDPOINT=/services/biggraph
 
   kv:
     image: dgoldstein1/twowaykv:1.0.0

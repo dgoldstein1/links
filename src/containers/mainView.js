@@ -1,17 +1,13 @@
 /* eslint-disable import/first */
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 // css
-import '../css/MainView.css'
+import "../css/MainView.css";
 
 class MainView extends React.Component {
-	render(props) {
-		return (
-      <div>
-        GOT HERE
-      </div>
-    );
-	}
+  render(props) {
+    return <div>GOT HERE</div>;
+  }
 }
 
 // connect to store
