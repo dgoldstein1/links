@@ -35,7 +35,11 @@ export function fetchAndStoreRandomStartNode(callback) {
     let node = r.data[0];
     graph.getNeighbors(node.value).then(gr => {
       if (!gr.success) return callback(gr.error);
-      console.log(gr);
+      // neighbor ids => values
+      kv.entriesFromValues(gr.data).then(nIds => {
+        if (nIds.error) return callback(nIds.error);
+        console.log(nIds);
+      });
     });
   });
 }
@@ -44,7 +48,7 @@ export function fetchAndStoreRandomStartNode(callback) {
 export function InitAapp() {
   store.dispatch(setLoading(true));
   fetchAndStoreRandomStartNode(err => {
-    if (err) store.disatpch(setFatalError(err));
+    if (err) store.dispatch(setFatalError(err));
     store.dispatch(setLoading(false));
   });
 }

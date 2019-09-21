@@ -25,3 +25,24 @@ export function random(n) {
       error: "Error getting random entry: " + e.message
     }));
 }
+
+/**
+ * gets entries from IDs
+ * @param ids []int
+ * @return same response type as above
+ **/
+export function entriesFromValues(ids) {
+  let url = encodeURI(
+    `${process.env.REACT_APP_TWOWAYKV_ENDPOINT}/entriesFromValues`
+  );
+  return axios
+    .post(url, ids)
+    .then(r => ({
+      success: true,
+      data: r.data
+    }))
+    .catch(e => ({
+      success: false,
+      error: "Error getting entries from values: " + e.message
+    }));
+}
