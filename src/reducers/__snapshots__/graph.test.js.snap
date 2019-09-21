@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducers graph ADD_NEIGHBORS_TO_GRAPH adds new values 1`] = `
+Object {
+  "graph": Object {
+    "edges": Array [
+      Object {
+        "id": "1->-->--2",
+        "source": 1,
+        "target": 2,
+      },
+    ],
+    "nodes": Array [
+      Object {
+        "id": 2,
+        "value": "2",
+      },
+      Object {
+        "id": 1,
+        "value": "1",
+      },
+    ],
+  },
+  "selectedNode": Object {},
+}
+`;
+
+exports[`reducers graph ADD_NEIGHBORS_TO_GRAPH does not add duplicate edges or nodes 1`] = `
+Object {
+  "graph": Object {
+    "edges": Array [
+      Object {
+        "id": "1->-->--2",
+        "source": 1,
+        "target": 2,
+      },
+    ],
+    "nodes": Array [
+      Object {
+        "id": 2,
+        "value": "2",
+      },
+      Object {
+        "id": 1,
+        "value": "1",
+      },
+    ],
+  },
+}
+`;
+
+exports[`reducers graph ADD_NEIGHBORS_TO_GRAPH merges new values with old 1`] = `
+Object {
+  "graph": Object {
+    "edges": Array [
+      Object {
+        "id": "1->-->--2",
+        "source": 1,
+        "target": 2,
+      },
+      Object {
+        "id": "1->-->--3",
+        "source": 1,
+        "target": 3,
+      },
+    ],
+    "nodes": Array [
+      Object {
+        "id": 2,
+        "value": "2",
+      },
+      Object {
+        "id": 3,
+        "value": "3",
+      },
+      Object {
+        "id": 1,
+        "value": "1",
+      },
+    ],
+  },
+}
+`;
+
+exports[`reducers graph initializes with correct state 1`] = `
+Object {
+  "graph": Object {
+    "edges": Array [],
+    "nodes": Array [],
+  },
+  "selectedNode": Object {},
+}
+`;

@@ -1,24 +1,25 @@
 // redux utils
-import { combineReducers, createStore, applyMiddleware } from 'redux';
-import { createLogger } from 'redux-logger';
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import { createLogger } from "redux-logger";
 
 // reducers in this directory
-import appState from'./appStateReducer';
+import appState from "./appState";
+import graph from "./graph";
 
 const Reducer = combineReducers({
-	appState,
+  appState,
+  graph
 });
 
 const logger = createLogger({
-  collapsed : true,
-  diff : true
-})
+  collapsed: true,
+  diff: true
+});
 
-let middleware = {}
-if(process.env.REACT_APP_ENV === "development") {
-	middleware = applyMiddleware(logger)
-} 
-
+let middleware = {};
+if (process.env.REACT_APP_ENV === "development") {
+  middleware = applyMiddleware(logger);
+}
 
 const store = createStore(Reducer, middleware);
 

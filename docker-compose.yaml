@@ -1,23 +1,6 @@
 version: "3.7"
 services:
 
-  ##############
-  ## Crawlers ##
-  ##############
-
-  crawler:
-    image: dgoldstein1/crawler:0.2.6
-    depends_on:
-      - kv
-      - graph
-    environment:
-      - GRAPH_DB_ENDPOINT=http://graph:5000
-      - TWO_WAY_KV_ENDPOINT=http://kv:5001
-      - MAX_APPROX_NODES=10000
-      - COMMAND=wikipedia
-      - METRICS_PORT=8001
-      - PARALLELISM=16
-      - MS_DELAY=50
 
   ##############
   ## Services ##
@@ -36,13 +19,18 @@ services:
     image: links-ui:dev
     build:
       context: .
-      dockerfile: dockerfile-dev
+      dockerfile: docker/links-dev/dockerfile
     volumes:
-      - ./:/usr/src/app 
+      - ./:/usr/src/app
     ports:
       - 3000:3000
     environment:
-      - REACT_APP_ENV="development"
+      - REACT_APP_ENV=development
+      - REACT_APP_TWOWAYKV_ENDPOINT=/services/twowaykv
+      - REACT_APP_BIGGRAPH_ENDPOINT=/services/biggraph
+    depends_on:
+      - kv
+      - graph
 
   kv:
     image: dgoldstein1/twowaykv:1.0.0
