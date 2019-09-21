@@ -7,7 +7,7 @@ import { store } from "./reducers/index";
 import MainView from "./containers/mainView";
 
 // actions
-import { InitAapp } from "./actions/appStateActions";
+import { InitAapp } from "./actions/appState";
 
 class App extends Component {
   componentDidMount() {

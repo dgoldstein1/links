@@ -1,18 +1,18 @@
-// appStateReducer.test.js
+// appState.test.js
 
-import appStateReducer from "./appStateReducer";
+import appState from "./appState";
 
-import { SET_LOADING, UPDATE_VIEW } from "../actions/appStateActions";
+import { SET_LOADING, UPDATE_VIEW } from "../actions/appState";
 
 describe("reducers", () => {
-  describe("appStateReducer", () => {
+  describe("appState", () => {
     const initialState = {
       loading: true, // the app is / isn't loading
       view: "main"
     };
 
     it("initializes with correct state", () => {
-      expect(appStateReducer(undefined, { action: undefined })).toEqual(
+      expect(appState(undefined, { action: undefined })).toEqual(
         initialState
       );
     });
@@ -23,7 +23,7 @@ describe("reducers", () => {
           type: UPDATE_VIEW,
           view: "newView"
         };
-        expect(appStateReducer(undefined, action)).toEqual({
+        expect(appState(undefined, action)).toEqual({
           ...initialState,
           view: "newView"
         });
@@ -35,7 +35,7 @@ describe("reducers", () => {
           type: SET_LOADING,
           loading: true
         };
-        expect(appStateReducer(undefined, action)).toEqual({
+        expect(appState(undefined, action)).toEqual({
           ...initialState,
           loading: true
         });

@@ -3,7 +3,7 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 
 // reducers in this directory
-import appState from "./appStateReducer";
+import appState from "./appState";
 
 const Reducer = combineReducers({
   appState
