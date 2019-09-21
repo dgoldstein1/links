@@ -16,20 +16,22 @@ const visitReducer = (state = initialState, action) => {
         selectedNode: action.node
       });
     case ac.ADD_NEIGHBORS_TO_GRAPH:
-      // add on to current graph
-      let edges = [];
+      // get list of edges to add
+      let edgesToAdd = [];
       action.neighbors.forEach(n => {
-        edges.push({
+        edgesToAdd.push({
           id: `${action.node.id}->-->--${n.id}`,
           source: action.node.id,
           target: n.id
         });
       });
-      // merge into current
+      // add in node to make sure it's in list of nodes
+      action.neighbors.push(action.node);
+      // return state
       return Object.assign({}, state, {
         graph: {
-          nodes: _.merge(state.graph.nodes, action.neighbors),
-          edges: _.merge(state.graph.edges, edges)
+          nodes: _.unionBy(state.graph.nodes, action.neighbors, "id"),
+          edges: _.unionBy(state.graph.edges, edgesToAdd, "id")
         }
       });
     default:

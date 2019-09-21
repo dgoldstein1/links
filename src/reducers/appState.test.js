@@ -12,7 +12,7 @@ describe("reducers", () => {
     };
 
     it("initializes with correct state", () => {
-      expect(appState(undefined, { action: undefined })).toEqual(initialState);
+      expect(appState(undefined, { action: undefined })).toMatchSnapshot();
     });
 
     describe("UPDATE_VIEW", () => {
