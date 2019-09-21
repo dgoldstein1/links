@@ -36,10 +36,13 @@ export function fetchAndStoreRandomStartNode(callback) {
         // success! transform data
         node = { id: node.value, label: node.key };
         nIds.data.entries = nIds.data.entries || [];
-        let neighbors = nIds.data.entries.forEach(n => ({
-          id: n.value,
-          label: n.key
-        }));
+        let neighbors = [];
+        nIds.data.entries.forEach(n => {
+          neighbors.push({
+            id: n.value,
+            label: n.key
+          });
+        });
         // set in store
         store.dispatch(setSelectedNode(node));
         store.dispatch(addNeigborsToGraph(node, neighbors));
