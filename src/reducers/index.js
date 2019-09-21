@@ -4,9 +4,11 @@ import { createLogger } from "redux-logger";
 
 // reducers in this directory
 import appState from "./appState";
+import graph from "./graph";
 
 const Reducer = combineReducers({
-  appState
+  appState,
+  graph
 });
 
 const logger = createLogger({

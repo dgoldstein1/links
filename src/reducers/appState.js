@@ -1,8 +1,4 @@
-import {
-  SET_LOADING,
-  UPDATE_VIEW,
-  SET_FATAL_ERROR
-} from "../actions/appState";
+import { SET_LOADING, UPDATE_VIEW, SET_FATAL_ERROR } from "../actions/appState";
 
 const initialState = {
   loading: true, // the app is / isn't loading
