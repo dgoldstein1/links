@@ -26,11 +26,13 @@ export function setFatalError(e) {
 // initializes app on first load
 export function InitAapp() {
   store.dispatch(setLoading(true))
-  kv.random(1).then(r => {
-    console.log(r)
-  })
   // fetch random node
-  // fetch all neighbors of node
-  // set in store
-  store.dispatch(setLoading(false))
+  kv.random(1).then(r => {
+    if (!r.success) {
+      store.dispatch(setLoading(false))
+      return store.dispatch(setFatalError(r.error))
+    }
+    // fetch neighbors of node
+    // set in store
+  })
 }

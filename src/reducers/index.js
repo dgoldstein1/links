@@ -17,7 +17,7 @@ const logger = createLogger({
 let middleware = {}
 if(process.env.REACT_APP_ENV === "development") {
 	middleware = applyMiddleware(logger)
-} 
+}
 
 
 const store = createStore(Reducer, middleware);
