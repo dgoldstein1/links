@@ -25,9 +25,19 @@ export function setLoading(loading) {
   };
 }
 
+export const SET_FATAL_ERROR = 'SET_FATAL_ERROR'
+export function setFatalError(e) {
+  return {
+    type: SET_FATAL_ERROR,
+    fatalError : e,
+  }
+}
+
 // initializes app on first load
 export function InitAapp() {
   store.dispatch(setLoading(true))
-  // fetch things from API here
+  // fetch random node
+  // fetch all neighbors of node
+  // set in store
   store.dispatch(setLoading(false))
 }
