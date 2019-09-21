@@ -38,7 +38,7 @@ export function fetchAndStoreRandomStartNode(callback) {
       // neighbor ids => values
       kv.entriesFromValues(gr.data).then(nIds => {
         if (nIds.error) return callback(nIds.error);
-        console.log(nIds);
+        console.log(node, nIds.data.entries);
       });
     });
   });

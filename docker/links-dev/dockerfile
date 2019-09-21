@@ -2,5 +2,6 @@
 FROM node:10-alpine
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-CMD npm start
+
+CMD node ./docker/links-dev/insert_data.js && npm start
 EXPOSE 3000
