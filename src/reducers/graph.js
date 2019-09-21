@@ -1,5 +1,5 @@
 import * as ac from "../actions/graph";
-import _ from "lodash"
+import _ from "lodash";
 
 const initialState = {
   selectedNode: {},
@@ -17,19 +17,19 @@ const visitReducer = (state = initialState, action) => {
       });
     case ac.ADD_NEIGHBORS_TO_GRAPH:
       // add on to current graph
-      let edges = []
+      let edges = [];
       action.neighbors.forEach(n => {
         edges.push({
           id: `${action.node.id}->-->--${n.id}`,
           source: action.node.id,
-          target: n.id,
-        })
+          target: n.id
+        });
       });
       // merge into current
       return Object.assign({}, state, {
-        graph : {
-          nodes : _.merge(state.graph.nodes, action.neighbors),
-          edges : _.merge(state.graph.edges, edges)
+        graph: {
+          nodes: _.merge(state.graph.nodes, action.neighbors),
+          edges: _.merge(state.graph.edges, edges)
         }
       });
     default:
