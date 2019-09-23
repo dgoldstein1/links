@@ -5,7 +5,7 @@
 .container {
   height: 5000px;
   overflow-y: hidden;
-  max-height: fill-available;
+  max-height: stretch;
   display: flex;
   align-items: center;
   justify-content: center;
