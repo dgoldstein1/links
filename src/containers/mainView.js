@@ -33,6 +33,8 @@ class MainView extends React.Component {
                 </div>
               </div>
             )}
+            {!this.props.appState.fatalError &&
+              !this.props.appState.loading && <Graph />}
           </div>
         </div>
         <Footer sticky>
