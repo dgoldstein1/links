@@ -2,11 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Sigma, RandomizeNodePositions, RelativeSize } from "react-sigma";
-
-let myGraph = {
-  nodes: [{ id: "n1", label: "Alice" }, { id: "n2", label: "Rabbit" }],
-  edges: [{ id: "e1", source: "n1", target: "n2", label: "SEES" }]
-};
+import ForceLink from "react-sigma/lib/ForceLink";
 
 class Graph extends React.Component {
   render() {
@@ -14,9 +10,11 @@ class Graph extends React.Component {
       <Sigma
         graph={this.props.graph.graph}
         settings={{ drawEdges: true, clone: false }}
+        style={{ height: "800px" }}
       >
         <RelativeSize initialSize={15} />
         <RandomizeNodePositions />
+        <ForceLink background easing="cubicInOut" />
       </Sigma>
     );
   }
