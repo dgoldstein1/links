@@ -18,7 +18,7 @@
   font-size: large;
 }
 
-.map-component {
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
