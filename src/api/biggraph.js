@@ -9,7 +9,7 @@ import axios from "axios";
  **/
 export function getNeighbors(id) {
   let url = encodeURI(
-    `${process.env.REACT_APP_BIGGRAPH_ENDPOINT}/neighbors?node=${id}`
+    `${process.env.REACT_APP_BIGGRAPH_ENDPOINT}/neihbors?node=${id}`
   );
   return axios
     .get(url)

@@ -18,18 +18,22 @@ class MainView extends React.Component {
           <button>Contact</button>
           <button>Report Bug</button>
         </Header>
-        <div className="container" style={{ padding: "5px" }}>
-          {this.props.appState.loading && <div className="spinner secondary" />}
-          {this.props.appState.fatalError && !this.props.appState.loading && (
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="card error fluid">
-                  <h1>Could not load app</h1>
-                  {this.props.appState.fatalError}
+        <div className="container">
+          <div className="main-content">
+            {this.props.appState.loading && (
+              <div className="spinner secondary" />
+            )}
+            {this.props.appState.fatalError && !this.props.appState.loading && (
+              <div className="row">
+                <div className="col-sm-12">
+                  <div className="card error fluid">
+                    <h1>Could not load app</h1>
+                    {this.props.appState.fatalError}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
         <Footer sticky>
           ©2019 david goldstein |<a href="/VERSION"> version </a> |
