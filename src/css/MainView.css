@@ -3,10 +3,9 @@
 }
 
 .container {
-  height: 5000px;
+  height: 800px;
   overflow-y: hidden;
   max-height: stretch;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
