@@ -10,7 +10,7 @@ class MainView extends React.Component {
   render() {
     return (
       <>
-        <Header sticky>
+        <Header sticky className="centered">
           <a href="#" className="logo">
             Logo
           </a>
@@ -35,7 +35,7 @@ class MainView extends React.Component {
             <Graph />
           )}
         </div>
-        <Footer sticky>
+        <Footer sticky className="centered">
           ©2019 david goldstein |<a href="/VERSION"> version </a> |
           <a href="/LICENSE"> license </a>
         </Footer>
