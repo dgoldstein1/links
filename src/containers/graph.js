@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 import React from "react";
 import { connect } from "react-redux";
-import { Sigma, RandomizeNodePositions, RelativeSize } from "react-sigma";
+import { Sigma, EdgeShapes } from "react-sigma";
 import ForceLink from "react-sigma/lib/ForceLink";
 import { fetchAndStoreNeighbors } from "../actions/graph";
 
@@ -14,7 +14,7 @@ class Graph extends React.Component {
   _onNodeClick(e) {
     // add neighbors
     fetchAndStoreNeighbors(e.data.node, err => {
-      console.log(e);
+      console.log(Sigma);
     });
   }
 
@@ -34,6 +34,7 @@ class Graph extends React.Component {
           randomize="locally"
           strongGravityMode={true}
         />
+        <EdgeShapes default="curvedArrow" />
       </Sigma>
     );
   }
