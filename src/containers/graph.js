@@ -41,6 +41,7 @@ class Graph extends React.Component {
       <>
         {this.props.graph.loading && <div className="spinner secondary" />}
         {!this.props.graph.loading && (
+          <>
           <Sigma
             onClickNode={this._onNodeClick}
             renderer="canvas"
@@ -52,11 +53,12 @@ class Graph extends React.Component {
               drawEdgeLabels: true,
               clone: false
             }}
-            style={{ height: "800px" }}
+            style={{ height: "700px" }}
           >
             {this._getGraphFromLayout()}
             <EdgeShapes default="tapered" />
           </Sigma>
+          </>
         )}
       </>
     );
