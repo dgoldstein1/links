@@ -8,7 +8,7 @@ class Graph extends React.Component {
   render() {
     return (
       <Sigma
-      renderer="canvas"
+        renderer="canvas"
         graph={this.props.graph.graph}
         settings={{ drawEdges: true, clone: false }}
         style={{ height: "800px" }}
