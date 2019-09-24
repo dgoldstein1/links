@@ -21,6 +21,14 @@ export function addNeigborsToGraph(node, neighbors) {
   };
 }
 
+export const SET_GRAPH_LAYOUT = "SET_GRAPH_LAYOUT";
+export function setGraphLayout(newLayout) {
+  return {
+    type: SET_GRAPH_LAYOUT,
+    layout: newLayout
+  };
+}
+
 export const SET_GRAPH_LOADING = "SET_GRAPH_LOADING";
 export function setGraphLoading(val) {
   return {

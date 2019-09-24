@@ -9,11 +9,16 @@ const initialState = {
     nodes: [],
     edges: []
   },
-  loading: false
+  loading: false,
+  layout: "cluster"
 };
 
 const visitReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ac.SET_GRAPH_LAYOUT:
+      return Object.assign({}, state, {
+        layout: action.layout
+      });
     case ac.SET_GRAPH_LOADING:
       return Object.assign({}, state, {
         loading: action.newValue
