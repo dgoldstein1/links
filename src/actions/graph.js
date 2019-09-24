@@ -2,6 +2,7 @@ import { store } from "../reducers/index";
 // api
 import * as kv from "../api/twowaykv";
 import * as graph from "../api/biggraph";
+import {_generateRoot } from "../reducers/graph"
 
 export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
 export function setSelectedNode(node) {
@@ -34,7 +35,7 @@ export function fetchAndStoreRandomStartNode(callback) {
       kv.entriesFromValues(gr.data).then(nIds => {
         if (nIds.error) return callback(nIds.error);
         // success! transform data
-        node = { id: node.value, label: node.key };
+        node = _generateRoot(node.key, node.value)
         nIds.data.entries = nIds.data.entries || [];
         let neighbors = [];
         nIds.data.entries.forEach(n => {

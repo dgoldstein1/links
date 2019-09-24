@@ -1,6 +1,8 @@
 import * as ac from "../actions/graph";
 import _ from "lodash";
 
+const ROOT_NODE_SIZE=10000;
+
 const initialState = {
   selectedNode: {},
   graph: {
@@ -13,9 +15,16 @@ const visitReducer = (state = initialState, action) => {
   switch (action.type) {
     case ac.SET_SELECTED_NODE:
       return Object.assign({}, state, {
-        selectedNode: action.node
+        selectedNode: _generateRoot(action.node.id, action.node.label)
       });
     case ac.ADD_NEIGHBORS_TO_GRAPH:
+      // set initial position to source
+      action.neighbors = action.neighbors.map(n => ({
+        ...n,
+        x : action.node.x,
+        y : action.node.y,
+        size : action.node.size / 2
+      }))
       // get list of edges to add
       let edgesToAdd = [];
       action.neighbors.forEach(n => {
@@ -38,5 +47,15 @@ const visitReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export function _generateRoot(label, id) {
+  return {
+    label,
+    id,
+    x : 0,
+    y : 0,
+    size : ROOT_NODE_SIZE
+  }
+}
 
 export default visitReducer;

@@ -8,13 +8,17 @@ class Graph extends React.Component {
   render() {
     return (
       <Sigma
+      renderer="canvas"
         graph={this.props.graph.graph}
         settings={{ drawEdges: true, clone: false }}
         style={{ height: "800px" }}
       >
-        <RelativeSize initialSize={15} />
-        <RandomizeNodePositions />
-        <ForceLink background easing="cubicInOut" />
+        <ForceLink
+          background
+          easing="cubicInOut"
+          randomize="locally"
+          strongGravityMode={true}
+        />
       </Sigma>
     );
   }
