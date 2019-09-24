@@ -13,7 +13,10 @@ Object {
     "nodes": Array [
       Object {
         "id": 2,
+        "size": NaN,
         "value": "2",
+        "x": undefined,
+        "y": undefined,
       },
       Object {
         "id": 1,
@@ -21,6 +24,8 @@ Object {
       },
     ],
   },
+  "layout": "cluster",
+  "loading": false,
   "selectedNode": Object {},
 }
 `;
@@ -71,7 +76,10 @@ Object {
       },
       Object {
         "id": 3,
+        "size": NaN,
         "value": "3",
+        "x": undefined,
+        "y": undefined,
       },
       Object {
         "id": 1,
@@ -88,6 +96,8 @@ Object {
     "edges": Array [],
     "nodes": Array [],
   },
+  "layout": "cluster",
+  "loading": false,
   "selectedNode": Object {},
 }
 `;
