@@ -21,13 +21,26 @@ export function addNeigborsToGraph(node, neighbors) {
   };
 }
 
+export const SET_GRAPH_LOADING = "SET_GRAPH_LOADING";
+export function setGraphLoading(val) {
+  return {
+    type: SET_GRAPH_LOADING,
+    newValue: val
+  };
+}
+
 // fetches neighbors of node and adds them to graph
 export function fetchAndStoreNeighbors(node, callback = err => {}) {
+  let finalCallback = e => {
+    store.dispatch(setGraphLoading(false));
+    callback(e);
+  };
+  store.dispatch(setGraphLoading(true));
   graph.getNeighbors(node.id).then(gr => {
-    if (!gr.success) return callback(gr.error);
+    if (!gr.success) return finalCallback(gr.error);
     // neighbor ids => values
     kv.entriesFromValues(gr.data).then(nIds => {
-      if (nIds.error) return callback(nIds.error);
+      if (nIds.error) return finalCallback(nIds.error);
       // success! transform data
       nIds.data.entries = nIds.data.entries || [];
       let neighbors = [];
@@ -40,7 +53,7 @@ export function fetchAndStoreNeighbors(node, callback = err => {}) {
       // set in store
       store.dispatch(setSelectedNode(node));
       store.dispatch(addNeigborsToGraph(node, neighbors));
-      return callback();
+      return finalCallback();
     });
   });
 }

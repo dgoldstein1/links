@@ -8,11 +8,16 @@ const initialState = {
   graph: {
     nodes: [],
     edges: []
-  }
+  },
+  loading: false
 };
 
 const visitReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ac.SET_GRAPH_LOADING:
+      return Object.assign({}, state, {
+        loading: action.newValue
+      });
     case ac.SET_SELECTED_NODE:
       return Object.assign({}, state, {
         selectedNode: _generateRoot(action.node.id, action.node.label)
