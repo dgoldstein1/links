@@ -25,7 +25,6 @@ class Graph extends React.Component {
           <Sigma
             onClickNode={this._onNodeClick}
             renderer="canvas"
-            renderer="canvas"
             graph={this.props.graph.graph}
             settings={{
               flex: 1,
@@ -37,13 +36,14 @@ class Graph extends React.Component {
             style={{ height: "800px" }}
           >
             <ForceLink
+              slowDown={1}
               background
               easing="cubicInOut"
               randomize="locally"
               strongGravityMode={true}
               gravity={0}
             />
-            <EdgeShapes default="curvedArrow" />
+            <EdgeShapes default="tapered" />
           </Sigma>
         )}
       </>
