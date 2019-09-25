@@ -12,7 +12,7 @@ function ErrorCard(p) {
             <p>{p.error}</p>
             <label htlmfor="drawer-control" className="drawer-close" />
             <br />
-            <button>{p.action}</button>
+            <button onClick={p.onAction}>{p.action}</button>
           </div>
         </div>
       </div>

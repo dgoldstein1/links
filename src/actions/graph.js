@@ -48,8 +48,7 @@ export function setGraphError(error) {
 // fetches neighbors of node and adds them to graph
 export function fetchAndStoreNeighbors(node, callback = err => {}) {
   let finalCallback = e => {
-    // if (e)
-    store.dispatch(setGraphError("ERROR"));
+    if (e) store.dispatch(setGraphError(e));
     store.dispatch(setGraphLoading(false));
     callback(e);
   };
