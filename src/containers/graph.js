@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Sigma, EdgeShapes } from "react-sigma";
 import Dagre from "react-sigma/lib/Dagre";
 import ForceLink from "react-sigma/lib/ForceLink";
-import { fetchAndStoreNeighbors } from "../actions/graph";
+import { fetchAndStoreNeighbors, setE } from "../actions/graph";
 
 class Graph extends React.Component {
   constructor() {
@@ -19,7 +19,7 @@ class Graph extends React.Component {
   }
 
   _getGraphFromLayout() {
-    if (this.props.graph.layout === "hierarchy") {
+    if (this.props.layout === "hierarchy") {
       return <Dagre directed={true} easing={true} multigraph={true} />;
     }
     // default
@@ -38,13 +38,25 @@ class Graph extends React.Component {
   render() {
     return (
       <>
-        {this.props.graph.loading && <div className="spinner secondary" />}
-        {!this.props.graph.loading && (
+        {this.props.loading && !this.props.error && (
+          <div className="spinner secondary" />
+        )}
+        {!this.props.loading && this.props.error && (
+          <div className="row">
+            <div className="col-sm-12">
+              <div className="card error fluid">
+                <h1>Could not load graph</h1>
+                {this.props.error}
+              </div>
+            </div>
+          </div>
+        )}
+        {!this.props.loading && !this.props.error && (
           <>
             <Sigma
               onClickNode={this._onNodeClick}
               renderer="canvas"
-              graph={this.props.graph.graph}
+              graph={this.props.graph}
               settings={{
                 flex: 1,
                 labelThreshold: 0,
@@ -65,5 +77,5 @@ class Graph extends React.Component {
 }
 
 // connect to store
-let mapStateToProps = state => state;
+let mapStateToProps = state => ({ ...state.graph });
 export default connect(mapStateToProps)(Graph);
