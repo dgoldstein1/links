@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { Sigma, EdgeShapes } from "react-sigma";
 import Dagre from "react-sigma/lib/Dagre";
 import ForceLink from "react-sigma/lib/ForceLink";
-import { fetchAndStoreNeighbors, setE } from "../actions/graph";
+import { fetchAndStoreNeighbors, setGraphError } from "../actions/graph";
+import ErrorCard from "../components/errorCard";
+import { store } from "../reducers";
 
 class Graph extends React.Component {
   constructor() {
@@ -42,14 +44,12 @@ class Graph extends React.Component {
           <div className="spinner secondary" />
         )}
         {!this.props.loading && this.props.error && (
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="card error fluid">
-                <h1>Could not load graph</h1>
-                {this.props.error}
-              </div>
-            </div>
-          </div>
+          <ErrorCard
+            error={this.props.error}
+            action="close"
+            onAction={() => store.dispatch(setGraphError(undefined))}
+            type="warning"
+          />
         )}
         {!this.props.loading && !this.props.error && (
           <>
