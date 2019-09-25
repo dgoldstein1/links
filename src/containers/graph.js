@@ -39,7 +39,7 @@ class Graph extends React.Component {
 
   render() {
     return (
-      <>
+      <div>
         {this.props.loading && !this.props.error && (
           <div className="spinner secondary" />
         )}
@@ -52,7 +52,7 @@ class Graph extends React.Component {
           />
         )}
         {!this.props.loading && !this.props.error && (
-          <>
+          <div>
             <Sigma
               onClickNode={this._onNodeClick}
               renderer="canvas"
@@ -69,9 +69,9 @@ class Graph extends React.Component {
               {this._getGraphFromLayout()}
               <EdgeShapes default="tapered" />
             </Sigma>
-          </>
+          </div>
         )}
-      </>
+      </div>
     );
   }
 }

@@ -1,9 +1,9 @@
 /* eslint-disable import/first */
 import React from "react";
 import { connect } from "react-redux";
-import { Header, Footer } from "mini.css-react";
 import Graph from "./graph";
 import ErrorCard from "../components/errorCard";
+import Header from "../components/header";
 // css
 import "../css/MainView.css";
 
@@ -11,13 +11,8 @@ class MainView extends React.Component {
   render() {
     return (
       <div>
-        <Header sticky className="centered">
-          <button>About</button>
-          <button>Contact</button>
-          <button>Report Bug</button>
-        </Header>
         <div className="container">
-          {this.props.loading && <div className="spinner secondary" />}
+          {this.props.loading && <div className="spinner secondary centered" />}
           {this.props.fatalError && !this.props.loading && (
             <div className="centered">
               <ErrorCard
@@ -31,13 +26,13 @@ class MainView extends React.Component {
               </a>
             </div>
           )}
-
-          {!this.props.fatalError && !this.props.loading && <Graph />}
+          {!this.props.fatalError && !this.props.loading && (
+            <div>
+              <Header />
+              <Graph />
+            </div>
+          )}
         </div>
-        <Footer sticky className="centered">
-          ©2019 david goldstein |<a href="/VERSION"> version </a> |
-          <a href="/LICENSE"> license </a>
-        </Footer>
       </div>
     );
   }
