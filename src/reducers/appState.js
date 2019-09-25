@@ -3,7 +3,7 @@ import { SET_LOADING, UPDATE_VIEW, SET_FATAL_ERROR } from "../actions/appState";
 const initialState = {
   loading: true, // the app is / isn't loading
   fatalError: undefined, // error which  causes app to not load
-  view: "main" // the current view
+  view: "explore" // the current view
 };
 
 const visitReducer = (state = initialState, action) => {

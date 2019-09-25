@@ -1,17 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Header as H } from "mini.css-react";
+import { connect } from "react-redux";
+import "../css/MainView.css";
 
 function Header(p) {
   return (
-    <H sticky className="centered">
-      <button>About</button>
-      <button>Contact</button>
-      <button>Report Bug</button>
+    <H sticky className="header">
+      <a>Logo</a>
+      {p.view === "explore" && <input type="text" placeholder="search" />}
+      <button>Mode</button>
+      <button>Layout</button>
+      <button>
+        <span className="icon-settings" />
+      </button>
+      <button>
+        <span className="icon-info" />
+      </button>
     </H>
   );
 }
 
 Header.propTypes = {};
 
-export default Header;
+let mapStateToProps = state => ({
+  view: state.appState.view,
+  layout: state.graph.layout
+});
+export default connect(mapStateToProps)(Header);

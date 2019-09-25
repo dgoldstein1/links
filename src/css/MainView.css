@@ -3,9 +3,19 @@
 }
 
 .container {
-  height: 670px;
+  height: 100%;
   overflow-y: hidden;
   max-height: stretch;
-  align-items: center;
+  align-items: center; 
   justify-content: center;
+}
+
+.header {
+	text-align: center;
+	height: 100%;
+	overflow-y: hidden;
+}
+
+.searchbar {
+	width: 500px;
 }

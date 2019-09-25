@@ -64,7 +64,7 @@ class Graph extends React.Component {
                 drawEdgeLabels: true,
                 clone: false
               }}
-              style={{ height: "700px" }}
+              style={{ height: "1000px" }}
             >
               {this._getGraphFromLayout()}
               <EdgeShapes default="tapered" />
