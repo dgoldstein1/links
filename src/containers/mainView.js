@@ -11,9 +11,6 @@ class MainView extends React.Component {
     return (
       <>
         <Header sticky className="centered">
-          <a href="#" className="logo">
-            Logo
-          </a>
           <button>About</button>
           <button>Contact</button>
           <button>Report Bug</button>
