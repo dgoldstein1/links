@@ -16,11 +16,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
         <Provider store={store}>
-          <MainView />
+          <MainView/>
         </Provider>
-      </div>
     );
   }
 }

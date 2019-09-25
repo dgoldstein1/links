@@ -2,6 +2,7 @@ import { store } from "../reducers/index";
 // api
 import * as kv from "../api/twowaykv";
 import * as graph from "../api/biggraph";
+import { _generateRoot } from "../reducers/graph";
 
 export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
 export function setSelectedNode(node) {
@@ -20,6 +21,51 @@ export function addNeigborsToGraph(node, neighbors) {
   };
 }
 
+export const SET_GRAPH_LAYOUT = "SET_GRAPH_LAYOUT";
+export function setGraphLayout(newLayout) {
+  return {
+    type: SET_GRAPH_LAYOUT,
+    layout: newLayout
+  };
+}
+
+export const SET_GRAPH_LOADING = "SET_GRAPH_LOADING";
+export function setGraphLoading(val) {
+  return {
+    type: SET_GRAPH_LOADING,
+    newValue: val
+  };
+}
+
+// fetches neighbors of node and adds them to graph
+export function fetchAndStoreNeighbors(node, callback = err => {}) {
+  let finalCallback = e => {
+    store.dispatch(setGraphLoading(false));
+    callback(e);
+  };
+  store.dispatch(setGraphLoading(true));
+  graph.getNeighbors(node.id).then(gr => {
+    if (!gr.success) return finalCallback(gr.error);
+    // neighbor ids => values
+    kv.entriesFromValues(gr.data).then(nIds => {
+      if (nIds.error) return finalCallback(nIds.error);
+      // success! transform data
+      nIds.data.entries = nIds.data.entries || [];
+      let neighbors = [];
+      nIds.data.entries.forEach(n => {
+        neighbors.push({
+          id: n.value,
+          label: n.key
+        });
+      });
+      // set in store
+      store.dispatch(setSelectedNode(node));
+      store.dispatch(addNeigborsToGraph(node, neighbors));
+      return finalCallback();
+    });
+  });
+}
+
 // fetches and stores random starting node and neighbors
 // callback called with string error
 export function fetchAndStoreRandomStartNode(callback) {
@@ -27,27 +73,7 @@ export function fetchAndStoreRandomStartNode(callback) {
   kv.random(1).then(r => {
     if (!r.success) return callback(r.error);
     // fetch neighbors of node
-    let node = r.data[0];
-    graph.getNeighbors(node.value).then(gr => {
-      if (!gr.success) return callback(gr.error);
-      // neighbor ids => values
-      kv.entriesFromValues(gr.data).then(nIds => {
-        if (nIds.error) return callback(nIds.error);
-        // success! transform data
-        node = { id: node.value, label: node.key };
-        nIds.data.entries = nIds.data.entries || [];
-        let neighbors = [];
-        nIds.data.entries.forEach(n => {
-          neighbors.push({
-            id: n.value,
-            label: n.key
-          });
-        });
-        // set in store
-        store.dispatch(setSelectedNode(node));
-        store.dispatch(addNeigborsToGraph(node, neighbors));
-        return callback();
-      });
-    });
+    let node = _generateRoot(r.data[0].key, r.data[0].value);
+    fetchAndStoreNeighbors(node, callback);
   });
 }
