@@ -4,7 +4,7 @@ import { Header as H } from "mini.css-react";
 import { connect } from "react-redux";
 import { store } from "../reducers";
 import { updateView } from "../actions/appState";
-import { setGraphLoading } from "../actions/graph";
+import { setGraphLayout } from "../actions/graph";
 import "../css/MainView.css";
 
 function Header(p) {
@@ -32,7 +32,15 @@ function Header(p) {
       >
         {p.view === "explore" ? "path" : "explore"}
       </button>
-      <button>{p.layout === "cluster" ? "Hierarchy" : "Cluster"}</button>
+      <button
+        onClick={() => {
+          store.dispatch(
+            setGraphLayout(p.layout === "cluster" ? "hierarchy" : "cluster")
+          );
+        }}
+      >
+        {p.layout === "cluster" ? "hierarchy" : "cluster"}
+      </button>
       <button className="floatRight">
         <span className="icon-settings" />
       </button>
@@ -42,8 +50,6 @@ function Header(p) {
     </H>
   );
 }
-
-Header.propTypes = {};
 
 let mapStateToProps = state => ({
   view: state.appState.view,

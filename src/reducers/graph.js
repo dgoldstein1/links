@@ -11,7 +11,7 @@ const initialState = {
   },
   loading: false,
   error: undefined,
-  layout: "cluster"
+  layout: "hierarchy"
 };
 
 const visitReducer = (state = initialState, action) => {
