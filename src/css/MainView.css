@@ -16,6 +16,18 @@
 	overflow-y: hidden;
 }
 
-.searchbar {
-	width: 500px;
+.floatLeft {
+  float: left;
+}
+
+.floatRight {
+  float: right;
+}
+
+.mainBar {
+  width:40%; 
+}
+
+.halfBar {
+  width: 20%;
 }
