@@ -4,18 +4,19 @@ import { connect } from "react-redux";
 import { store } from "../reducers";
 import { updateView } from "../actions/appState";
 import { setGraphLayout } from "../actions/graph";
+import SearchBar from "./searchBar";
 import "../css/MainView.css";
 
 function Header(p) {
   let _getSearchBar = () => {
     if (p.view === "explore") {
-      return <input className="mainBar" type="text" placeholder="search" />;
+      return <SearchBar className="mainBar" placeholder="search" />;
     }
     // p is path
     return (
       <>
-        <input className="halfBar" type="text" placeholder="starting from.." />
-        <input className="halfBar" type="text" placeholder="ending at.." />
+        <SearchBar className="halfBar" placeholder="starting at.." />
+        <SearchBar className="halfBar" placeholder="ending at.." />
       </>
     );
   };
