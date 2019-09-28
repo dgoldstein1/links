@@ -8,7 +8,7 @@ describe("reducers", () => {
   describe("appState", () => {
     const initialState = {
       loading: true, // the app is / isn't loading
-      view: "main"
+      view: "splash"
     };
 
     it("initializes with correct state", () => {
