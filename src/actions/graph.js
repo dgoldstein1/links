@@ -37,9 +37,18 @@ export function setGraphLoading(val) {
   };
 }
 
+export const SET_GRAPH_ERROR = "SET_GRAPH_ERROR";
+export function setGraphError(error) {
+  return {
+    type: SET_GRAPH_ERROR,
+    error
+  };
+}
+
 // fetches neighbors of node and adds them to graph
 export function fetchAndStoreNeighbors(node, callback = err => {}) {
   let finalCallback = e => {
+    if (e) store.dispatch(setGraphError(e));
     store.dispatch(setGraphLoading(false));
     callback(e);
   };

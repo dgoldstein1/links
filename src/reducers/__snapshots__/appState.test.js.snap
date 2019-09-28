@@ -4,6 +4,6 @@ exports[`reducers appState initializes with correct state 1`] = `
 Object {
   "fatalError": undefined,
   "loading": true,
-  "view": "main",
+  "view": "splash",
 }
 `;

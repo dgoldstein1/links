@@ -2,6 +2,7 @@
 
 exports[`reducers graph ADD_NEIGHBORS_TO_GRAPH adds new values 1`] = `
 Object {
+  "error": undefined,
   "graph": Object {
     "edges": Array [
       Object {
@@ -24,7 +25,7 @@ Object {
       },
     ],
   },
-  "layout": "cluster",
+  "layout": "hierarchy",
   "loading": false,
   "selectedNode": Object {},
 }
@@ -92,11 +93,12 @@ Object {
 
 exports[`reducers graph initializes with correct state 1`] = `
 Object {
+  "error": undefined,
   "graph": Object {
     "edges": Array [],
     "nodes": Array [],
   },
-  "layout": "cluster",
+  "layout": "hierarchy",
   "loading": false,
   "selectedNode": Object {},
 }

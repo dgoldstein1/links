@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { Sigma, EdgeShapes } from "react-sigma";
 import Dagre from "react-sigma/lib/Dagre";
 import ForceLink from "react-sigma/lib/ForceLink";
-import { fetchAndStoreNeighbors } from "../actions/graph";
+import { fetchAndStoreNeighbors, setGraphError } from "../actions/graph";
+import ErrorCard from "../components/errorCard";
+import { store } from "../reducers";
 
 class Graph extends React.Component {
   constructor() {
@@ -19,7 +21,7 @@ class Graph extends React.Component {
   }
 
   _getGraphFromLayout() {
-    if (this.props.graph.layout === "hierarchy") {
+    if (this.props.layout === "hierarchy") {
       return <Dagre directed={true} easing={true} multigraph={true} />;
     }
     // default
@@ -37,14 +39,24 @@ class Graph extends React.Component {
 
   render() {
     return (
-      <>
-        {this.props.graph.loading && <div className="spinner secondary" />}
-        {!this.props.graph.loading && (
-          <>
+      <div>
+        {this.props.loading && !this.props.error && (
+          <div className="spinner secondary" />
+        )}
+        {!this.props.loading && this.props.error && (
+          <ErrorCard
+            error={this.props.error}
+            action="close"
+            onAction={() => store.dispatch(setGraphError(undefined))}
+            type="warning"
+          />
+        )}
+        {!this.props.loading && !this.props.error && (
+          <div>
             <Sigma
               onClickNode={this._onNodeClick}
               renderer="canvas"
-              graph={this.props.graph.graph}
+              graph={this.props.graph}
               settings={{
                 flex: 1,
                 labelThreshold: 0,
@@ -52,18 +64,18 @@ class Graph extends React.Component {
                 drawEdgeLabels: true,
                 clone: false
               }}
-              style={{ height: "700px" }}
+              style={{ height: "1000px" }}
             >
               {this._getGraphFromLayout()}
               <EdgeShapes default="tapered" />
             </Sigma>
-          </>
+          </div>
         )}
-      </>
+      </div>
     );
   }
 }
 
 // connect to store
-let mapStateToProps = state => state;
+let mapStateToProps = state => ({ ...state.graph });
 export default connect(mapStateToProps)(Graph);

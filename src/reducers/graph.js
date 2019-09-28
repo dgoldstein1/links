@@ -10,11 +10,16 @@ const initialState = {
     edges: []
   },
   loading: false,
-  layout: "cluster"
+  error: undefined,
+  layout: "hierarchy"
 };
 
 const visitReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ac.SET_GRAPH_ERROR:
+      return Object.assign({}, state, {
+        error: action.error
+      });
     case ac.SET_GRAPH_LAYOUT:
       return Object.assign({}, state, {
         layout: action.layout
