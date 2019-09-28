@@ -10,19 +10,24 @@ import "../css/MainView.css";
 function Header(p) {
   let _getSearchBar = () => {
     if (p.view === "explore") {
-      return <SearchBar className="mainBar" placeholder="search" />;
+      return <SearchBar placeholder="search.." />;
     }
     // p is path
     return (
       <>
-        <SearchBar className="halfBar" placeholder="starting at.." />
-        <SearchBar className="halfBar" placeholder="ending at.." />
+        <SearchBar placeholder="starting at.." />
+        <SearchBar placeholder="ending at.." />
       </>
     );
   };
 
   return (
-    <H sticky className="header">
+    <H
+      sticky
+      className={
+        "header " + (p.view === "explore" ? "oneSearchBar" : "twoSearchBars")
+      }
+    >
       <a href="/" className="floatLeft">
         Logo
       </a>

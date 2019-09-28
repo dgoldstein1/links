@@ -24,10 +24,18 @@
   float: right;
 }
 
-.mainBar {
-  width:40%; 
+.oneSearchBar input {
+  width:500px; 
 }
 
-.halfBar {
-  width: 20%;
+.twoSearchBars input{
+  width: 250px;
+}
+
+.autoCompleteItem {
+  background-color: transparent;
+}
+
+.autoCompleteItemHover {
+  background-color: #eee; 
 }
