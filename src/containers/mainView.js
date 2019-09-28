@@ -5,6 +5,8 @@ import Graph from "./graph";
 import ErrorCard from "../components/errorCard";
 import Header from "../components/header";
 import Splash from "./splash";
+import About from "../components/about";
+import Settings from "../components/settings";
 // css
 import "../css/MainView.css";
 
@@ -33,7 +35,10 @@ class MainView extends React.Component {
             this.props.view !== "splash" && (
               <div>
                 <Header />
-                <Graph />
+                {this.props.view === "about" && <About />}
+                {this.props.view === "settings" && <Settings />}
+                {(this.props.view === "explore" ||
+                  this.props.view === "path") && <Graph />}
               </div>
             )}
         </div>

@@ -42,10 +42,16 @@ function Header(p) {
       >
         {p.layout === "cluster" ? "hierarchy" : "cluster"}
       </button>
-      <button className="floatRight">
+      <button
+        className="floatRight"
+        onClick={() => store.dispatch(updateView("settings"))}
+      >
         <span className="icon-settings" />
       </button>
-      <button className="floatRight">
+      <button
+        className="floatRight"
+        onClick={() => store.dispatch(updateView("about"))}
+      >
         <span className="icon-help" />
       </button>
     </H>
