@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Graph from "./graph";
 import ErrorCard from "../components/errorCard";
 import Header from "../components/header";
+import Splash from "./splash";
 // css
 import "../css/MainView.css";
 
@@ -26,12 +27,15 @@ class MainView extends React.Component {
               </a>
             </div>
           )}
-          {!this.props.fatalError && !this.props.loading && (
-            <div>
-              <Header />
-              <Graph />
-            </div>
-          )}
+          {this.props.view === "splash" && <Splash />}
+          {!this.props.fatalError &&
+            !this.props.loading &&
+            this.props.view !== "splash" && (
+              <div>
+                <Header />
+                <Graph />
+              </div>
+            )}
         </div>
       </div>
     );
