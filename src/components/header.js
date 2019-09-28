@@ -31,6 +31,7 @@ function Header(p) {
       <a href="/" className="floatLeft">
         Logo
       </a>
+      <span className="icon-search" />
       {_getSearchBar()}
       <button
         onClick={() => {
