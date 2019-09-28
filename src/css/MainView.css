@@ -33,9 +33,13 @@
 }
 
 .autoCompleteItem {
+  margin: 4px;
+  text-align: left;
   background-color: transparent;
 }
 
 .autoCompleteItemHover {
+  margin: 4px;
+  text-align: left;
   background-color: #eee; 
 }
