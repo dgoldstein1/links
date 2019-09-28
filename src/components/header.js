@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Header as H } from "mini.css-react";
 import { connect } from "react-redux";
 import { store } from "../reducers";
@@ -23,7 +22,9 @@ function Header(p) {
 
   return (
     <H sticky className="header">
-      <a className="floatLeft">Logo</a>
+      <a href="/" className="floatLeft">
+        Logo
+      </a>
       {_getSearchBar()}
       <button
         onClick={() => {
