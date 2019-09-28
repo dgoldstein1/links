@@ -1,6 +1,6 @@
 import graph from "./graph";
 
-import { SET_SELECTED_NODE, ADD_NEIGHBORS_TO_GRAPH } from "../actions/graph";
+import { SET_ROOT_NODE, ADD_NEIGHBORS_TO_GRAPH } from "../actions/graph";
 
 describe("reducers", () => {
   describe("graph", () => {

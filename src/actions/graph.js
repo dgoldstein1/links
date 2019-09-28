@@ -4,10 +4,10 @@ import * as kv from "../api/twowaykv";
 import * as graph from "../api/biggraph";
 import { _generateRoot } from "../reducers/graph";
 
-export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
+export const SET_ROOT_NODE = "SET_ROOT_NODE";
 export function setSelectedNode(node) {
   return {
-    type: SET_SELECTED_NODE,
+    type: SET_ROOT_NODE,
     node
   };
 }

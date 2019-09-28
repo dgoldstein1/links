@@ -4,7 +4,7 @@ import _ from "lodash";
 const ROOT_NODE_SIZE = 10000;
 
 const initialState = {
-  selectedNode: {},
+  rootNode: {},
   graph: {
     nodes: [],
     edges: []
@@ -28,9 +28,9 @@ const visitReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         loading: action.newValue
       });
-    case ac.SET_SELECTED_NODE:
+    case ac.SET_ROOT_NODE:
       return Object.assign({}, state, {
-        selectedNode: _generateRoot(action.node.id, action.node.label)
+        rootNode: _generateRoot(action.node.id, action.node.label)
       });
     case ac.ADD_NEIGHBORS_TO_GRAPH:
       // set initial position to source
