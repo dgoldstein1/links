@@ -4,7 +4,8 @@ import _ from "lodash";
 const ROOT_NODE_SIZE = 10000;
 
 const initialState = {
-  rootNode: {},
+  rootNode: {}, // root node of graph (what is in search or 'start from')
+  targetNode: {}, // target node in path ('ending at..')
   graph: {
     nodes: [],
     edges: []
@@ -30,7 +31,11 @@ const visitReducer = (state = initialState, action) => {
       });
     case ac.SET_ROOT_NODE:
       return Object.assign({}, state, {
-        rootNode: _generateRoot(action.node.id, action.node.label)
+        rootNode: _generateRoot(action.node.label, action.node.id)
+      });
+    case ac.SET_TARGET_NODE:
+      return Object.assign({}, state, {
+        rootNode: action.node
       });
     case ac.ADD_NEIGHBORS_TO_GRAPH:
       // set initial position to source

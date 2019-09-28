@@ -4,22 +4,10 @@ import "../css/MainView.css";
 import Autocomplete from "react-autocomplete";
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: ""
-    };
-  }
-
   render() {
     return (
       <Autocomplete
-        style={{ width: "500px" }}
-        items={[
-          { id: "foo", label: "foo" },
-          { id: "bar", label: "bar" },
-          { id: "baz", label: "baz" }
-        ]}
+        items={[]}
         shouldItemRender={(item, value) =>
           item.label.toLowerCase().indexOf(value.toLowerCase()) > -1
         }
@@ -35,7 +23,7 @@ class Search extends React.Component {
             {item.label}
           </div>
         )}
-        value={this.state.value}
+        value={this.props.value}
         onChange={e => this.setState({ value: e.target.value })}
         onSelect={value => this.setState({ value })}
       />
@@ -44,7 +32,12 @@ class Search extends React.Component {
 }
 
 Search.propTypes = {
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  value: PropTypes.string
+};
+
+Search.defaultProps = {
+  value: ""
 };
 
 export default Search;

@@ -10,13 +10,13 @@ import "../css/MainView.css";
 function Header(p) {
   let _getSearchBar = () => {
     if (p.view === "explore") {
-      return <SearchBar placeholder="search.." />;
+      return <SearchBar placeholder="search.." value={p.rootNode.label} />;
     }
     // p is path
     return (
       <>
-        <SearchBar placeholder="starting at.." />
-        <SearchBar placeholder="ending at.." />
+        <SearchBar placeholder="starting at.." value={p.rootNode.label} />
+        <SearchBar placeholder="ending at.." value={p.targetNode.label} />
       </>
     );
   };
@@ -66,6 +66,8 @@ function Header(p) {
 
 let mapStateToProps = state => ({
   view: state.appState.view,
-  layout: state.graph.layout
+  layout: state.graph.layout,
+  rootNode: state.graph.rootNode,
+  targetNode: state.graph.targetNode
 });
 export default connect(mapStateToProps)(Header);

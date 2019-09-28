@@ -12,6 +12,14 @@ export function setSelectedNode(node) {
   };
 }
 
+export const SET_TARGET_NODE = "SET_TARGET_NODE";
+export function setTargetNode(node) {
+  return {
+    type: SET_TARGET_NODE,
+    node
+  };
+}
+
 export const ADD_NEIGHBORS_TO_GRAPH = "ADD_NEIGHBORS_TO_GRAPH";
 export function addNeigborsToGraph(node, neighbors) {
   return {
