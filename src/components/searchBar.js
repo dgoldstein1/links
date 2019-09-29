@@ -48,18 +48,22 @@ class Search extends React.Component {
         )}
         value={this.state.value}
         onChange={this._onChange}
-        onSelect={value => this.setState({ value })}
+        onSelect={value =>
+          this.props.onSelect(value) && this.setState({ value })
+        }
       />
     );
   }
 }
 
 Search.propTypes = {
+  onSelect: PropTypes.func,
   placeholder: PropTypes.string,
   value: PropTypes.string
 };
 
 Search.defaultProps = {
+  onSelect: () => {},
   value: ""
 };
 
