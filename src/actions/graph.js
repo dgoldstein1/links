@@ -96,7 +96,7 @@ export function fetchAndStoreNeighbors(node, callback = err => {}) {
   });
 }
 
-export function setNewRoot(node) {
+export function setNewRoot(node, callback = () => {}) {
   // clear current graph
   store.dispatch(setGraphLoading(true));
   store.dispatch(clearGraph());
@@ -108,6 +108,15 @@ export function setNewRoot(node) {
       store.dispatch(setRootNode(node));
     }
     store.dispatch(setGraphLoading(false));
+    callback(err);
+  });
+}
+
+export function setStartPath(node) {
+  setNewRoot(node, err => {
+    if (!err && store.getState().graph.targetNode !== undefined) {
+      // dispatch action to find new path
+    }
   });
 }
 
