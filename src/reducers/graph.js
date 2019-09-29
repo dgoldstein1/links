@@ -5,6 +5,7 @@ const ROOT_NODE_SIZE = 10000;
 
 const initialState = {
   rootNode: {}, // root node of graph (what is in search or 'start from')
+  selectedNode: {}, // node currently in view
   targetNode: {}, // target node in path ('ending at..')
   graph: {
     nodes: [],
@@ -32,6 +33,10 @@ const visitReducer = (state = initialState, action) => {
     case ac.SET_ROOT_NODE:
       return Object.assign({}, state, {
         rootNode: _generateRoot(action.node.label, action.node.id)
+      });
+    case ac.SET_SELECTED_NODE:
+      return Object.assign({}, state, {
+        selectedNode: action.node
       });
     case ac.SET_TARGET_NODE:
       return Object.assign({}, state, {

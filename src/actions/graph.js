@@ -5,9 +5,17 @@ import * as graph from "../api/biggraph";
 import { _generateRoot } from "../reducers/graph";
 
 export const SET_ROOT_NODE = "SET_ROOT_NODE";
-export function setSelectedNode(node) {
+export function setRootNode(node) {
   return {
     type: SET_ROOT_NODE,
+    node
+  };
+}
+
+export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
+export function setSelectedNode(node) {
+  return {
+    type: SET_SELECTED_NODE,
     node
   };
 }
