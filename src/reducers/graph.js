@@ -18,6 +18,13 @@ const initialState = {
 
 const visitReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ac.CLEAR_GRAPH:
+      return Object.assign({}, state, {
+        graph: {
+          nodes: [],
+          edges: []
+        }
+      });
     case ac.SET_GRAPH_ERROR:
       return Object.assign({}, state, {
         error: action.error

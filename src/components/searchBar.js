@@ -21,7 +21,7 @@ class Search extends React.Component {
       search(e.target.value).then(r => {
         if (!r.success) return console.error(r.error);
         // yay, success!
-        this.setState({ items: r.data.entries });
+        this.setState({ items: r.data.entries || [] });
       });
     }
     this.setState({ value: e.target.value });
@@ -48,9 +48,10 @@ class Search extends React.Component {
         )}
         value={this.state.value}
         onChange={this._onChange}
-        onSelect={value =>
-          this.props.onSelect(value) && this.setState({ value })
-        }
+        onSelect={(value, item) => {
+          this.props.onSelect(item);
+          this.setState({ value });
+        }}
       />
     );
   }

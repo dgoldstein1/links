@@ -3,14 +3,14 @@ import { Header as H } from "mini.css-react";
 import { connect } from "react-redux";
 import { store } from "../reducers";
 import { updateView } from "../actions/appState";
-import { setGraphLayout } from "../actions/graph";
+import { setGraphLayout, setNewRoot } from "../actions/graph";
 import SearchBar from "./searchBar";
 import "../css/MainView.css";
 
 function Header(p) {
   let _getSearchBar = () => {
     if (p.view === "explore") {
-      return <SearchBar placeholder="search.." />;
+      return <SearchBar placeholder="search.." onSelect={setNewRoot} />;
     }
     // p is path
     return (

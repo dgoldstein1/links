@@ -45,6 +45,11 @@ export function setGraphLayout(newLayout) {
   };
 }
 
+export const CLEAR_GRAPH = "CLEAR_GRAPH";
+export function clearGraph() {
+  return { type: CLEAR_GRAPH };
+}
+
 export const SET_GRAPH_LOADING = "SET_GRAPH_LOADING";
 export function setGraphLoading(val) {
   return {
@@ -91,6 +96,21 @@ export function fetchAndStoreNeighbors(node, callback = err => {}) {
   });
 }
 
+export function setNewRoot(node) {
+  // clear current graph
+  store.dispatch(setGraphLoading(true));
+  store.dispatch(clearGraph());
+  node = _generateRoot(node.key, node.value);
+  fetchAndStoreNeighbors(node, err => {
+    if (err) {
+      store.dispatch(setGraphError(err));
+    } else {
+      store.dispatch(setRootNode(node));
+    }
+    store.dispatch(setGraphLoading(false));
+  });
+}
+
 // fetches and stores random starting node and neighbors
 // callback called with string error
 export function fetchAndStoreRandomStartNode(callback) {
@@ -99,6 +119,7 @@ export function fetchAndStoreRandomStartNode(callback) {
     if (!r.success) return callback(r.error);
     // fetch neighbors of node
     let node = _generateRoot(r.data[0].key, r.data[0].value);
+    store.dispatch(setRootNode(node));
     fetchAndStoreNeighbors(node, callback);
   });
 }
