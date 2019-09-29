@@ -7,17 +7,25 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ""
+      value: "",
+      items: []
     };
+    this._onChange = this._onChange.bind(this);
+  }
+
+  // fired whenever inpput value is change
+  _onChange(e) {
+    if (e.target.value.length > 3) {
+      // search and set items
+      this.setState({ items: [{ id: "foo", label: "bar" }] });
+    }
+    this.setState({ value: e.target.value });
   }
 
   render() {
     return (
       <Autocomplete
-        items={[]}
-        shouldItemRender={(item, value) =>
-          item.label.toLowerCase().indexOf(value.toLowerCase()) > -1
-        }
+        items={this.state.items}
         inputProps={{ placeholder: this.props.placeholder }}
         getItemValue={item => item.label}
         renderItem={(item, highlighted) => (
@@ -31,7 +39,7 @@ class Search extends React.Component {
           </div>
         )}
         value={this.state.value}
-        onChange={e => this.setState({ value: e.target.value })}
+        onChange={this._onChange}
         onSelect={value => this.setState({ value })}
       />
     );
