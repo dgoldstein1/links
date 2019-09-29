@@ -4,6 +4,13 @@ import "../css/MainView.css";
 import Autocomplete from "react-autocomplete";
 
 class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: ""
+    };
+  }
+
   render() {
     return (
       <Autocomplete
@@ -23,7 +30,7 @@ class Search extends React.Component {
             {item.label}
           </div>
         )}
-        value={this.props.value}
+        value={this.state.value}
         onChange={e => this.setState({ value: e.target.value })}
         onSelect={value => this.setState({ value })}
       />

@@ -10,13 +10,13 @@ import "../css/MainView.css";
 function Header(p) {
   let _getSearchBar = () => {
     if (p.view === "explore") {
-      return <SearchBar placeholder="search.." value={p.rootNode.label} />;
+      return <SearchBar placeholder="search.." />;
     }
     // p is path
     return (
       <>
-        <SearchBar placeholder="starting at.." value={p.rootNode.label} />
-        <SearchBar placeholder="ending at.." value={p.targetNode.label} />
+        <SearchBar placeholder="starting at.." />
+        <SearchBar placeholder="ending at.." />
       </>
     );
   };
