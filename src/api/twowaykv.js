@@ -46,3 +46,24 @@ export function entriesFromValues(ids) {
       error: "Error getting entries from values: " + e.message
     }));
 }
+
+/**
+ * searches 'startswith' on keys
+ * @param s {string}
+ * @return same response type as above
+ **/
+export function search(s) {
+  let url = encodeURI(
+    `${process.env.REACT_APP_TWOWAYKV_ENDPOINT}/search?q=${s}`
+  );
+  return axios
+    .get(url)
+    .then(r => ({
+      success: true,
+      data: r.data
+    }))
+    .catch(e => ({
+      success: false,
+      error: "Error getting searching keys: " + e.message
+    }));
+}

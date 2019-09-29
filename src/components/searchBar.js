@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../css/MainView.css";
 import Autocomplete from "react-autocomplete";
+import { search } from "../api/twowaykv";
 
 class Search extends React.Component {
   constructor(props) {
@@ -15,9 +16,13 @@ class Search extends React.Component {
 
   // fired whenever inpput value is change
   _onChange(e) {
-    if (e.target.value.length > 3) {
+    if (e.target.value.length > 0) {
       // search and set items
-      this.setState({ items: [{ id: "foo", label: "bar" }] });
+      search(e.target.value).then(r => {
+        if (!r.success) return console.error(r.error);
+        // yay, success!
+        this.setState({ items: r.data.entries });
+      });
     }
     this.setState({ value: e.target.value });
   }
@@ -25,17 +30,20 @@ class Search extends React.Component {
   render() {
     return (
       <Autocomplete
+        shouldItemRender={(item, value) =>
+          item.key.toLowerCase().indexOf(value.toLowerCase()) > -1
+        }
         items={this.state.items}
         inputProps={{ placeholder: this.props.placeholder }}
-        getItemValue={item => item.label}
+        getItemValue={item => item.key}
         renderItem={(item, highlighted) => (
           <div
-            key={item.id}
+            key={item.key}
             className={
               highlighted ? "autoCompleteItemHover" : "autoCompleteItem"
             }
           >
-            {item.label}
+            {item.key}
           </div>
         )}
         value={this.state.value}
