@@ -28,6 +28,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "rootNode": Object {},
+  "selectedNode": Object {},
+  "targetNode": Object {},
 }
 `;
 
@@ -101,5 +103,7 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "rootNode": Object {},
+  "selectedNode": Object {},
+  "targetNode": Object {},
 }
 `;
