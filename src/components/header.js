@@ -3,28 +3,40 @@ import { Header as H } from "mini.css-react";
 import { connect } from "react-redux";
 import { store } from "../reducers";
 import { updateView } from "../actions/appState";
-import { setGraphLayout } from "../actions/graph";
+import {
+  setGraphLayout,
+  setNewRoot,
+  setStartPath,
+  setTargetPath
+} from "../actions/graph";
+import SearchBar from "./searchBar";
 import "../css/MainView.css";
 
 function Header(p) {
   let _getSearchBar = () => {
     if (p.view === "explore") {
-      return <input className="mainBar" type="text" placeholder="search" />;
+      return <SearchBar placeholder="search.." onSelect={setNewRoot} />;
     }
     // p is path
     return (
       <>
-        <input className="halfBar" type="text" placeholder="starting from.." />
-        <input className="halfBar" type="text" placeholder="ending at.." />
+        <SearchBar placeholder="starting at.." onSelect={setStartPath} />
+        <SearchBar placeholder="ending at.." onSelect={setTargetPath} />
       </>
     );
   };
 
   return (
-    <H sticky className="header">
+    <H
+      sticky
+      className={
+        "header " + (p.view === "explore" ? "oneSearchBar" : "twoSearchBars")
+      }
+    >
       <a href="/" className="floatLeft">
         Logo
       </a>
+      <span className="icon-search" />
       {_getSearchBar()}
       <button
         onClick={() => {
@@ -60,6 +72,8 @@ function Header(p) {
 
 let mapStateToProps = state => ({
   view: state.appState.view,
-  layout: state.graph.layout
+  layout: state.graph.layout,
+  rootNode: state.graph.rootNode,
+  targetNode: state.graph.targetNode
 });
 export default connect(mapStateToProps)(Header);

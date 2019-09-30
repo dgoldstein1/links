@@ -24,10 +24,22 @@
   float: right;
 }
 
-.mainBar {
-  width:40%; 
+.oneSearchBar input {
+  width:500px; 
 }
 
-.halfBar {
-  width: 20%;
+.twoSearchBars input{
+  width: 250px;
+}
+
+.autoCompleteItem {
+  margin: 4px;
+  text-align: left;
+  background-color: transparent;
+}
+
+.autoCompleteItemHover {
+  margin: 4px;
+  text-align: left;
+  background-color: #eee; 
 }

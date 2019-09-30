@@ -4,7 +4,9 @@ import _ from "lodash";
 const ROOT_NODE_SIZE = 10000;
 
 const initialState = {
-  selectedNode: {},
+  rootNode: {}, // root node of graph (what is in search or 'start from')
+  selectedNode: {}, // node currently in view
+  targetNode: {}, // target node in path ('ending at..')
   graph: {
     nodes: [],
     edges: []
@@ -16,6 +18,13 @@ const initialState = {
 
 const visitReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ac.CLEAR_GRAPH:
+      return Object.assign({}, state, {
+        graph: {
+          nodes: [],
+          edges: []
+        }
+      });
     case ac.SET_GRAPH_ERROR:
       return Object.assign({}, state, {
         error: action.error
@@ -28,9 +37,17 @@ const visitReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         loading: action.newValue
       });
+    case ac.SET_ROOT_NODE:
+      return Object.assign({}, state, {
+        rootNode: _generateRoot(action.node.label, action.node.id)
+      });
     case ac.SET_SELECTED_NODE:
       return Object.assign({}, state, {
-        selectedNode: _generateRoot(action.node.id, action.node.label)
+        selectedNode: action.node
+      });
+    case ac.SET_TARGET_NODE:
+      return Object.assign({}, state, {
+        targetNode: action.node
       });
     case ac.ADD_NEIGHBORS_TO_GRAPH:
       // set initial position to source

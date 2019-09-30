@@ -4,10 +4,26 @@ import * as kv from "../api/twowaykv";
 import * as graph from "../api/biggraph";
 import { _generateRoot } from "../reducers/graph";
 
+export const SET_ROOT_NODE = "SET_ROOT_NODE";
+export function setRootNode(node) {
+  return {
+    type: SET_ROOT_NODE,
+    node
+  };
+}
+
 export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
 export function setSelectedNode(node) {
   return {
     type: SET_SELECTED_NODE,
+    node
+  };
+}
+
+export const SET_TARGET_NODE = "SET_TARGET_NODE";
+export function setTargetNode(node) {
+  return {
+    type: SET_TARGET_NODE,
     node
   };
 }
@@ -27,6 +43,11 @@ export function setGraphLayout(newLayout) {
     type: SET_GRAPH_LAYOUT,
     layout: newLayout
   };
+}
+
+export const CLEAR_GRAPH = "CLEAR_GRAPH";
+export function clearGraph() {
+  return { type: CLEAR_GRAPH };
 }
 
 export const SET_GRAPH_LOADING = "SET_GRAPH_LOADING";
@@ -75,6 +96,43 @@ export function fetchAndStoreNeighbors(node, callback = err => {}) {
   });
 }
 
+// clears graph, finds neighbors, and sets new root
+export function setNewRoot(node, callback = () => {}) {
+  store.dispatch(setGraphLoading(true));
+  store.dispatch(clearGraph());
+  node = _generateRoot(node.label, node.id);
+  fetchAndStoreNeighbors(node, err => {
+    if (err) {
+      store.dispatch(setGraphError(err));
+    } else {
+      store.dispatch(setRootNode(node));
+    }
+    store.dispatch(setGraphLoading(false));
+    callback(err);
+  });
+}
+
+// fetches and stores new path in store
+export function fetchAndStorePath(start, end) {
+  console.log("fetching path for: ", start, end);
+}
+
+export function setStartPath(node) {
+  // target node in store, find path
+  if (store.getState().graph.targetNode.id) {
+    return fetchAndStorePath(node, store.getState().graph.targetNode);
+  }
+  // else set new root
+  setNewRoot(node);
+}
+
+export function setTargetPath(node) {
+  store.dispatch(setTargetNode(node));
+  if (store.getState().graph.rootNode.id) {
+    fetchAndStorePath(store.getState().graph.rootNode, node);
+  }
+}
+
 // fetches and stores random starting node and neighbors
 // callback called with string error
 export function fetchAndStoreRandomStartNode(callback) {
@@ -83,6 +141,7 @@ export function fetchAndStoreRandomStartNode(callback) {
     if (!r.success) return callback(r.error);
     // fetch neighbors of node
     let node = _generateRoot(r.data[0].key, r.data[0].value);
+    store.dispatch(setRootNode(node));
     fetchAndStoreNeighbors(node, callback);
   });
 }
