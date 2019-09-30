@@ -112,9 +112,31 @@ export function setNewRoot(node, callback = () => {}) {
   });
 }
 
-// fetches and stores new path in store
+/**
+ * fetches and stores new path in store
+ * @param start {node}
+ * @param end {node}
+ **/
 export function fetchAndStorePath(start, end) {
-  console.log("fetching path for: ", start, end);
+  // inner helper function
+  let _errOut = e => {
+    store.dispatch(setGraphError(e));
+    store.dispatch(setGraphLoading(false));
+  };
+
+  store.dispatch(setGraphLoading(true));
+  graph.shortestPath(start.id, end.id).then(r => {
+    if (!r.success) return _errOut(r.error);
+    // path found, get entries from values
+    kv.entriesFromValues(r.data).then(r => {
+      if (!r.success) return _errOut(r.error);
+      // transfrom response to nodes
+      let nodePath = r.data.entries.map(e => ({ id: e.value, label: e.key }));
+      // clear graph and set new path
+      store.dispatch(clearGraph());
+      store.dispatch(setGraphLoading(false));
+    });
+  });
 }
 
 export function setStartPath(node) {
