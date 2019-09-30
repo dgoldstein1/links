@@ -55,8 +55,8 @@ const visitReducer = (state = initialState, action) => {
       // set x and y for new nodes
       action.path = action.path.map((n, i) => ({
         ...n,
-        x: state.rootNode.x + i * EDGE_LENGTH,
-        y: state.rootNode.y + i * EDGE_LENGTH,
+        x: i * EDGE_LENGTH,
+        y: i * EDGE_LENGTH,
         size: ROOT_NODE_SIZE / 2
       }));
       // create edges

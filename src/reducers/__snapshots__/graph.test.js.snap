@@ -93,6 +93,71 @@ Object {
 }
 `;
 
+exports[`reducers graph SET_GRAPH_PATH adds normal path 1`] = `
+Object {
+  "error": undefined,
+  "graph": Object {
+    "edges": Array [
+      Object {
+        "id": "1->-->--2",
+        "source": 1,
+        "target": 2,
+      },
+      Object {
+        "id": "2->-->--3",
+        "source": 2,
+        "target": 3,
+      },
+    ],
+    "nodes": Array [
+      Object {
+        "id": 1,
+        "label": "1",
+        "size": 5000,
+        "x": 0,
+        "y": 0,
+      },
+      Object {
+        "id": 2,
+        "label": "2",
+        "size": 5000,
+        "x": 10,
+        "y": 10,
+      },
+      Object {
+        "id": 3,
+        "label": "3",
+        "size": 5000,
+        "x": 20,
+        "y": 20,
+      },
+    ],
+  },
+  "layout": "hierarchy",
+  "loading": false,
+  "rootNode": Object {},
+  "selectedNode": Object {},
+  "targetNode": Object {},
+}
+`;
+
+exports[`reducers graph SET_GRAPH_PATH clears graph if it's already there 1`] = `
+Object {
+  "graph": Object {
+    "edges": Array [],
+    "nodes": Array [
+      Object {
+        "id": 1,
+        "label": "1",
+        "size": 5000,
+        "x": 0,
+        "y": 0,
+      },
+    ],
+  },
+}
+`;
+
 exports[`reducers graph initializes with correct state 1`] = `
 Object {
   "error": undefined,
