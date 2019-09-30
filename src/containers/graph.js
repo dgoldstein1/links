@@ -7,7 +7,7 @@ import ForceLink from "react-sigma/lib/ForceLink";
 import { fetchAndStoreNeighbors, setGraphError } from "../actions/graph";
 import ErrorCard from "../components/errorCard";
 import { store } from "../reducers";
-import "../css/MainView.css";
+import SelectedNodeCard from "../components/selectedNodeCard";
 
 class Graph extends React.Component {
   constructor() {
@@ -52,11 +52,9 @@ class Graph extends React.Component {
             type="warning"
           />
         )}
-        {!this.props.loading && !this.props.error && (
-          <div>
-            <button className="selectedNodeCard">
-              {JSON.stringify(this.props.selectedNode)}
-            </button>
+        <div>
+          <SelectedNodeCard />
+          {!this.props.loading && !this.props.error && (
             <Sigma
               onClickNode={this._onNodeClick}
               renderer="canvas"
@@ -73,8 +71,8 @@ class Graph extends React.Component {
               {this._getGraphFromLayout()}
               <EdgeShapes default="tapered" />
             </Sigma>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }
