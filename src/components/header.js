@@ -3,7 +3,12 @@ import { Header as H } from "mini.css-react";
 import { connect } from "react-redux";
 import { store } from "../reducers";
 import { updateView } from "../actions/appState";
-import { setGraphLayout, setNewRoot } from "../actions/graph";
+import {
+  setGraphLayout,
+  setNewRoot,
+  setStartPath,
+  setTargetPath
+} from "../actions/graph";
 import SearchBar from "./searchBar";
 import "../css/MainView.css";
 
@@ -15,8 +20,8 @@ function Header(p) {
     // p is path
     return (
       <>
-        <SearchBar placeholder="starting at.." />
-        <SearchBar placeholder="ending at.." />
+        <SearchBar placeholder="starting at.." onSelect={setStartPath} />
+        <SearchBar placeholder="ending at.." onSelect={setTargetPath} />
       </>
     );
   };

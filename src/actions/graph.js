@@ -96,11 +96,11 @@ export function fetchAndStoreNeighbors(node, callback = err => {}) {
   });
 }
 
+// clears graph, finds neighbors, and sets new root
 export function setNewRoot(node, callback = () => {}) {
-  // clear current graph
   store.dispatch(setGraphLoading(true));
   store.dispatch(clearGraph());
-  node = _generateRoot(node.key, node.value);
+  node = _generateRoot(node.label, node.id);
   fetchAndStoreNeighbors(node, err => {
     if (err) {
       store.dispatch(setGraphError(err));
@@ -112,12 +112,25 @@ export function setNewRoot(node, callback = () => {}) {
   });
 }
 
+// fetches and stores new path in store
+export function fetchAndStorePath(start, end) {
+  console.log("fetching path for: ", start, end);
+}
+
 export function setStartPath(node) {
-  setNewRoot(node, err => {
-    if (!err && store.getState().graph.targetNode !== undefined) {
-      // dispatch action to find new path
-    }
-  });
+  // target node in store, find path
+  if (store.getState().graph.targetNode.id) {
+    return fetchAndStorePath(node, store.getState().graph.targetNode);
+  }
+  // else set new root
+  setNewRoot(node);
+}
+
+export function setTargetPath(node) {
+  store.dispatch(setTargetNode(node));
+  if (store.getState().graph.rootNode.id) {
+    fetchAndStorePath(store.getState().graph.rootNode, node);
+  }
 }
 
 // fetches and stores random starting node and neighbors

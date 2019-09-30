@@ -49,7 +49,12 @@ class Search extends React.Component {
         value={this.state.value}
         onChange={this._onChange}
         onSelect={(value, item) => {
-          this.props.onSelect(item);
+          // search items are in the form {key (string), value(int)}
+          // nodes are in form {id(int), label(string)}
+          this.props.onSelect({
+            id: item.value,
+            label: item.key
+          });
           this.setState({ value });
         }}
       />

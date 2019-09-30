@@ -47,7 +47,7 @@ const visitReducer = (state = initialState, action) => {
       });
     case ac.SET_TARGET_NODE:
       return Object.assign({}, state, {
-        rootNode: action.node
+        targetNode: action.node
       });
     case ac.ADD_NEIGHBORS_TO_GRAPH:
       // set initial position to source
