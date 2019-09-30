@@ -53,7 +53,7 @@ class Graph extends React.Component {
           />
         )}
         <div>
-          <SelectedNodeCard />
+          {!this.props.selectedNode.loading && <SelectedNodeCard />}
           {!this.props.loading && !this.props.error && (
             <Sigma
               onClickNode={this._onNodeClick}
