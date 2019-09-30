@@ -66,6 +66,14 @@ export function setGraphError(error) {
   };
 }
 
+export const SET_GRAPH_PATH = "SET_GRAPH_PATH";
+export function setGraphPath(path) {
+  return {
+    type: SET_GRAPH_PATH,
+    path
+  };
+}
+
 // fetches neighbors of node and adds them to graph
 export function fetchAndStoreNeighbors(node, callback = err => {}) {
   let finalCallback = e => {
@@ -128,12 +136,16 @@ export function fetchAndStorePath(start, end) {
   graph.shortestPath(start.id, end.id).then(r => {
     if (!r.success) return _errOut(r.error);
     // path found, get entries from values
-    kv.entriesFromValues(r.data).then(r => {
+    // only get entries in middle, already have beginning and end
+    kv.entriesFromValues(r.data.slice(1, -1)).then(r => {
       if (!r.success) return _errOut(r.error);
       // transfrom response to nodes
+      r.data.entries = r.data.entries || [];
       let nodePath = r.data.entries.map(e => ({ id: e.value, label: e.key }));
+      // insert root and end into array for sanity
+      nodePath = [start, ...nodePath, end];
       // clear graph and set new path
-      store.dispatch(clearGraph());
+      store.dispatch(setGraphPath(nodePath));
       store.dispatch(setGraphLoading(false));
     });
   });
