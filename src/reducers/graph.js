@@ -1,7 +1,7 @@
 import * as ac from "../actions/graph";
 import _ from "lodash";
 
-const ROOT_NODE_SIZE = 10000;
+const ROOT_NODE_SIZE = 8000;
 const EDGE_LENGTH = 10;
 
 const initialState = {
@@ -83,7 +83,7 @@ const visitReducer = (state = initialState, action) => {
         ...n,
         x: action.node.x,
         y: action.node.y,
-        size: action.node.size / 2
+        size: action.node.size
       }));
       // get list of edges to add
       let edgesToAdd = [];
