@@ -2,6 +2,7 @@ import { store } from "../reducers/index";
 // api
 import * as kv from "../api/twowaykv";
 import * as graph from "../api/biggraph";
+import * as wiki from "../api/wiki";
 import { _generateRoot } from "../reducers/graph";
 
 export const SET_ROOT_NODE = "SET_ROOT_NODE";
@@ -14,6 +15,7 @@ export function setRootNode(node) {
 
 export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
 export function setSelectedNode(node) {
+  fetchAndStoreSelectedNodeInfo(node);
   return {
     type: SET_SELECTED_NODE,
     node
@@ -72,6 +74,16 @@ export function setGraphPath(path) {
     type: SET_GRAPH_PATH,
     path
   };
+}
+
+/**
+ * fetches and store selected node information from wikipedia
+ * @param node {node}
+ **/
+export function fetchAndStoreSelectedNodeInfo(node) {
+  wiki.getDescription(node.label).then(r => {
+    // TODO
+  });
 }
 
 // fetches neighbors of node and adds them to graph

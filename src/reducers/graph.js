@@ -7,11 +7,12 @@ const EDGE_LENGTH = 10;
 const initialState = {
   rootNode: {}, // root node of graph (what is in search or 'start from')
   selectedNode: {
+    // node currently in view
     loading: true,
     description: "",
     imgSrc: "",
     node: {}
-  }, // node currently in view
+  },
   targetNode: {}, // target node in path ('ending at..')
   graph: {
     nodes: [],
