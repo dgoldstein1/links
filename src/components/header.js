@@ -15,13 +15,27 @@ import "../css/MainView.css";
 function Header(p) {
   let _getSearchBar = () => {
     if (p.view === "explore") {
-      return <SearchBar placeholder="search.." onSelect={setNewRoot} />;
+      return (
+        <SearchBar
+          placeholder="search.."
+          onSelect={setNewRoot}
+          value={p.rootNode}
+        />
+      );
     }
     // p is path
     return (
       <>
-        <SearchBar placeholder="starting at.." onSelect={setStartPath} />
-        <SearchBar placeholder="ending at.." onSelect={setTargetPath} />
+        <SearchBar
+          placeholder="starting at.."
+          onSelect={setStartPath}
+          value={p.rootNode}
+        />
+        <SearchBar
+          placeholder="ending at.."
+          onSelect={setTargetPath}
+          value={p.targetNode}
+        />
       </>
     );
   };

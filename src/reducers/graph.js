@@ -2,6 +2,7 @@ import * as ac from "../actions/graph";
 import _ from "lodash";
 
 const ROOT_NODE_SIZE = 10000;
+const EDGE_LENGTH = 10;
 
 const initialState = {
   rootNode: {}, // root node of graph (what is in search or 'start from')
@@ -48,6 +49,33 @@ const visitReducer = (state = initialState, action) => {
     case ac.SET_TARGET_NODE:
       return Object.assign({}, state, {
         targetNode: action.node
+      });
+
+    case ac.SET_GRAPH_PATH:
+      // set x and y for new nodes
+      action.path = action.path.map((n, i) => ({
+        ...n,
+        x: i * EDGE_LENGTH,
+        y: i * EDGE_LENGTH,
+        size: ROOT_NODE_SIZE / 2
+      }));
+      // create edges
+      let edges = [];
+      action.path.forEach((n, i) => {
+        // don't add edge if we've reached the end
+        if (i === action.path.length - 1) return;
+        edges.push({
+          id: `${n.id}->-->--${action.path[i + 1].id}`,
+          source: n.id,
+          target: action.path[i + 1].id
+        });
+      });
+      // return new state
+      return Object.assign({}, state, {
+        graph: {
+          nodes: action.path,
+          edges: edges
+        }
       });
     case ac.ADD_NEIGHBORS_TO_GRAPH:
       // set initial position to source

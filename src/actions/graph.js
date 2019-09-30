@@ -66,6 +66,14 @@ export function setGraphError(error) {
   };
 }
 
+export const SET_GRAPH_PATH = "SET_GRAPH_PATH";
+export function setGraphPath(path) {
+  return {
+    type: SET_GRAPH_PATH,
+    path
+  };
+}
+
 // fetches neighbors of node and adds them to graph
 export function fetchAndStoreNeighbors(node, callback = err => {}) {
   let finalCallback = e => {
@@ -112,9 +120,35 @@ export function setNewRoot(node, callback = () => {}) {
   });
 }
 
-// fetches and stores new path in store
+/**
+ * fetches and stores new path in store
+ * @param start {node}
+ * @param end {node}
+ **/
 export function fetchAndStorePath(start, end) {
-  console.log("fetching path for: ", start, end);
+  // inner helper function
+  let _errOut = e => {
+    store.dispatch(setGraphError(e));
+    store.dispatch(setGraphLoading(false));
+  };
+
+  store.dispatch(setGraphLoading(true));
+  graph.shortestPath(start.id, end.id).then(r => {
+    if (!r.success) return _errOut(r.error);
+    // path found, get entries from values
+    // only get entries in middle, already have beginning and end
+    kv.entriesFromValues(r.data.slice(1, -1)).then(r => {
+      if (!r.success) return _errOut(r.error);
+      // transfrom response to nodes
+      r.data.entries = r.data.entries || [];
+      let nodePath = r.data.entries.map(e => ({ id: e.value, label: e.key }));
+      // insert root and end into array for sanity
+      nodePath = [start, ...nodePath, end];
+      // clear graph and set new path
+      store.dispatch(setGraphPath(nodePath));
+      store.dispatch(setGraphLoading(false));
+    });
+  });
 }
 
 export function setStartPath(node) {

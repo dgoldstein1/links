@@ -8,7 +8,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
+      value: props.value.label,
       items: []
     };
     this._onChange = this._onChange.bind(this);
@@ -65,12 +65,12 @@ class Search extends React.Component {
 Search.propTypes = {
   onSelect: PropTypes.func,
   placeholder: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.object
 };
 
 Search.defaultProps = {
   onSelect: () => {},
-  value: ""
+  value: { label: "" }
 };
 
 export default Search;

@@ -1,11 +1,74 @@
 import graph from "./graph";
 
-import { SET_ROOT_NODE, ADD_NEIGHBORS_TO_GRAPH } from "../actions/graph";
+import {
+  SET_ROOT_NODE,
+  ADD_NEIGHBORS_TO_GRAPH,
+  SET_GRAPH_PATH
+} from "../actions/graph";
 
 describe("reducers", () => {
   describe("graph", () => {
     it("initializes with correct state", () => {
       expect(graph(undefined, { action: undefined })).toMatchSnapshot();
+    });
+
+    describe("SET_GRAPH_PATH", () => {
+      let testTable = [
+        {
+          name: "adds normal path",
+          path: [
+            {
+              id: 1,
+              label: "1"
+            },
+            {
+              id: 2,
+              label: "2"
+            },
+            {
+              id: 3,
+              label: "3"
+            }
+          ],
+          initialState: undefined
+        },
+        {
+          name: "clears graph if it's already there",
+          path: [
+            {
+              id: 1,
+              label: "1"
+            }
+          ],
+          initialState: {
+            graph: {
+              edges: [
+                {
+                  id: "1->-->--2",
+                  source: 1,
+                  target: 2
+                }
+              ],
+              nodes: [
+                {
+                  id: 2,
+                  value: "2"
+                }
+              ]
+            }
+          }
+        }
+      ];
+
+      testTable.forEach(t => {
+        it(t.name, () => {
+          let action = {
+            type: SET_GRAPH_PATH,
+            ...t
+          };
+          expect(graph(t.initialState, action)).toMatchSnapshot();
+        });
+      });
     });
 
     describe("ADD_NEIGHBORS_TO_GRAPH", () => {
