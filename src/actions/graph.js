@@ -82,7 +82,7 @@ export function setGraphPath(path) {
  **/
 export function fetchAndStoreSelectedNodeInfo(node) {
   wiki.getDescription(node.label).then(r => {
-    // TODO
+    console.log(r)
   });
 }
 

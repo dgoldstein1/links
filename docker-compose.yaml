@@ -28,6 +28,7 @@ services:
       - REACT_APP_ENV=development
       - REACT_APP_TWOWAYKV_ENDPOINT=/services/twowaykv
       - REACT_APP_BIGGRAPH_ENDPOINT=/services/biggraph
+      - REACT_APP_WIKIMETA_ENDPOINT=/services/wiki/w/api.php
     depends_on:
       - kv
       - graph
