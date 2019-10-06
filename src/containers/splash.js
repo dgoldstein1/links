@@ -4,7 +4,7 @@ import { store } from "../reducers";
 // how long to wait on splash
 const SPLASH_TIMEOUT = 10;
 // view after splash page
-const NEXT_VIEW = "explore";
+const NEXT_VIEW = "path";
 
 class Splash extends React.Component {
   componentDidMount() {

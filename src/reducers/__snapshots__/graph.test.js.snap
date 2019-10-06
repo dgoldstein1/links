@@ -14,7 +14,7 @@ Object {
     "nodes": Array [
       Object {
         "id": 2,
-        "size": NaN,
+        "size": undefined,
         "value": "2",
         "x": undefined,
         "y": undefined,
@@ -28,7 +28,13 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "rootNode": Object {},
-  "selectedNode": Object {},
+  "selectedNode": Object {
+    "description": "",
+    "error": "",
+    "img": "",
+    "loading": true,
+    "node": Object {},
+  },
   "targetNode": Object {},
 }
 `;
@@ -79,7 +85,7 @@ Object {
       },
       Object {
         "id": 3,
-        "size": NaN,
+        "size": undefined,
         "value": "3",
         "x": undefined,
         "y": undefined,
@@ -113,21 +119,21 @@ Object {
       Object {
         "id": 1,
         "label": "1",
-        "size": 5000,
+        "size": 4000,
         "x": 0,
         "y": 0,
       },
       Object {
         "id": 2,
         "label": "2",
-        "size": 5000,
+        "size": 4000,
         "x": 10,
         "y": 10,
       },
       Object {
         "id": 3,
         "label": "3",
-        "size": 5000,
+        "size": 4000,
         "x": 20,
         "y": 20,
       },
@@ -136,7 +142,13 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "rootNode": Object {},
-  "selectedNode": Object {},
+  "selectedNode": Object {
+    "description": "",
+    "error": "",
+    "img": "",
+    "loading": true,
+    "node": Object {},
+  },
   "targetNode": Object {},
 }
 `;
@@ -149,7 +161,7 @@ Object {
       Object {
         "id": 1,
         "label": "1",
-        "size": 5000,
+        "size": 4000,
         "x": 0,
         "y": 0,
       },
@@ -168,7 +180,13 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "rootNode": Object {},
-  "selectedNode": Object {},
+  "selectedNode": Object {
+    "description": "",
+    "error": "",
+    "img": "",
+    "loading": true,
+    "node": Object {},
+  },
   "targetNode": Object {},
 }
 `;

@@ -4,20 +4,26 @@ import { connect } from "react-redux";
 import { Sigma, EdgeShapes } from "react-sigma";
 import Dagre from "react-sigma/lib/Dagre";
 import ForceLink from "react-sigma/lib/ForceLink";
-import { fetchAndStoreNeighbors, setGraphError } from "../actions/graph";
+import {
+  fetchAndStoreNeighbors,
+  setGraphError,
+  setSelectedNode
+} from "../actions/graph";
 import ErrorCard from "../components/errorCard";
 import { store } from "../reducers";
+import SelectedNodeCard from "../components/selectedNodeCard";
+import _ from "lodash";
+
+const DEBOUNCE_HOVER = 100;
+
+var onHoverDebounced = _.debounce(e => {
+  setSelectedNode(e.data.node, false);
+}, DEBOUNCE_HOVER);
 
 class Graph extends React.Component {
   constructor() {
     super();
-    this._onNodeClick = this._onNodeClick.bind(this);
     this._getGraphFromLayout = this._getGraphFromLayout.bind(this);
-  }
-
-  _onNodeClick(e) {
-    // add neighbors
-    fetchAndStoreNeighbors(e.data.node);
   }
 
   _getGraphFromLayout() {
@@ -51,10 +57,12 @@ class Graph extends React.Component {
             type="warning"
           />
         )}
-        {!this.props.loading && !this.props.error && (
-          <div>
+        <div>
+          {this.props.selectedNode.node && <SelectedNodeCard />}
+          {!this.props.loading && !this.props.error && (
             <Sigma
-              onClickNode={this._onNodeClick}
+              onClickNode={e => fetchAndStoreNeighbors(e.data.node)}
+              onOverNode={onHoverDebounced}
               renderer="canvas"
               graph={this.props.graph}
               settings={{
@@ -69,13 +77,12 @@ class Graph extends React.Component {
               {this._getGraphFromLayout()}
               <EdgeShapes default="tapered" />
             </Sigma>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }
 }
 
-// connect to store
-let mapStateToProps = state => ({ ...state.graph });
+let mapStateToProps = state => state.graph;
 export default connect(mapStateToProps)(Graph);

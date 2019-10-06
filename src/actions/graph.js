@@ -2,6 +2,7 @@ import { store } from "../reducers/index";
 // api
 import * as kv from "../api/twowaykv";
 import * as graph from "../api/biggraph";
+import * as wiki from "../api/wiki";
 import { _generateRoot } from "../reducers/graph";
 
 export const SET_ROOT_NODE = "SET_ROOT_NODE";
@@ -12,12 +13,26 @@ export function setRootNode(node) {
   };
 }
 
-export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
-export function setSelectedNode(node) {
+export const SET_SELECTED_NODE_INFO = "SET_SELECTED_NODE_INFO";
+export function setSelectedNodeInfo(info) {
   return {
+    type: SET_SELECTED_NODE_INFO,
+    ...info
+  };
+}
+
+export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
+export function setSelectedNode(node, animate = true) {
+  let selectedNodeId;
+  try {
+    selectedNodeId = store.getState().graph.selectedNode.node.id;
+  } catch {}
+  if (node.id === selectedNodeId) return;
+  fetchAndStoreSelectedNodeInfo(node, animate);
+  store.dispatch({
     type: SET_SELECTED_NODE,
     node
-  };
+  });
 }
 
 export const SET_TARGET_NODE = "SET_TARGET_NODE";
@@ -74,6 +89,34 @@ export function setGraphPath(path) {
   };
 }
 
+export const GRAPH_ANIMATE_TIME = 1500;
+export function _animateViews() {
+  store.dispatch(setGraphLayout("hierarchy"));
+  setTimeout(() => {
+    store.dispatch(setGraphLayout("cluster"));
+  }, GRAPH_ANIMATE_TIME);
+}
+
+/**
+ * fetches and store selected node information from wikipedia
+ * @param node {node}
+ **/
+export function fetchAndStoreSelectedNodeInfo(node, animate) {
+  // set as loading
+  store.dispatch(setSelectedNodeInfo({ loading: true }));
+  if (animate) _animateViews();
+  // fetch from api
+  wiki.getDescription(node.label).then(r => {
+    // set result in store
+    store.dispatch(
+      setSelectedNodeInfo({
+        ...r,
+        loading: false
+      })
+    );
+  });
+}
+
 // fetches neighbors of node and adds them to graph
 export function fetchAndStoreNeighbors(node, callback = err => {}) {
   let finalCallback = e => {
@@ -97,7 +140,7 @@ export function fetchAndStoreNeighbors(node, callback = err => {}) {
         });
       });
       // set in store
-      store.dispatch(setSelectedNode(node));
+      setSelectedNode(node);
       store.dispatch(addNeigborsToGraph(node, neighbors));
       return finalCallback();
     });
@@ -131,7 +174,7 @@ export function fetchAndStorePath(start, end) {
     store.dispatch(setGraphError(e));
     store.dispatch(setGraphLoading(false));
   };
-
+  setSelectedNode(start);
   store.dispatch(setGraphLoading(true));
   graph.shortestPath(start.id, end.id).then(r => {
     if (!r.success) return _errOut(r.error);
