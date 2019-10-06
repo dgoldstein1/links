@@ -84,6 +84,14 @@ export function setGraphPath(path) {
   };
 }
 
+export const GRAPH_ANIMATE_TIME = 1500;
+export function _animateViews() {
+  store.dispatch(setGraphLayout("hierarchy"));
+  setTimeout(() => {
+    store.dispatch(setGraphLayout("cluster"));
+  }, GRAPH_ANIMATE_TIME);
+}
+
 /**
  * fetches and store selected node information from wikipedia
  * @param node {node}
@@ -91,10 +99,7 @@ export function setGraphPath(path) {
 export function fetchAndStoreSelectedNodeInfo(node) {
   // set as loading
   store.dispatch(setSelectedNodeInfo({ loading: true }));
-  store.dispatch(setGraphLayout("hierarchy"));
-  setTimeout(() => {
-    store.dispatch(setGraphLayout("cluster"));
-  }, 1500);
+  _animateViews();
   // fetch from api
   wiki.getDescription(node.label).then(r => {
     // set result in store
@@ -164,7 +169,7 @@ export function fetchAndStorePath(start, end) {
     store.dispatch(setGraphError(e));
     store.dispatch(setGraphLoading(false));
   };
-
+  store.dispatch(setSelectedNode(start));
   store.dispatch(setGraphLoading(true));
   graph.shortestPath(start.id, end.id).then(r => {
     if (!r.success) return _errOut(r.error);
