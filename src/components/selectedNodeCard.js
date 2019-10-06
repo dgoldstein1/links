@@ -1,19 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import "../css/SelectedNode.css";
 
-function SelectedNodeCard(p) {
+const MAX_CHAR_DESCRIPTION = "200";
+const WIKIPEDIA_ENDPOINT = "https://en.wikipedia.org/wiki/";
+
+function SelectedNodeCard(sNode) {
   return (
-    <div className="selectedCardContainer">
+    <div className="centered">
       <div className="row">
         <div className="col-sm">
-          <div className={"card fluid " + p.type}>
-            <h1>TEST</h1>
-            <p>TEST1</p>
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Donboscocambodia0001.JPG/440px-Donboscocambodia0001.JPG"
-              className="section media"
-            />
+          <div className={"card fluid"}>
+            {sNode.loading && <div className="spinner secondary" />}
+            {!sNode.loading && (
+              <div>
+                <h1>{sNode.node.label}</h1>
+                <p>
+                  {sNode.description.substr(0, MAX_CHAR_DESCRIPTION)}..{" "}
+                  <a href={WIKIPEDIA_ENDPOINT + sNode.node.label}>(more)</a>
+                </p>
+                {sNode.img && (
+                  <img
+                    src={sNode.img.source}
+                    className="section media"
+                    style={sNode.img}
+                  />
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -21,6 +36,9 @@ function SelectedNodeCard(p) {
   );
 }
 
-SelectedNodeCard.propTypes = {};
+SelectedNodeCard.defaultProps = {
+  description: ""
+};
 
-export default SelectedNodeCard;
+let mapStateToProps = state => state.graph.selectedNode;
+export default connect(mapStateToProps)(SelectedNodeCard);

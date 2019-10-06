@@ -14,10 +14,10 @@ export function setRootNode(node) {
 }
 
 export const SET_SELECTED_NODE_INFO = "SET_SELECTED_NODE_INFO";
-export function setSelectedNodeInfo(node) {
+export function setSelectedNodeInfo(info) {
   return {
     type: SET_SELECTED_NODE_INFO,
-    node
+    ...info
   };
 }
 

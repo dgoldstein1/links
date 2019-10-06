@@ -21,7 +21,6 @@ export function getDescription(s) {
   url += `&explaintext`;
   url += `&exintro`;
   url += `&titles=${s}`;
-  console.log("URL:", encodeURI(url));
 
   let _errOut = e => ({
     success: false,

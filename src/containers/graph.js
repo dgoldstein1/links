@@ -53,7 +53,7 @@ class Graph extends React.Component {
           />
         )}
         <div>
-          {!this.props.selectedNode.loading && <SelectedNodeCard />}
+          {this.props.selectedNode.node && <SelectedNodeCard />}
           {!this.props.loading && !this.props.error && (
             <Sigma
               onClickNode={this._onNodeClick}
@@ -78,6 +78,5 @@ class Graph extends React.Component {
   }
 }
 
-// connect to store
-let mapStateToProps = state => ({ ...state.graph });
+let mapStateToProps = state => state.graph;
 export default connect(mapStateToProps)(Graph);
