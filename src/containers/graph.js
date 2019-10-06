@@ -12,6 +12,13 @@ import {
 import ErrorCard from "../components/errorCard";
 import { store } from "../reducers";
 import SelectedNodeCard from "../components/selectedNodeCard";
+import _ from "lodash";
+
+const DEBOUNCE_HOVER = 100;
+
+var onHoverDebounced = _.debounce(e => {
+  store.dispatch(setSelectedNode(e.data.node, false));
+}, DEBOUNCE_HOVER);
 
 class Graph extends React.Component {
   constructor() {
@@ -26,9 +33,7 @@ class Graph extends React.Component {
     fetchAndStoreNeighbors(e.data.node);
   }
 
-  _onNodeHover(e) {
-    store.dispatch(setSelectedNode(e.data.node, false));
-  }
+  _onNodeHover(e) {}
 
   _getGraphFromLayout() {
     if (this.props.layout === "hierarchy") {
@@ -66,7 +71,7 @@ class Graph extends React.Component {
           {!this.props.loading && !this.props.error && (
             <Sigma
               onClickNode={this._onNodeClick}
-              onOverNode={this._onNodeHover}
+              onOverNode={onHoverDebounced}
               renderer="canvas"
               graph={this.props.graph}
               settings={{
