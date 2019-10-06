@@ -26,7 +26,7 @@ function SelectedNodeCard(sNode) {
   };
 
   return (
-    <div className="centered">
+    <div className="selectedCardContainer">
       <div className="row">
         <div className="col-sm">
           <div className={"card fluid"}>
