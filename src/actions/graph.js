@@ -4,6 +4,7 @@ import * as kv from "../api/twowaykv";
 import * as graph from "../api/biggraph";
 import * as wiki from "../api/wiki";
 import { _generateRoot } from "../reducers/graph";
+import _ from "lodash";
 
 export const SET_ROOT_NODE = "SET_ROOT_NODE";
 export function setRootNode(node) {
@@ -23,11 +24,16 @@ export function setSelectedNodeInfo(info) {
 
 export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
 export function setSelectedNode(node, animate = true) {
+  let selectedNodeId;
+  try {
+    selectedNodeId = store.getState().graph.selectedNode.node.id;
+  } catch {}
+  if (node.id === selectedNodeId) return;
   fetchAndStoreSelectedNodeInfo(node, animate);
-  return {
+  store.dispatch({
     type: SET_SELECTED_NODE,
     node
-  };
+  });
 }
 
 export const SET_TARGET_NODE = "SET_TARGET_NODE";
@@ -135,7 +141,7 @@ export function fetchAndStoreNeighbors(node, callback = err => {}) {
         });
       });
       // set in store
-      store.dispatch(setSelectedNode(node));
+      setSelectedNode(node);
       store.dispatch(addNeigborsToGraph(node, neighbors));
       return finalCallback();
     });
@@ -169,7 +175,7 @@ export function fetchAndStorePath(start, end) {
     store.dispatch(setGraphError(e));
     store.dispatch(setGraphLoading(false));
   };
-  store.dispatch(setSelectedNode(start));
+  setSelectedNode(start);
   store.dispatch(setGraphLoading(true));
   graph.shortestPath(start.id, end.id).then(r => {
     if (!r.success) return _errOut(r.error);

@@ -17,23 +17,14 @@ import _ from "lodash";
 const DEBOUNCE_HOVER = 100;
 
 var onHoverDebounced = _.debounce(e => {
-  store.dispatch(setSelectedNode(e.data.node, false));
+  setSelectedNode(e.data.node, false);
 }, DEBOUNCE_HOVER);
 
 class Graph extends React.Component {
   constructor() {
     super();
-    this._onNodeClick = this._onNodeClick.bind(this);
-    this._onNodeHover = this._onNodeHover.bind(this);
     this._getGraphFromLayout = this._getGraphFromLayout.bind(this);
   }
-
-  _onNodeClick(e) {
-    // add neighbors
-    fetchAndStoreNeighbors(e.data.node);
-  }
-
-  _onNodeHover(e) {}
 
   _getGraphFromLayout() {
     if (this.props.layout === "hierarchy") {
@@ -70,7 +61,7 @@ class Graph extends React.Component {
           {this.props.selectedNode.node && <SelectedNodeCard />}
           {!this.props.loading && !this.props.error && (
             <Sigma
-              onClickNode={this._onNodeClick}
+              onClickNode={e => fetchAndStoreNeighbors(e.data.node)}
               onOverNode={onHoverDebounced}
               renderer="canvas"
               graph={this.props.graph}
