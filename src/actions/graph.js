@@ -13,6 +13,14 @@ export function setRootNode(node) {
   };
 }
 
+export const SET_SELECTED_NODE_INFO = "SET_SELECTED_NODE_INFO";
+export function setSelectedNodeInfo(node) {
+  return {
+    type: SET_SELECTED_NODE_INFO,
+    node
+  };
+}
+
 export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
 export function setSelectedNode(node) {
   fetchAndStoreSelectedNodeInfo(node);
@@ -81,8 +89,17 @@ export function setGraphPath(path) {
  * @param node {node}
  **/
 export function fetchAndStoreSelectedNodeInfo(node) {
+  // set as loading
+  store.dispatch(setSelectedNodeInfo({ loading: true }));
+  // fetch from api
   wiki.getDescription(node.label).then(r => {
-    console.log(r);
+    // set result in store
+    store.dispatch(
+      setSelectedNodeInfo({
+        ...r,
+        loading: false
+      })
+    );
   });
 }
 

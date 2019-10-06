@@ -9,8 +9,9 @@ const initialState = {
   selectedNode: {
     // node currently in view
     loading: true,
+    error: "",
     description: "",
-    imgSrc: "",
+    img: "",
     node: {}
   },
   targetNode: {}, // target node in path ('ending at..')
@@ -53,6 +54,16 @@ const visitReducer = (state = initialState, action) => {
         selectedNode: {
           ...state.selectedNode,
           node: action.node
+        }
+      });
+    case ac.SET_SELECTED_NODE_INFO:
+      return Object.assign({}, state, {
+        selectedNode: {
+          ...state.selectedNode,
+          description: action.description,
+          img: action.img,
+          loading: action.loading,
+          error: action.error
         }
       });
     case ac.SET_TARGET_NODE:
