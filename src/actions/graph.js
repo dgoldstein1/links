@@ -91,6 +91,10 @@ export function setGraphPath(path) {
 export function fetchAndStoreSelectedNodeInfo(node) {
   // set as loading
   store.dispatch(setSelectedNodeInfo({ loading: true }));
+  store.dispatch(setGraphLayout("hierarchy"));
+  setTimeout(() => {
+    store.dispatch(setGraphLayout("cluster"));
+  }, 1500);
   // fetch from api
   wiki.getDescription(node.label).then(r => {
     // set result in store

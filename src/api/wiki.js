@@ -11,7 +11,6 @@ import axios from "axios";
   }
  **/
 export function getDescription(s) {
-  s = "Al-Farabi";
   // get extracts
   let url = process.env.REACT_APP_WIKIMETA_ENDPOINT;
   url += `?action=query`;
