@@ -4,7 +4,6 @@ import * as kv from "../api/twowaykv";
 import * as graph from "../api/biggraph";
 import * as wiki from "../api/wiki";
 import { _generateRoot } from "../reducers/graph";
-import _ from "lodash";
 
 export const SET_ROOT_NODE = "SET_ROOT_NODE";
 export function setRootNode(node) {

@@ -17,7 +17,7 @@ function SelectedNodeCard(sNode) {
     // else
     return (
       <p>
-        {sNode.description + ". "}
+        {(sNode.description || sNode.error) + ". "}
         {!sNode.loading && (
           <a href={WIKIPEDIA_ENDPOINT + sNode.node.label}>(more)</a>
         )}
@@ -51,7 +51,8 @@ function SelectedNodeCard(sNode) {
 }
 
 SelectedNodeCard.defaultProps = {
-  description: ""
+  description: "",
+  error: ""
 };
 
 let mapStateToProps = state => state.graph.selectedNode;

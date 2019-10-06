@@ -30,14 +30,14 @@ export function getDescription(s) {
     .get(encodeURI(url))
     .then(r => {
       let pageId = Object.keys(r.data.query.pages)[0];
-      if (!pageId) return _errOut("no page found");
+      if (!pageId || pageId == -1) return _errOut("no page found");
       let extract = r.data.query.pages[pageId].extract;
       // now get images
       url = process.env.REACT_APP_WIKIMETA_ENDPOINT;
       url += `?action=query`;
       url += `&prop=pageimages`;
       url += `&format=json`;
-      url += `&pithumbsize=250`;
+      url += `&pithumbsize=100`;
       url += `&pageids=${pageId}`;
       return axios
         .get(encodeURI(url))
