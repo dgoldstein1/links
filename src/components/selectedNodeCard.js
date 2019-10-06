@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "../css/SelectedNode.css";
 
@@ -37,6 +36,7 @@ function SelectedNodeCard(sNode) {
               {_renderDescription()}
               {sNode.img && (
                 <img
+                  alt="node img"
                   src={sNode.img.source}
                   className="section media"
                   style={sNode.img}
