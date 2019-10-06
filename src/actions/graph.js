@@ -22,8 +22,8 @@ export function setSelectedNodeInfo(info) {
 }
 
 export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
-export function setSelectedNode(node) {
-  fetchAndStoreSelectedNodeInfo(node);
+export function setSelectedNode(node, animate = true) {
+  fetchAndStoreSelectedNodeInfo(node, animate);
   return {
     type: SET_SELECTED_NODE,
     node
@@ -96,10 +96,10 @@ export function _animateViews() {
  * fetches and store selected node information from wikipedia
  * @param node {node}
  **/
-export function fetchAndStoreSelectedNodeInfo(node) {
+export function fetchAndStoreSelectedNodeInfo(node, animate) {
   // set as loading
   store.dispatch(setSelectedNodeInfo({ loading: true }));
-  _animateViews();
+  if (animate) _animateViews();
   // fetch from api
   wiki.getDescription(node.label).then(r => {
     // set result in store

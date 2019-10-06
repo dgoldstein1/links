@@ -4,7 +4,11 @@ import { connect } from "react-redux";
 import { Sigma, EdgeShapes } from "react-sigma";
 import Dagre from "react-sigma/lib/Dagre";
 import ForceLink from "react-sigma/lib/ForceLink";
-import { fetchAndStoreNeighbors, setGraphError } from "../actions/graph";
+import {
+  fetchAndStoreNeighbors,
+  setGraphError,
+  setSelectedNode
+} from "../actions/graph";
 import ErrorCard from "../components/errorCard";
 import { store } from "../reducers";
 import SelectedNodeCard from "../components/selectedNodeCard";
@@ -13,12 +17,17 @@ class Graph extends React.Component {
   constructor() {
     super();
     this._onNodeClick = this._onNodeClick.bind(this);
+    this._onNodeHover = this._onNodeHover.bind(this);
     this._getGraphFromLayout = this._getGraphFromLayout.bind(this);
   }
 
   _onNodeClick(e) {
     // add neighbors
     fetchAndStoreNeighbors(e.data.node);
+  }
+
+  _onNodeHover(e) {
+    store.dispatch(setSelectedNode(e.data.node, false));
   }
 
   _getGraphFromLayout() {
@@ -57,6 +66,7 @@ class Graph extends React.Component {
           {!this.props.loading && !this.props.error && (
             <Sigma
               onClickNode={this._onNodeClick}
+              onOverNode={this._onNodeHover}
               renderer="canvas"
               graph={this.props.graph}
               settings={{
