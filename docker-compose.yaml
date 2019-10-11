@@ -56,7 +56,7 @@ services:
       - prom
 
   graph:
-    image: dgoldstein1/biggraph:0.1.4
+    image: dgoldstein1/biggraph:0.1.5
     ports:
       - 5000:5000
       - 8001:8001
