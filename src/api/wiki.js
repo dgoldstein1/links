@@ -13,13 +13,11 @@ import axios from "axios";
 export function getDescription(s) {
   // get extracts
   let url = process.env.REACT_APP_WIKIMETA_ENDPOINT;
-  url += `?action=query`;
-  url += `&format=json`;
-  url += `&prop=extracts`;
-  url += `&exlimit=max`;
-  url += `&explaintext`;
-  url += `&exintro`;
-  url += `&titles=${s}`;
+  url += "?action=opensearch";
+  url += "&limit=1";
+  url += "&namespace=0";
+  url += "&format=json";
+  url += `&search=${s}`;
 
   let _errOut = e => ({
     success: false,
@@ -29,25 +27,26 @@ export function getDescription(s) {
   return axios
     .get(encodeURI(url))
     .then(r => {
-      let pageId = Object.keys(r.data.query.pages)[0];
-      pageId = parseInt(pageId);
-      /*jslint eqeq: true*/
-      if (!pageId || pageId === -1) return _errOut("no page found");
-      let extract = r.data.query.pages[pageId].extract;
+      let pageTitle = r.data[1];
+      if (!pageTitle) return _errOut("no page found");
+      let extract = r.data[2];
       // now get images
       url = process.env.REACT_APP_WIKIMETA_ENDPOINT;
       url += `?action=query`;
       url += `&prop=pageimages`;
       url += `&format=json`;
       url += `&pithumbsize=100`;
-      url += `&pageids=${pageId}`;
+      url += `&titles=${pageTitle}`;
       return axios
         .get(encodeURI(url))
-        .then(r => ({
-          success: true,
-          description: extract,
-          img: r.data.query.pages[pageId].thumbnail
-        }))
+        .then(r => {
+          let pageId = Object.keys(r.data.query.pages)[0];
+          return {
+            success: true,
+            description: extract,
+            img: pageId && r.data.query.pages[pageId].thumbnail
+          };
+        })
         .catch(_errOut);
     })
     .catch(_errOut);
