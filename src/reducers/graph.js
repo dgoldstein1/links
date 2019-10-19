@@ -1,9 +1,6 @@
 import * as ac from "../actions/graph";
 import _ from "lodash";
 
-const ROOT_NODE_SIZE = 8000;
-const EDGE_LENGTH = 10;
-
 const initialState = {
   rootNode: {}, // root node of graph (what is in search or 'start from')
   selectedNode: {
@@ -75,9 +72,6 @@ const visitReducer = (state = initialState, action) => {
       // set x and y for new nodes
       action.path = action.path.map((n, i) => ({
         ...n,
-        x: i * EDGE_LENGTH,
-        y: i * EDGE_LENGTH,
-        size: ROOT_NODE_SIZE / 2
       }));
       // create edges
       let edges = [];
@@ -87,7 +81,8 @@ const visitReducer = (state = initialState, action) => {
         edges.push({
           id: `${n.id}->-->--${action.path[i + 1].id}`,
           source: n.id,
-          target: action.path[i + 1].id
+          target: action.path[i + 1].id,
+          color : "gray"
         });
       });
       // return new state
@@ -103,7 +98,6 @@ const visitReducer = (state = initialState, action) => {
         ...n,
         x: action.node.x,
         y: action.node.y,
-        size: action.node.size
       }));
       // get list of edges to add
       let edgesToAdd = [];
@@ -134,7 +128,6 @@ export function _generateRoot(label, id) {
     id,
     x: 0,
     y: 0,
-    size: ROOT_NODE_SIZE
   };
 }
 
