@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 import React from "react";
 import { connect } from "react-redux";
-import { Sigma, EdgeShapes } from "react-sigma";
+import { Sigma, EdgeShapes, RelativeSize } from "react-sigma";
 import Dagre from "react-sigma/lib/Dagre";
 import ForceLink from "react-sigma/lib/ForceLink";
 import {
@@ -75,6 +75,7 @@ class Graph extends React.Component {
               style={{ height: "1000px" }}
             >
               {this._getGraphFromLayout()}
+              <RelativeSize initialSize={35} />
               <EdgeShapes default="tapered" />
             </Sigma>
           )}
