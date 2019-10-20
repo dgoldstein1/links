@@ -71,7 +71,7 @@ const visitReducer = (state = initialState, action) => {
     case ac.SET_GRAPH_PATH:
       // set x and y for new nodes
       action.path = action.path.map((n, i) => ({
-        ...n,
+        ...n
       }));
       // create edges
       let edges = [];
@@ -82,7 +82,7 @@ const visitReducer = (state = initialState, action) => {
           id: `${n.id}->-->--${action.path[i + 1].id}`,
           source: n.id,
           target: action.path[i + 1].id,
-          color : "gray"
+          color: "gray"
         });
       });
       // return new state
@@ -97,7 +97,7 @@ const visitReducer = (state = initialState, action) => {
       action.neighbors = action.neighbors.map(n => ({
         ...n,
         x: action.node.x,
-        y: action.node.y,
+        y: action.node.y
       }));
       // get list of edges to add
       let edgesToAdd = [];
@@ -127,7 +127,7 @@ export function _generateRoot(label, id) {
     label,
     id,
     x: 0,
-    y: 0,
+    y: 0
   };
 }
 

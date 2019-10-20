@@ -75,7 +75,7 @@ class Graph extends React.Component {
               style={{ height: "1000px" }}
             >
               {this._getGraphFromLayout()}
-              <RelativeSize initialSize={35}/>
+              <RelativeSize initialSize={35} />
               <EdgeShapes default="tapered" />
             </Sigma>
           )}
