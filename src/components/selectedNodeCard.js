@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "../css/SelectedNode.css";
 
-const MAX_CHAR_DESCRIPTION = 2000;
+const MAX_CHAR_DESCRIPTION = 200;
 const WIKIPEDIA_ENDPOINT = "https://en.wikipedia.org/wiki/";
 
 function SelectedNodeCard(sNode) {

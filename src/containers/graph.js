@@ -61,7 +61,9 @@ class Graph extends React.Component {
           {this.props.selectedNode.node && <SelectedNodeCard />}
           {!this.props.loading && !this.props.error && (
             <Sigma
-              onClickNode={e => fetchAndStoreNeighbors(e.data.node)}
+              onClickNode={e =>
+                fetchAndStoreNeighbors(e.data.node, () => {}, true)
+              }
               onOverNode={onHoverDebounced}
               renderer="canvas"
               graph={this.props.graph}
@@ -69,7 +71,7 @@ class Graph extends React.Component {
                 flex: 1,
                 labelThreshold: 0,
                 drawEdges: true,
-                drawEdgeLabels: true,
+                drawLabels: false,
                 clone: false
               }}
               style={{ height: "1000px" }}
