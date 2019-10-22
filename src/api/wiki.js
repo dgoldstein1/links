@@ -17,7 +17,6 @@ let _errOut = (s, e) => ({
  **/
 export function getDescription(s) {
   return _queryByTitle(s).then(r => {
-    console.log(r);
     if (r.success) return Promise.resolve(r);
     // if can't find find exact title, try opensearch
     return _opensearch(s);
@@ -93,7 +92,7 @@ export function _opensearch(s) {
           let pageId = Object.keys(r.data.query.pages)[0];
           return {
             success: true,
-            description: extract,
+            description: extract[0],
             img: pageId && r.data.query.pages[pageId].thumbnail
           };
         })

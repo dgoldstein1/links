@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "../css/SelectedNode.css";
 
-const MAX_CHAR_DESCRIPTION = "200";
+const MAX_CHAR_DESCRIPTION = 2000;
 const WIKIPEDIA_ENDPOINT = "https://en.wikipedia.org/wiki/";
 
 function SelectedNodeCard(sNode) {
@@ -16,12 +16,7 @@ function SelectedNodeCard(sNode) {
       );
     // else
     return (
-      <p>
-        {(sNode.description || sNode.error) + ". "}
-        {!sNode.loading && (
-          <a href={WIKIPEDIA_ENDPOINT + sNode.node.label}>(more)</a>
-        )}
-      </p>
+      <p>{sNode.description.length === 0 ? sNode.error : sNode.description}</p>
     );
   };
 
@@ -32,7 +27,11 @@ function SelectedNodeCard(sNode) {
           <div className={"card fluid"}>
             {sNode.loading && <div className="spinner secondary" />}
             <div>
-              <h1>{sNode.node.label}</h1>
+              <h1>
+                <a href={WIKIPEDIA_ENDPOINT + sNode.node.label}>
+                  {sNode.node.label}
+                </a>
+              </h1>
               {_renderDescription()}
               {sNode.img && (
                 <img
