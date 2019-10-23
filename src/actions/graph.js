@@ -133,7 +133,7 @@ export function fetchAndStoreNeighbors(
     if (!gr.success) return finalCallback(gr.error);
     // don't do anything if no neighbors
     if (gr.data.length === 0 && ignoreEmpty)
-      return finalCallback("no neighbors found");
+      return finalCallback("no neighbors found for node '" + node.label + "'");
     // neighbor ids => values
     kv.entriesFromValues(gr.data).then(nIds => {
       if (nIds.error) return finalCallback(nIds.error);
