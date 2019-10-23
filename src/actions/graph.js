@@ -44,7 +44,7 @@ export function setTargetNode(node) {
 }
 
 export const ADD_NEIGHBORS_TO_GRAPH = "ADD_NEIGHBORS_TO_GRAPH";
-export function addNeigborsToGraph(node, neighbors) {
+export function addNeighborsToGraph(node, neighbors) {
   return {
     type: ADD_NEIGHBORS_TO_GRAPH,
     node,
@@ -118,7 +118,11 @@ export function fetchAndStoreSelectedNodeInfo(node, animate) {
 }
 
 // fetches neighbors of node and adds them to graph
-export function fetchAndStoreNeighbors(node, callback = err => {}) {
+export function fetchAndStoreNeighbors(
+  node,
+  callback = err => {},
+  ignoreEmpty = false
+) {
   let finalCallback = e => {
     if (e) store.dispatch(setGraphError(e));
     store.dispatch(setGraphLoading(false));
@@ -127,6 +131,9 @@ export function fetchAndStoreNeighbors(node, callback = err => {}) {
   store.dispatch(setGraphLoading(true));
   graph.getNeighbors(node.id).then(gr => {
     if (!gr.success) return finalCallback(gr.error);
+    // don't do anything if no neighbors
+    if (gr.data.length === 0 && ignoreEmpty)
+      return finalCallback("no neighbors found for node '" + node.label + "'");
     // neighbor ids => values
     kv.entriesFromValues(gr.data).then(nIds => {
       if (nIds.error) return finalCallback(nIds.error);
@@ -141,7 +148,7 @@ export function fetchAndStoreNeighbors(node, callback = err => {}) {
       });
       // set in store
       setSelectedNode(node);
-      store.dispatch(addNeigborsToGraph(node, neighbors));
+      store.dispatch(addNeighborsToGraph(node, neighbors));
       return finalCallback();
     });
   });

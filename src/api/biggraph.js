@@ -11,7 +11,7 @@ export function getNeighbors(id) {
   let url = encodeURI(
     `${
       process.env.REACT_APP_BIGGRAPH_ENDPOINT
-    }/neighbors?node=${id}&limit=${10}`
+    }/neighbors?node=${id}&limit=${50}`
   );
   return axios
     .get(url)

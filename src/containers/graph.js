@@ -13,6 +13,7 @@ import ErrorCard from "../components/errorCard";
 import { store } from "../reducers";
 import SelectedNodeCard from "../components/selectedNodeCard";
 import _ from "lodash";
+import "../css/Graph.css"
 
 const DEBOUNCE_HOVER = 100;
 
@@ -45,7 +46,7 @@ class Graph extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="contentContainer">
         {this.props.loading && !this.props.error && (
           <div className="spinner secondary" />
         )}
@@ -61,7 +62,9 @@ class Graph extends React.Component {
           {this.props.selectedNode.node && <SelectedNodeCard />}
           {!this.props.loading && !this.props.error && (
             <Sigma
-              onClickNode={e => fetchAndStoreNeighbors(e.data.node)}
+              onClickNode={e =>
+                fetchAndStoreNeighbors(e.data.node, () => {}, true)
+              }
               onOverNode={onHoverDebounced}
               renderer="canvas"
               graph={this.props.graph}
@@ -69,7 +72,7 @@ class Graph extends React.Component {
                 flex: 1,
                 labelThreshold: 0,
                 drawEdges: true,
-                drawEdgeLabels: true,
+                drawLabels: this.props.graph.nodes.length < 10,
                 clone: false
               }}
               style={{ height: "1000px" }}
