@@ -1,8 +1,9 @@
 import React from "react";
 import { updateView } from "../actions/appState";
 import { store } from "../reducers";
+import LoadingSpinner from "../components/loadingSpinner";
 // how long to wait on splash
-const SPLASH_TIMEOUT = 10;
+const SPLASH_TIMEOUT = 10000000;
 // view after splash page
 const NEXT_VIEW = "path";
 
@@ -14,7 +15,12 @@ class Splash extends React.Component {
   }
 
   render() {
-    return <div>SPLASH PAGE</div>;
+    return (
+      <div>
+        SPLASH
+        <LoadingSpinner />
+      </div>
+    );
   }
 }
 
