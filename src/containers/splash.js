@@ -3,9 +3,10 @@ import { updateView } from "../actions/appState";
 import { store } from "../reducers";
 import LoadingSpinner from "../components/loadingSpinner";
 import { Footer, Progress } from "mini.css-react";
+import { InitAapp } from "../actions/appState";
 import "../css/Splash.css";
 // how long to wait on splash
-const SPLASH_TIMEOUT = 10000000;
+const SPLASH_TIMEOUT = 4000;
 const LOADING_ANIMATE_TIME = 2000;
 // view after splash page
 const NEXT_VIEW = "path";
@@ -87,9 +88,12 @@ class Splash extends React.Component {
       this.setState({ loading: true });
       this.setState({ loading: false });
     }, LOADING_ANIMATE_TIME);
-    setTimeout(() => {
-      store.dispatch(updateView(NEXT_VIEW));
-    }, SPLASH_TIMEOUT);
+    // initi app, change view with clalback
+    InitAapp(() => {
+      setTimeout(() => {
+        store.dispatch(updateView(NEXT_VIEW));
+      }, SPLASH_TIMEOUT);
+    });
   }
 
   render() {

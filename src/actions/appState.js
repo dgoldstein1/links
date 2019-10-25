@@ -25,10 +25,11 @@ export function setFatalError(e) {
 }
 
 // initializes app on first load
-export function InitAapp() {
+export function InitAapp(callback = () => {}) {
   store.dispatch(setLoading(true));
   fetchAndStoreRandomStartNode(err => {
     if (err) store.dispatch(setFatalError(err));
     store.dispatch(setLoading(false));
+    callback();
   });
 }
