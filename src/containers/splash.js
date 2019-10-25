@@ -2,6 +2,8 @@ import React from "react";
 import { updateView } from "../actions/appState";
 import { store } from "../reducers";
 import LoadingSpinner from "../components/loadingSpinner";
+import { Footer, Progress } from "mini.css-react";
+import "../css/Splash.css";
 // how long to wait on splash
 const SPLASH_TIMEOUT = 10000000;
 const LOADING_ANIMATE_TIME = 2000;
@@ -92,8 +94,11 @@ class Splash extends React.Component {
 
   render() {
     return (
-      <div>
-        SPLASH
+      <div className="App">
+        <div className="App-header">
+          <h1 className="App-title">Links</h1>
+          <p className="App-intro">Make Connections!</p>
+        </div>
         <LoadingSpinner
           graph={this.state.graph}
           height={"400px"}
@@ -101,6 +106,13 @@ class Splash extends React.Component {
           width={"400px"}
           animationsTime={1200}
         />
+        <footer>
+          © 2019 David Goldstein |{" "}
+          <a href="http://davidcharlesgoldstein.com?ref=links-ui">
+            Personal Website
+          </a>{" "}
+          | <a href="/LICENSE">License</a> | <a href="/VERSION">Version</a>
+        </footer>
       </div>
     );
   }

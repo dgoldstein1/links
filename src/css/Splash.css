@@ -1,0 +1,23 @@
+.App {
+  height: 100%;
+  overflow-y: hidden;
+  max-height: stretch;
+  align-items: center; 
+  justify-content: center;
+  background: linear-gradient(to bottom, orange, transparent 90%);
+  text-align: center;
+}
+
+.App-header {
+  height: 200px;
+  padding: 100px;
+}
+
+.App-title {
+  font-size: 10em;
+}
+
+.App-intro {
+  font-style: italic;
+  font-size: large;
+}
