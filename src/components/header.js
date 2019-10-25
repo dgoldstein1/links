@@ -47,9 +47,7 @@ function Header(p) {
         "header " + (p.view === "explore" ? "oneSearchBar" : "twoSearchBars")
       }
     >
-      <a href="/" className="floatLeft">
-        Logo
-      </a>
+      <img src="../images/logo.svg" />
       <span className="icon-search" />
       {_getSearchBar()}
       <button
