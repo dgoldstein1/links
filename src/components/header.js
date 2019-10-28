@@ -11,6 +11,7 @@ import {
 } from "../actions/graph";
 import SearchBar from "./searchBar";
 import "../css/MainView.css";
+import logo from "../images/logo.png";
 
 function Header(p) {
   let _getSearchBar = () => {
@@ -47,7 +48,7 @@ function Header(p) {
         "header " + (p.view === "explore" ? "oneSearchBar" : "twoSearchBars")
       }
     >
-      <img src="../images/logo.svg" />
+      <img alt="logo" src={logo} style={{ width: "70px" }} />
       <span className="icon-search" />
       {_getSearchBar()}
       <button

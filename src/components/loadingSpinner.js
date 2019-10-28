@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../css/LoadingSpinner.css";
 import ForceLink from "react-sigma/lib/ForceLink";
 import { Sigma, EdgeShapes, RelativeSize } from "react-sigma";
