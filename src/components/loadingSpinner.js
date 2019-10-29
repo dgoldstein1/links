@@ -36,7 +36,7 @@ function LoadingSpinner(p) {
           clone: false,
           animationsTime: p.animationsTime
         }}
-        style={{ height: p.height, width: p.width }}
+        style={{ height: p.height, width: window.innerWidth + "px" }}
       >
         {_getGraphFromLayout()}
         <RelativeSize initialSize={35} />
