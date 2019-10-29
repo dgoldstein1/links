@@ -4,6 +4,7 @@ import ForceLink from "react-sigma/lib/ForceLink";
 import { Sigma, EdgeShapes, RelativeSize } from "react-sigma";
 import Dagre from "react-sigma/lib/Dagre";
 import PropTypes from "prop-types";
+import "../css/Graph.css";
 
 function LoadingSpinner(p) {
   function _getGraphFromLayout() {
@@ -24,22 +25,24 @@ function LoadingSpinner(p) {
   }
 
   return (
-    <Sigma
-      renderer="canvas"
-      graph={p.graph}
-      settings={{
-        flex: 1,
-        labelThreshold: 0,
-        drawEdges: true,
-        clone: false,
-        animationsTime: p.animationsTime
-      }}
-      style={{ height: p.height, width: p.width }}
-    >
-      {_getGraphFromLayout()}
-      <RelativeSize initialSize={35} />
-      <EdgeShapes default="tapered" />
-    </Sigma>
+    <div className="contentContainer">
+      <Sigma
+        renderer="canvas"
+        graph={p.graph}
+        settings={{
+          flex: 1,
+          labelThreshold: 0,
+          drawEdges: true,
+          clone: false,
+          animationsTime: p.animationsTime
+        }}
+        style={{ height: p.height, width: p.width }}
+      >
+        {_getGraphFromLayout()}
+        <RelativeSize initialSize={35} />
+        <EdgeShapes default="tapered" />
+      </Sigma>
+    </div>
   );
 }
 

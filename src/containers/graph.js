@@ -46,7 +46,7 @@ class Graph extends React.Component {
 
   render() {
     return (
-      <div className="contentContainer">
+      <div className="contentContainer graidentBackground">
         {this.props.loading && !this.props.error && (
           <div className="spinner secondary" />
         )}
