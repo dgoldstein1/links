@@ -20,6 +20,11 @@
   float: left;
 }
 
+.logo {
+  text-align: center;
+  width: 50px;
+}
+
 .floatRight {
   float: right;
 }
