@@ -3,12 +3,12 @@ import { updateView } from "../actions/appState";
 import { store } from "../reducers";
 import LoadingSpinner from "../components/loadingSpinner";
 import { InitAapp } from "../actions/appState";
-import "../css/Splash.css";
+import Footer from "../components/footer";
 // how long to wait on splash
 const SPLASH_TIMEOUT = 5;
 const LOADING_ANIMATE_TIME = 2000;
 // view after splash page
-const NEXT_VIEW = "path";
+const NEXT_VIEW = "about";
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -109,13 +109,7 @@ class Splash extends React.Component {
           loading={this.state.loading}
           animationsTime={1000}
         />
-        <footer className="App-footer">
-          © 2019 David Goldstein |{" "}
-          <a href="http://davidcharlesgoldstein.com?ref=links-ui">
-            Personal Website
-          </a>{" "}
-          | <a href="/LICENSE">License</a> | <a href="/VERSION">Version</a>
-        </footer>
+        <Footer />
       </div>
     );
   }
