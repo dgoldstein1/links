@@ -11,7 +11,7 @@ import {
 } from "../actions/graph";
 import SearchBar from "./searchBar";
 import "../css/MainView.css";
-import logo from "../images/logo.png";
+import titleImage from "../images/title.png";
 
 function Header(p) {
   let _getSearchBar = () => {
@@ -49,7 +49,7 @@ function Header(p) {
       }
     >
       <a href="/" className="floatLeft">
-        <img alt="logo" src={logo} className="logo" />
+        <img alt="logo" src={titleImage} className="logo" />
       </a>
       <span className="icon-search" />
       {_getSearchBar()}

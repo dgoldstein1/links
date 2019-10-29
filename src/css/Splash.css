@@ -4,8 +4,8 @@
   max-height: stretch;
   align-items: center; 
   justify-content: center;
-  background: linear-gradient(to bottom, orange, transparent 90%);
   text-align: center;
+  background: linear-gradient(to bottom, orange, transparent 90%);
 }
 
 .App-header {
