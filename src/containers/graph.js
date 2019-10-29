@@ -13,7 +13,7 @@ import ErrorCard from "../components/errorCard";
 import { store } from "../reducers";
 import SelectedNodeCard from "../components/selectedNodeCard";
 import _ from "lodash";
-import "../css/Graph.css"
+import "../css/Graph.css";
 
 const DEBOUNCE_HOVER = 100;
 

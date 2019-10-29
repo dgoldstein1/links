@@ -4,5 +4,5 @@
   align-items: stretch;
   justify-content: flex-start;
   flex: 1 1 100%;
-    background: linear-gradient(to top, orange, transparent 50%);
+  background: linear-gradient(to top, orange, transparent 50%);
 }

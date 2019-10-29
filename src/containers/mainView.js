@@ -15,7 +15,6 @@ class MainView extends React.Component {
     return (
       <div>
         <div className="container">
-          {this.props.loading && <div className="spinner secondary centered" />}
           {this.props.fatalError && !this.props.loading && (
             <div className="centered">
               <ErrorCard
