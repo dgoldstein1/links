@@ -31,7 +31,6 @@ function LoadingSpinner(p) {
         flex: 1,
         labelThreshold: 0,
         drawEdges: true,
-        // drawLabels: false,
         clone: false,
         animationsTime: p.animationsTime
       }}
