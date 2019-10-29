@@ -5,7 +5,7 @@ import LoadingSpinner from "../components/loadingSpinner";
 import { InitAapp } from "../actions/appState";
 import "../css/Splash.css";
 // how long to wait on splash
-const SPLASH_TIMEOUT = 50000000;
+const SPLASH_TIMEOUT = 5;
 const LOADING_ANIMATE_TIME = 2000;
 // view after splash page
 const NEXT_VIEW = "path";
