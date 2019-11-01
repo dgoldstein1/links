@@ -7,5 +7,5 @@
 }
 
 .graidentBackground { 
-  background: linear-gradient(to top, orange, transparent 50%);
+  background: linear-gradient(to bottom, orange, transparent 100%);
  }
