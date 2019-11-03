@@ -1,9 +1,11 @@
 import React from "react";
 import Footer from "./footer";
+import "../css/MainView.css";
+import architectureImage from "../images/architecture.png";
 
 function About(p) {
   return (
-    <div>
+    <div className="about">
       <nav>
         <a href="#Overview">Overview</a>
         <a href="#Architecture">Architecture</a>
@@ -12,9 +14,6 @@ function About(p) {
         </a>
         <a href="#Frontend" className="sublink-1">
           Frontend
-        </a>
-        <a href="#Deployment" className="sublink-1">
-          Deployment
         </a>
         <a href="#Metrics" className="sublink-1">
           Metrics
@@ -49,7 +48,7 @@ function About(p) {
         unreleated areas of knowledge!
       </p>
       <h1 id="Architecture">Architecture</h1>
-      DIAGRAM
+      <img alt="architecture-image" src={architectureImage} />
       <h5 id="Backend">Backend</h5>
       <p>
         The backend for this project consists of three major pieces: the
@@ -103,17 +102,64 @@ function About(p) {
         languages.
       </p>
       <h5 id="Frontend">Frontend</h5>
-      <p>t</p>
-      <h5 id="Deployment">Deployment</h5>
-      <p>t</p>
+      <p>
+        The UI is a React app, with the graph powered by{" "}
+        <a href="http://sigmajs.org/">sigmajs</a>. There isn't much to the UI
+        since I believe in creating a intentional and clean backend to keep the
+        frontend simple. Once compiled, the static assetts are served up by an
+        nginx container.
+      </p>
       <h5 id="Metrics">Metrics</h5>
-      <p>t</p>
+      <p>
+        Keeping system-wide metrics have been really useful for both debugging
+        and also predicting issues before they occurr. Every service in the
+        system reports <a href="https://prometheus.io/">prometheus</a> metrics.
+        These are collected and reported to a{" "}
+        <a href="/admin/grafana"> running grafana dashboard </a>. Please feel
+        free to look, the username:password is "admin:admin" for now.
+        <br />
+        <br />
+        I've also wanted to keep track of information on visitors coming to this
+        site. Google Analytics seemed complicated and looked like it cost money,
+        so I created my own{" "}
+        <a href="https://github.com/dgoldstein1/websiteAnalytics-backend">
+          website analytics api
+        </a>{" "}
+        and{" "}
+        <a href="https://github.com/dgoldstein1/websiteAnalytics-frontend">
+          {" "}
+          analytics UI
+        </a>{" "}
+        which is open source and free, as long as you can create a mongo
+        connection. You can see the visits to this website by going to{" "}
+        <a href="/traffic"> the UI at this link</a>
+      </p>
       <h1 id="Challenges">Challenges</h1>
-      <p>t</p>
       <h5 id="Money">Money</h5>
-      <p>t</p>
+      <p>
+        From the beginning, I knew I didn't want to deploy a side project on an
+        expensive infrastructure. From the beginning, I knew AWS, Openshift, or
+        a sophisticated mesh infrastructure were out of the question. After
+        doing some research on the web, I settled on using a cloud platform and
+        GKE as my provider. I found that gke gives $300 in free credits and that
+        I could run everything in my cluster on very lean machines except the
+        crawler.
+        <br />
+        <br />
+        So I set a budget of ~$5 a month to run most of my cluster on GKE and
+        worked out a solution to run the web crawlers on a few Rasberry Pis I
+        have in my apartment. This saves $10-15 / month since web crawling
+        requires an upper tier of pod resources (usually 4cpus) and the crawler
+        needs to be run around the clock for the first 1-2 weeks of deployment.
+      </p>
       <h5 id="Storage">Storage</h5>
-      <p>t</p>
+      <p>
+        Another issue I encountered from the beginning is storage. Wikipedia has
+        around 6 million articles. Each article is about 4 degrees of separation
+        from any other, meaning the graph is very connected. Doing some early
+        research, I found that each article has between 10-1000 links to
+        articles, meaning O(n) could be 6 billion edges.
+      </p>
       <h5 id="Speed">Speed</h5>
       <p>t</p>
       <h5 id="Wikipedia Refs">Wikipedia Refs</h5>

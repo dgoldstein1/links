@@ -53,3 +53,10 @@ img {
   text-align: left;
   background-color: #eee; 
 }
+
+.about {
+  margin: 30px;
+  max-width: 800px;
+  align-items: center; 
+  justify-content: center;
+}
