@@ -24,6 +24,14 @@ export function setFatalError(e) {
   };
 }
 
+export const SET_LANGUAGE = "SET_LANGUAGE";
+export function setLanguage(language) {
+  return {
+    type: SET_LANGUAGE,
+    language
+  };
+}
+
 // initializes app on first load
 export function InitAapp(callback = () => {}) {
   store.dispatch(setLoading(true));
