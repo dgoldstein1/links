@@ -21,10 +21,7 @@ describe("reducers", () => {
           type: UPDATE_VIEW,
           view: "newView"
         };
-        expect(appState(undefined, action)).toEqual({
-          ...initialState,
-          view: "newView"
-        });
+        expect(appState(undefined, action)).toMatchSnapshot();
       });
     });
     describe("SET_LOADING", () => {
@@ -33,10 +30,7 @@ describe("reducers", () => {
           type: SET_LOADING,
           loading: true
         };
-        expect(appState(undefined, action)).toEqual({
-          ...initialState,
-          loading: true
-        });
+        expect(appState(undefined, action)).toMatchSnapshot();
       });
     });
   });

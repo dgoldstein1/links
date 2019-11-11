@@ -1,8 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`reducers appState SET_LOADING updates the store with new value of loading 1`] = `
+Object {
+  "fatalError": undefined,
+  "language": "english",
+  "loading": true,
+  "view": "splash",
+}
+`;
+
+exports[`reducers appState UPDATE_VIEW updates the store with a new view 1`] = `
+Object {
+  "fatalError": undefined,
+  "language": "english",
+  "loading": true,
+  "view": "newView",
+}
+`;
+
 exports[`reducers appState initializes with correct state 1`] = `
 Object {
   "fatalError": undefined,
+  "language": "english",
   "loading": true,
   "view": "splash",
 }

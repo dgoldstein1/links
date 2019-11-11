@@ -26,6 +26,7 @@ Object {
   },
   "layout": "hierarchy",
   "loading": false,
+  "maxNeighbors": 50,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -132,6 +133,7 @@ Object {
   },
   "layout": "hierarchy",
   "loading": false,
+  "maxNeighbors": 50,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -167,6 +169,7 @@ Object {
   },
   "layout": "hierarchy",
   "loading": false,
+  "maxNeighbors": 50,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
