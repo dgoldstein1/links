@@ -59,7 +59,7 @@ services:
     image: prom/prometheus:v2.11.1
     ports:
       - 9090:9090
-    entrypoint: "/bin/prometheus --log.level=debug --config.file=/etc/prometheus/prometheus.yml"
+    entrypoint: "/bin/prometheus --web.external-url http://localhost:8443/admin/prometheus/ --web.route-prefix=/ --log.level=debug --config.file=/etc/prometheus/prometheus.yml"
     volumes:
       - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
 
@@ -75,11 +75,6 @@ services:
  ###############
  ## Analytics ##
  ###############
-
-  analytics-ui:
-    image : dgoldstein1/websiteanalytics-frontend
-    ports:
-      - '3002:3000'
 
   analytics-server:
     image : dgoldstein1/websiteanalytics-backend
