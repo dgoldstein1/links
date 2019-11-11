@@ -50,7 +50,7 @@ function About(p) {
         unreleated areas of knowledge!
       </p>
       <h1 id="Architecture">Architecture</h1>
-      <img alt="architecture-image" src={architectureImage} />
+      <img alt="architecture" src={architectureImage} />
       <h5 id="Source Code">Source Code</h5>
       <ul>
         <li>
