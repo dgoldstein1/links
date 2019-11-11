@@ -1,9 +1,9 @@
 .centered {
   text-align: center;
+  min-height: 100%;
 }
 
 .container {
-  height: 100%;
   overflow-y: hidden;
   max-height: stretch;
   align-items: center; 
@@ -14,6 +14,7 @@
 	text-align: center;
 	height: 100%;
 	overflow-y: hidden;
+  box-shadow: 0 4px 2px -2px gray;
 }
 
 .floatLeft {
@@ -51,4 +52,10 @@ img {
   margin: 4px;
   text-align: left;
   background-color: #eee; 
+}
+
+.about-and-settings {
+  margin: 30px;
+  align-items: center; 
+  justify-content: center;
 }

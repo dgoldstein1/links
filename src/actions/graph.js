@@ -13,6 +13,14 @@ export function setRootNode(node) {
   };
 }
 
+export const SET_MAX_NEIGHBORS = "SET_MAX_NEIGHBORS";
+export function setMaxNeighbors(maxNeighbors) {
+  return {
+    type: SET_MAX_NEIGHBORS,
+    maxNeighbors
+  };
+}
+
 export const SET_SELECTED_NODE_INFO = "SET_SELECTED_NODE_INFO";
 export function setSelectedNodeInfo(info) {
   return {

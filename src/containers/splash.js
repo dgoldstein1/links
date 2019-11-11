@@ -3,9 +3,9 @@ import { updateView } from "../actions/appState";
 import { store } from "../reducers";
 import LoadingSpinner from "../components/loadingSpinner";
 import { InitAapp } from "../actions/appState";
-import "../css/Splash.css";
+import Footer from "../components/footer";
 // how long to wait on splash
-const SPLASH_TIMEOUT = 1;
+const SPLASH_TIMEOUT = 5000;
 const LOADING_ANIMATE_TIME = 2000;
 // view after splash page
 const NEXT_VIEW = "path";
@@ -77,7 +77,7 @@ class Splash extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
       graph: _createRandomGraph()
     };
   }
@@ -105,17 +105,11 @@ class Splash extends React.Component {
         <LoadingSpinner
           graph={this.state.graph}
           height={"400px"}
+          width={"700px"}
           loading={this.state.loading}
-          width={"400px"}
-          animationsTime={1200}
+          animationsTime={1000}
         />
-        <footer>
-          © 2019 David Goldstein |{" "}
-          <a href="http://davidcharlesgoldstein.com?ref=links-ui">
-            Personal Website
-          </a>{" "}
-          | <a href="/LICENSE">License</a> | <a href="/VERSION">Version</a>
-        </footer>
+        <Footer />
       </div>
     );
   }

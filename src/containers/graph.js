@@ -46,7 +46,7 @@ class Graph extends React.Component {
 
   render() {
     return (
-      <div className="contentContainer">
+      <div className="contentContainer graidentBackground">
         {this.props.loading && !this.props.error && (
           <div className="spinner secondary" />
         )}
@@ -58,7 +58,7 @@ class Graph extends React.Component {
             type="warning"
           />
         )}
-        <div>
+        <div className="hiddenScroll">
           {this.props.selectedNode.node && <SelectedNodeCard />}
           {!this.props.loading && !this.props.error && (
             <Sigma
@@ -75,7 +75,7 @@ class Graph extends React.Component {
                 drawLabels: this.props.graph.nodes.length < 10,
                 clone: false
               }}
-              style={{ height: "1000px" }}
+              style={{ height: window.innerHeight - 250 + "px" }}
             >
               {this._getGraphFromLayout()}
               <RelativeSize initialSize={35} />
