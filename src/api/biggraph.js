@@ -1,4 +1,5 @@
 import axios from "axios";
+import { store } from "../reducers";
 /**
  * @param {int} id
  * @return JSON {
@@ -9,9 +10,9 @@ import axios from "axios";
  **/
 export function getNeighbors(id) {
   let url = encodeURI(
-    `${
-      process.env.REACT_APP_BIGGRAPH_ENDPOINT
-    }/neighbors?node=${id}&limit=${50}`
+    `${process.env.REACT_APP_BIGGRAPH_ENDPOINT}/neighbors?node=${id}&limit=${
+      store.getState().graph.maxNeighbors
+    }`
   );
   return axios
     .get(url)

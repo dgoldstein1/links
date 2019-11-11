@@ -18,7 +18,8 @@ const initialState = {
   },
   loading: false,
   error: undefined,
-  layout: "hierarchy"
+  layout: "hierarchy",
+  maxNeighbors: 50
 };
 
 const visitReducer = (state = initialState, action) => {
@@ -29,6 +30,10 @@ const visitReducer = (state = initialState, action) => {
           nodes: [],
           edges: []
         }
+      });
+    case ac.SET_MAX_NEIGHBORS:
+      return Object.assign({}, state, {
+        maxNeighbors: action.maxNeighbors
       });
     case ac.SET_GRAPH_ERROR:
       return Object.assign({}, state, {
