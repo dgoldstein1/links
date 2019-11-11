@@ -2,10 +2,11 @@ import React from "react";
 import Footer from "./footer";
 import "../css/MainView.css";
 import architectureImage from "../images/architecture.png";
+import hikingPhoto from "../images/hiking.jpg";
 
 function About(p) {
   return (
-    <div className="about">
+    <div className="about-and-settings">
       <nav>
         <a href="#Overview">Overview</a>
         <a href="#Architecture">Architecture</a>
@@ -238,6 +239,11 @@ function About(p) {
         National Park, running, biking, and on rainy days, playing piano by the
         window, solving math problems, or curling up with a good book.
       </p>
+      <img
+        alt="hiking-in-corfu"
+        src={hikingPhoto}
+        style={{ maxHeight: "500px" }}
+      />
       <h1 id="Contact">Contact</h1>
       <p>
         <a href="mailto:dgoldstein01@gmail.com">Email</a> --{" "}

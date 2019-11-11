@@ -4,10 +4,11 @@ import { store } from "../reducers";
 import { setMaxNeighbors } from "../actions/graph";
 import { setLanguage } from "../actions/appState";
 import { connect } from "react-redux";
+import "../css/MainView.css";
 
 function Settings(props) {
   return (
-    <div>
+    <div className="about-and-settings">
       <h1>Settings</h1>
       <form>
         <fieldset>
@@ -35,6 +36,11 @@ function Settings(props) {
             }
           />
         </fieldset>
+        <button>
+          <a href="https://github.com/dgoldstein1/links/issues/new">
+            Report issue or bug
+          </a>
+        </button>
       </form>
 
       <Footer />

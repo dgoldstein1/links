@@ -54,9 +54,8 @@ img {
   background-color: #eee; 
 }
 
-.about {
+.about-and-settings {
   margin: 30px;
-  max-width: 800px;
   align-items: center; 
   justify-content: center;
 }
