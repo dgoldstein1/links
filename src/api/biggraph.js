@@ -10,7 +10,7 @@ import { store } from "../reducers";
  **/
 export function getNeighbors(id) {
   let url = encodeURI(
-    `${process.env.REACT_APP_BIGGRAPH_ENDPOINT}/neighbors?node=${id}&limit=${
+    `/services/biggraph/neighbors?node=${id}&limit=${
       store.getState().graph.maxNeighbors
     }`
   );

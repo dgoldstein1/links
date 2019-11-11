@@ -11,9 +11,7 @@ import axios from "axios";
  *}
  **/
 export function random(n) {
-  let url = encodeURI(
-    `${process.env.REACT_APP_TWOWAYKV_ENDPOINT}/random?n=${n}`
-  );
+  let url = encodeURI(`/services/twowaykv/random?n=${n}`);
   return axios
     .get(url)
     .then(r => ({
@@ -32,9 +30,7 @@ export function random(n) {
  * @return same response type as above
  **/
 export function entriesFromValues(ids) {
-  let url = encodeURI(
-    `${process.env.REACT_APP_TWOWAYKV_ENDPOINT}/entriesFromValues`
-  );
+  let url = encodeURI(`/services/twowaykv/entriesFromValues`);
   return axios
     .post(url, ids)
     .then(r => ({
@@ -53,9 +49,7 @@ export function entriesFromValues(ids) {
  * @return same response type as above
  **/
 export function search(s) {
-  let url = encodeURI(
-    `${process.env.REACT_APP_TWOWAYKV_ENDPOINT}/search?q=${s}`
-  );
+  let url = encodeURI(`/services/twowaykv/search?q=${s}`);
   return axios
     .get(url)
     .then(r => ({

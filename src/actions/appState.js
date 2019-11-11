@@ -1,5 +1,6 @@
 import { store } from "../reducers/index";
 import { fetchAndStoreRandomStartNode } from "./graph";
+import { postUserVisit } from "../api/analytics";
 
 // updates which view the app is in
 export const UPDATE_VIEW = "UPDATE_VIEW";
@@ -35,6 +36,9 @@ export function setLanguage(language) {
 // initializes app on first load
 export function InitAapp(callback = () => {}) {
   store.dispatch(setLoading(true));
+  // send info to analytics backend
+  postUserVisit();
+
   fetchAndStoreRandomStartNode(err => {
     if (err) store.dispatch(setFatalError(err));
     store.dispatch(setLoading(false));

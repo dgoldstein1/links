@@ -7,12 +7,11 @@ import { store } from "./reducers/index";
 import MainView from "./containers/mainView";
 
 class App extends Component {
-
   render() {
     return (
-        <Provider store={store}>
-          <MainView/>
-        </Provider>
+      <Provider store={store}>
+        <MainView />
+      </Provider>
     );
   }
 }
