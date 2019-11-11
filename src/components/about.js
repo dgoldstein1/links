@@ -9,6 +9,9 @@ function About(p) {
       <nav>
         <a href="#Overview">Overview</a>
         <a href="#Architecture">Architecture</a>
+        <a href="#Source Code" className="sublink-1">
+          Source Code
+        </a>
         <a href="#Backend" className="sublink-1">
           Backend
         </a>
@@ -28,19 +31,17 @@ function About(p) {
         <a href="#Speed" className="sublink-1">
           Speed
         </a>
-        <a href="#Wikipedia Refs" className="sublink-1">
-          Wikipedia Refs
+        <a href="#Wikipedia Refs / Redirects" className="sublink-1">
+          Wikipedia Refs / Redirects
         </a>
-        <a href="#Source Code">Source Code</a>
         <a href="#About Me">About Me</a>
         <a href="#Contact">Contact</a>
       </nav>
       <h1 id="Overview">Overview</h1>
       <p>
-        This project is a culmination of several smaller projects which came
-        together slowly over the course of about a year of development in my
-        free time. The main objective is to find connections and paths between
-        different parts of the web which otherwise would go unoticed. <br />
+        A flexible and interactive framework to find connections and paths
+        between different parts of the web which otherwise would go unoticed.{" "}
+        <br />
         <br /> I've started with going through the English corpus of
         wikipedia.org, since it is well documented and easy to debug, and
         creating links between articles. Users can then find random articles,
@@ -49,6 +50,35 @@ function About(p) {
       </p>
       <h1 id="Architecture">Architecture</h1>
       <img alt="architecture-image" src={architectureImage} />
+      <h5 id="Source Code">Source Code</h5>
+      <ul>
+        <li>
+          <a href="https://github.com/dgoldstein1/crawler">Cralwer</a>
+        </li>
+        <li>
+          <a href="https://github.com/dgoldstein1/twoWayKeyValue">
+            Two Way KV Store
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/dgoldstein1/graphApi">
+            Big Data Graph Store
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/dgoldstein1/links">Links UI</a>
+        </li>
+        <li>
+          <a href="https://github.com/dgoldstein1/websiteAnalytics-frontend">
+            Traffic Monitoring UI
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/dgoldstein1/websiteAnalytics-backend">
+            Traffic Monitoring Backend
+          </a>
+        </li>
+      </ul>
       <h5 id="Backend">Backend</h5>
       <p>
         The backend for this project consists of three major pieces: the
@@ -161,15 +191,58 @@ function About(p) {
         articles, meaning O(n) could be 6 billion edges.
       </p>
       <h5 id="Speed">Speed</h5>
-      <p>t</p>
-      <h5 id="Wikipedia Refs">Wikipedia Refs</h5>
-      <p>t</p>
-      <h1 id="Source Code">Source Code</h1>
-      <p>t</p>
+      <p>
+        Speed is always a question when making a crawling-based app. For
+        scraping wikipedia, I set out to scrape all articles in about two weeks.
+        For 6 million articles, that's about 5 links scraped per second which is
+        slow enough to not bother the wikipedia servers but fast enough to keep
+        a move on, especially if more than one crawler is running.
+        <br />
+        <br />A second consideration with speed is db lookups. To combat this,
+        I've structured all the data so that all queries run in O(n) time, and
+        most-- node, edge, and searching-- are actually O(1). The downside to
+        this is that the data is ridged. Everything is stored by an integer node
+        Id in a key:value format, which makes it hard to scale out new metadata
+        or make system-wide updates. To do this, I would create a metadata store
+        based on something like postgres or mongodb. However, this would cost
+        money to scale to 6 million entries * size(metadata) and would take some
+        engineering time. Thankfully I've been able to rely on being able to
+        fetch all the metadata I need on the front-end at runtime.
+      </p>
+      <h5 id="Wikipedia Refs / Redirects">Wikipedia Refs / Redirects</h5>
+      <p>
+        This is the newest and trickiest challenge I've faced, and I haven't
+        fully solved it. It occurrs when a link redirects to another URL, such
+        as "/wiki/american_presidents" redirecting automatically to
+        "/wiki/list_of_american_presidents". This is an issue because a) I'm
+        adding a node which doesn't actually exist as a page
+        "/wiki/american_presidents" and b) I'm missing all the links which
+        should be attributed to "/wiki/list_of_american_presidents".
+        <br />
+        <br />
+        Wikipedia and others have solved this issue by creating a big metadatadb
+        (sql in wikipedia's case), which keeps track of these links. This would
+        be a big hassle to do, and also very site-specific, whereas the
+        intention for links is to create a more dynamic crawler. Another option
+        for this stack would be to follow each link to see if there's a
+        redirect. This is an issue, however, because it would mean following
+        each and every link, which cases a 10-100x performance decrease in
+        crawling and also looks like I'm spamming a website. I haven't fixed
+        this yet-- any recommendations would be welcome!!
+      </p>
       <h1 id="About Me">About Me</h1>
-      <p>t</p>
+      <p>
+        Originally from Sharon, Massachusetts, I graduated Macalester College in
+        Saint Paul, Minnesota and now live happily with my wife in
+        Charlottesville, VA. In my spare time I enjoy hiking in Shenandoah
+        National Park, running, biking, and on rainy days, playing piano by the
+        window, solving math problems, or curling up with a good book.
+      </p>
       <h1 id="Contact">Contact</h1>
-      <p>t</p>
+      <p>
+        <a href="mailto:dgoldstein01@gmail.com">Email</a> --{" "}
+        <a href="https://github.com/dgoldstein1">Github</a>
+      </p>
       <Footer />
     </div>
   );
