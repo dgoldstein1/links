@@ -6,21 +6,6 @@ services:
   ## Services ##
   ##############
 
-  crawler:
-    image: dgoldstein1/crawler:1.0.0
-    depends_on:
-      - kv
-      - graph
-    environment:
-      - GRAPH_DB_ENDPOINT=http://graph:5000
-      - TWO_WAY_KV_ENDPOINT=http://kv:5001
-      - MAX_APPROX_NODES=-1
-      - COMMAND=wikipedia
-      - METRICS_PORT=8001
-      - PARALLELISM=16
-      - MS_DELAY=5
-
-
   edge:
     image: dgoldstein1/edge-dev
     build:
@@ -86,3 +71,29 @@ services:
       - prom
     ports:
     - "3001:3000"
+
+ ###############
+ ## Analytics ##
+ ###############
+
+  analytics-ui:
+    image : dgoldstein1/websiteanalytics-frontend
+    ports:
+      - '3002:3000'
+
+  analytics-server:
+    image : dgoldstein1/websiteanalytics-backend
+    environment:
+      - LOGGER=true
+      - TEST_MODE=true
+      - DATABASE_URL=mongodb://mongodb:27017
+      - PORT=5000
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    ports:
+      - 5002:5000
+
+  mongodb:
+    image: 'mongo:latest'
