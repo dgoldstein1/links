@@ -3,7 +3,6 @@ import * as ac from "../actions/appState";
 const initialState = {
   language: "english",
   loading: true, // the app is / isn't loading
-  fatalError: undefined, // error which  causes app to not load
   view: "splash" // one of "explore", "path", "splash", "about", "settings"
 };
 
@@ -12,10 +11,6 @@ const visitReducer = (state = initialState, action) => {
     case ac.SET_LANGUAGE:
       return Object.assign({}, state, {
         language: action.language
-      });
-    case ac.SET_FATAL_ERROR:
-      return Object.assign({}, state, {
-        fatalError: action.fatalError
       });
     // set when the app is loading
     case ac.SET_LOADING:

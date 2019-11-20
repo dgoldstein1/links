@@ -1,5 +1,5 @@
 import { store } from "../reducers/index";
-import { fetchAndStoreRandomStartNode } from "./graph";
+import { fetchAndStoreRandomStartNode, setGraphError } from "./graph";
 import { postUserVisit } from "../api/analytics";
 
 // updates which view the app is in
@@ -15,13 +15,6 @@ export function setLoading(loading) {
   return {
     type: SET_LOADING,
     loading: loading
-  };
-}
-export const SET_FATAL_ERROR = "SET_FATAL_ERROR";
-export function setFatalError(e) {
-  return {
-    type: SET_FATAL_ERROR,
-    fatalError: e
   };
 }
 
@@ -40,7 +33,7 @@ export function InitAapp(callback = () => {}) {
   postUserVisit();
 
   fetchAndStoreRandomStartNode(err => {
-    if (err) store.dispatch(setFatalError(err));
+    if (err) store.dispatch(setGraphError(err));
     store.dispatch(setLoading(false));
     callback();
   });
