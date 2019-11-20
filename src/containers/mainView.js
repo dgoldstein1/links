@@ -2,7 +2,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import Graph from "./graph";
-import ErrorCard from "../components/errorCard";
 import Header from "../components/header";
 import Splash from "./splash";
 import About from "../components/about";
