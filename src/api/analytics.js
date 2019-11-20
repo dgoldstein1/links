@@ -10,7 +10,9 @@ import axios from "axios";
  **/
 export function postUserVisit(ids) {
   // first get ip address of user
-  let geoUrl = encodeURI(`/analytics/api/geoIpServer/check?access_key=7eca814a6de384aab338e110c57fef37`);
+  let geoUrl = encodeURI(
+    `/analytics/api/geoIpServer/check?access_key=7eca814a6de384aab338e110c57fef37`
+  );
   // add in href, if exists
 
   return axios
