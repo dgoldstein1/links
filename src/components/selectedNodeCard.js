@@ -8,6 +8,7 @@ const WIKIPEDIA_ENDPOINT = "https://en.wikipedia.org/wiki/";
 function SelectedNodeCard(graph) {
   let sNode = graph.selectedNode;
   let _renderDescription = () => {
+    if (!sNode.description) return "";
     if (sNode.description.length > MAX_CHAR_DESCRIPTION)
       return (
         <p>

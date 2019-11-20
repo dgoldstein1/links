@@ -72,7 +72,7 @@ class Graph extends React.Component {
                 flex: 1,
                 labelThreshold: 0,
                 drawEdges: true,
-                drawLabels: this.props.graph.nodes.length < 10,
+                drawLabels: this.props.graph.nodes.length < 50,
                 clone: false
               }}
               style={{ height: window.innerHeight - 250 + "px" }}

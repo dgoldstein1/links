@@ -28,9 +28,7 @@ export function getNeighbors(id) {
 
 export function shortestPath(startId, endId) {
   let url = encodeURI(
-    `${
-      process.env.REACT_APP_BIGGRAPH_ENDPOINT
-    }/shortestPath?start=${startId}&end=${endId}`
+    `services/biggraph/shortestPath?start=${startId}&end=${endId}`
   );
   return axios
     .get(url)
