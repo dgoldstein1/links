@@ -13,6 +13,11 @@ function ErrorCard(p) {
             <label htlmfor="drawer-control" className="drawer-close" />
             <br />
             <button onClick={p.onAction}>{p.action}</button>
+            <button>
+              <a href="https://github.com/dgoldstein1/links/issues/new">
+                report bug
+              </a>
+            </button>
           </div>
         </div>
       </div>
