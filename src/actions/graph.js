@@ -210,12 +210,11 @@ export function fetchAndStorePath(start, end) {
 }
 
 export function setStartPath(node) {
-  // target node in store, find path
-  if (store.getState().graph.targetNode.id) {
-    return fetchAndStorePath(node, store.getState().graph.targetNode);
-  }
-  // else set new root
-  setNewRoot(node);
+  setNewRoot(node, err => {
+    if (store.getState().graph.targetNode.id && !err) {
+      return fetchAndStorePath(node, store.getState().graph.targetNode);
+    }
+  });
 }
 
 export function setTargetPath(node) {
