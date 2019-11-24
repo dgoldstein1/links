@@ -5,7 +5,6 @@ import { store } from "../reducers";
 import { updateView } from "../actions/appState";
 import {
   setGraphLayout,
-  setNewRoot,
   setStartPath,
   setTargetPath
 } from "../actions/graph";
@@ -14,51 +13,30 @@ import "../css/MainView.css";
 import titleImage from "../images/title.png";
 
 function Header(p) {
-  let _getSearchBar = () => {
-    if (p.view === "explore") {
-      return (
-        <SearchBar
-          placeholder="search.."
-          onSelect={setNewRoot}
-          value={p.rootNode}
-        />
-      );
-    }
-    // p is path
-    return (
-      <>
-        <SearchBar
-          placeholder="starting at.."
-          onSelect={setStartPath}
-          value={p.rootNode}
-        />
-        <SearchBar
-          placeholder="ending at.."
-          onSelect={setTargetPath}
-          value={p.targetNode}
-        />
-      </>
-    );
-  };
-
   return (
-    <H
-      sticky
-      className={
-        "header " + (p.view === "explore" ? "oneSearchBar" : "twoSearchBars")
-      }
-    >
+    <H sticky className={"header twoSearchBars"}>
       <a href="/" className="floatLeft">
         <img alt="logo" src={titleImage} className="logo" />
       </a>
-      <span className="icon-search" />
-      {_getSearchBar()}
+
+      <SearchBar
+        placeholder="starting at.."
+        onSelect={setStartPath}
+        value={p.rootNode}
+      />
+      <SearchBar
+        placeholder="ending at.."
+        onSelect={setTargetPath}
+        value={p.targetNode}
+      />
+
       <button
-        onClick={() => {
-          store.dispatch(updateView(p.view === "explore" ? "path" : "explore"));
-        }}
+        onClick={() =>
+          setStartPath({ id: p.rootNode.id, label: p.rootNode.label })
+        }
       >
-        {p.view === "explore" ? "path" : "explore"}
+        <span className="icon-search" />
+        search
       </button>
       <button
         onClick={() => {
@@ -86,7 +64,6 @@ function Header(p) {
 }
 
 let mapStateToProps = state => ({
-  view: state.appState.view,
   layout: state.graph.layout,
   rootNode: state.graph.rootNode,
   targetNode: state.graph.targetNode

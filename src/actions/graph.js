@@ -191,7 +191,7 @@ export function fetchAndStorePath(start, end) {
   };
   setSelectedNode(start);
   store.dispatch(setGraphLoading(true));
-  graph.shortestPath(start.id, end.id).then(r => {
+  graph.shortestPath(start, end).then(r => {
     if (!r.success) return _errOut(r.error);
     // path found, get entries from values
     // only get entries in middle, already have beginning and end
@@ -210,12 +210,11 @@ export function fetchAndStorePath(start, end) {
 }
 
 export function setStartPath(node) {
-  // target node in store, find path
-  if (store.getState().graph.targetNode.id) {
-    return fetchAndStorePath(node, store.getState().graph.targetNode);
-  }
-  // else set new root
-  setNewRoot(node);
+  setNewRoot(node, err => {
+    if (store.getState().graph.targetNode.id && !err) {
+      fetchAndStorePath(node, store.getState().graph.targetNode);
+    }
+  });
 }
 
 export function setTargetPath(node) {

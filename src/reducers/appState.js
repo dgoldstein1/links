@@ -3,7 +3,7 @@ import * as ac from "../actions/appState";
 const initialState = {
   language: "english",
   loading: true, // the app is / isn't loading
-  view: "splash" // one of "explore", "path", "splash", "about", "settings"
+  view: "splash" // one of "path", "splash", "about", "settings"
 };
 
 const visitReducer = (state = initialState, action) => {

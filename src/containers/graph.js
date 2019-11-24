@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 import React from "react";
 import { connect } from "react-redux";
-import { Sigma, EdgeShapes, RelativeSize } from "react-sigma";
+import { Sigma, EdgeShapes } from "react-sigma";
 import Dagre from "react-sigma/lib/Dagre";
 import ForceLink from "react-sigma/lib/ForceLink";
 import {
@@ -15,7 +15,7 @@ import SelectedNodeCard from "../components/selectedNodeCard";
 import _ from "lodash";
 import "../css/Graph.css";
 
-const DEBOUNCE_HOVER = 100;
+const DEBOUNCE_HOVER = 10;
 
 var onHoverDebounced = _.debounce(e => {
   setSelectedNode(e.data.node, false);
@@ -59,29 +59,30 @@ class Graph extends React.Component {
           />
         )}
         <div className="hiddenScroll">
-          {this.props.selectedNode.node && <SelectedNodeCard />}
           {!this.props.loading && !this.props.error && (
-            <Sigma
-              onClickNode={e =>
-                fetchAndStoreNeighbors(e.data.node, () => {}, true)
-              }
-              onOverNode={onHoverDebounced}
-              renderer="canvas"
-              graph={this.props.graph}
-              settings={{
-                flex: 1,
-                labelThreshold: 0,
-                drawEdges: true,
-                drawLabels: this.props.graph.nodes.length < 50,
-                clone: false
-              }}
-              style={{ height: window.innerHeight - 250 + "px" }}
-            >
-              {this._getGraphFromLayout()}
-              <RelativeSize initialSize={35} />
-              <EdgeShapes default="tapered" />
-            </Sigma>
+            <div className="sigmaContainer">
+              <Sigma
+                onClickNode={e =>
+                  fetchAndStoreNeighbors(e.data.node, () => {}, true)
+                }
+                onOverNode={onHoverDebounced}
+                renderer="canvas"
+                graph={this.props.graph}
+                settings={{
+                  labelThreshold: 0,
+                  defaultLabelSize: 50 / this.props.graph.nodes.length + 18,
+                  drawEdges: true,
+                  drawLabels: this.props.graph.nodes.length < 500,
+                  clone: false
+                }}
+                style={{ height: window.innerHeight - 250 + "px" }}
+              >
+                {this._getGraphFromLayout()}
+                <EdgeShapes default="tapered" />
+              </Sigma>
+            </div>
           )}
+          {this.props.selectedNode.node && <SelectedNodeCard />}
         </div>
       </div>
     );

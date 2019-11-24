@@ -22,13 +22,19 @@ export function getNeighbors(id) {
     }))
     .catch(e => ({
       success: false,
-      error: "Could not get neighbor of node " + id + ": " + e.message
+      error: `Could not get neighbors :(  ${e.response.data.error}`
     }));
 }
 
-export function shortestPath(startId, endId) {
+/**
+ * gets shortest path from one node to anotther
+ * @param {node} start
+ * @param {node} end
+ * @return {promise} {success, error, data}
+ **/
+export function shortestPath(start, end) {
   let url = encodeURI(
-    `services/biggraph/shortestPath?start=${startId}&end=${endId}`
+    `services/biggraph/shortestPath?start=${start.id}&end=${end.id}`
   );
   return axios
     .get(url)
@@ -38,7 +44,8 @@ export function shortestPath(startId, endId) {
     }))
     .catch(e => ({
       success: false,
-      error:
-        "could not get path from " + startId + " to " + endId + ": " + e.message
+      error: `Could not get path from "${start.label}" to "${end.label}": ${
+        e.response.data.error
+      }`
     }));
 }
