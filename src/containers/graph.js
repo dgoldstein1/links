@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 import React from "react";
 import { connect } from "react-redux";
-import { Sigma, EdgeShapes, RelativeSize } from "react-sigma";
+import { Sigma, EdgeShapes } from "react-sigma";
 import Dagre from "react-sigma/lib/Dagre";
 import ForceLink from "react-sigma/lib/ForceLink";
 import {

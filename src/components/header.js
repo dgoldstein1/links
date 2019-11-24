@@ -5,7 +5,6 @@ import { store } from "../reducers";
 import { updateView } from "../actions/appState";
 import {
   setGraphLayout,
-  setNewRoot,
   setStartPath,
   setTargetPath
 } from "../actions/graph";
