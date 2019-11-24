@@ -224,7 +224,7 @@ export function setTargetPath(node) {
   }
 }
 
-const MAX_RETRIES = 15;
+const MAX_RETRIES = 25;
 // fetches and stores random starting node and neighbors
 // callback called with string error
 export function fetchAndStoreRandomStartNode(finalCallback, retries = 0) {
