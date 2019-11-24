@@ -15,7 +15,7 @@ import SelectedNodeCard from "../components/selectedNodeCard";
 import _ from "lodash";
 import "../css/Graph.css";
 
-const DEBOUNCE_HOVER = 100;
+const DEBOUNCE_HOVER = 10;
 
 var onHoverDebounced = _.debounce(e => {
   setSelectedNode(e.data.node, false);
@@ -69,16 +69,15 @@ class Graph extends React.Component {
                 renderer="canvas"
                 graph={this.props.graph}
                 settings={{
-                  flex: 1,
                   labelThreshold: 0,
+                  defaultLabelSize: 50 / this.props.graph.nodes.length + 18,
                   drawEdges: true,
-                  drawLabels: this.props.graph.nodes.length < 50,
+                  drawLabels: this.props.graph.nodes.length < 500,
                   clone: false
                 }}
                 style={{ height: window.innerHeight - 250 + "px" }}
               >
                 {this._getGraphFromLayout()}
-                <RelativeSize initialSize={35} />
                 <EdgeShapes default="tapered" />
               </Sigma>
             </div>

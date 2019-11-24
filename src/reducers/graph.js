@@ -19,7 +19,7 @@ const initialState = {
   loading: false,
   error: undefined,
   layout: "hierarchy",
-  maxNeighbors: 50
+  maxNeighbors: 15
 };
 
 const visitReducer = (state = initialState, action) => {
@@ -76,7 +76,8 @@ const visitReducer = (state = initialState, action) => {
     case ac.SET_GRAPH_PATH:
       // set x and y for new nodes
       action.path = action.path.map((n, i) => ({
-        ...n
+        ...n,
+        size: 1
       }));
       // create edges
       let edges = [];
@@ -101,8 +102,7 @@ const visitReducer = (state = initialState, action) => {
       // set initial position to source
       action.neighbors = action.neighbors.map(n => ({
         ...n,
-        x: action.node.x,
-        y: action.node.y
+        size: 1
       }));
       // get list of edges to add
       let edgesToAdd = [];
@@ -132,7 +132,8 @@ export function _generateRoot(label, id) {
     label,
     id,
     x: 0,
-    y: 0
+    y: 0,
+    size: 1
   };
 }
 
