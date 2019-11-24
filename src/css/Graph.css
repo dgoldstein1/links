@@ -7,5 +7,9 @@
 }
 
 .graidentBackground { 
-  background: linear-gradient(to bottom, orange, transparent 100%);
+  background: linear-gradient(to bottom, orange, transparent 64%);
+ }
+
+ .sigmaContainer {
+ 	padding: 10px;
  }

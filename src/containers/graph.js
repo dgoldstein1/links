@@ -59,29 +59,31 @@ class Graph extends React.Component {
           />
         )}
         <div className="hiddenScroll">
-          {this.props.selectedNode.node && <SelectedNodeCard />}
           {!this.props.loading && !this.props.error && (
-            <Sigma
-              onClickNode={e =>
-                fetchAndStoreNeighbors(e.data.node, () => {}, true)
-              }
-              onOverNode={onHoverDebounced}
-              renderer="canvas"
-              graph={this.props.graph}
-              settings={{
-                flex: 1,
-                labelThreshold: 0,
-                drawEdges: true,
-                drawLabels: this.props.graph.nodes.length < 50,
-                clone: false
-              }}
-              style={{ height: window.innerHeight - 250 + "px" }}
-            >
-              {this._getGraphFromLayout()}
-              <RelativeSize initialSize={35} />
-              <EdgeShapes default="tapered" />
-            </Sigma>
+            <div className="sigmaContainer">
+              <Sigma
+                onClickNode={e =>
+                  fetchAndStoreNeighbors(e.data.node, () => {}, true)
+                }
+                onOverNode={onHoverDebounced}
+                renderer="canvas"
+                graph={this.props.graph}
+                settings={{
+                  flex: 1,
+                  labelThreshold: 0,
+                  drawEdges: true,
+                  drawLabels: this.props.graph.nodes.length < 50,
+                  clone: false
+                }}
+                style={{ height: window.innerHeight - 250 + "px" }}
+              >
+                {this._getGraphFromLayout()}
+                <RelativeSize initialSize={35} />
+                <EdgeShapes default="tapered" />
+              </Sigma>
+            </div>
           )}
+          {this.props.selectedNode.node && <SelectedNodeCard />}
         </div>
       </div>
     );
