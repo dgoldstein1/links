@@ -224,15 +224,30 @@ export function setTargetPath(node) {
   }
 }
 
+const MAX_RETRIES = 25;
 // fetches and stores random starting node and neighbors
 // callback called with string error
-export function fetchAndStoreRandomStartNode(callback) {
-  // fetch random node
-  kv.random(1).then(r => {
-    if (!r.success) return callback(r.error);
-    // fetch neighbors of node
-    let node = _generateRoot(r.data[0].key, r.data[0].value);
-    store.dispatch(setRootNode(node));
-    fetchAndStoreNeighbors(node, callback);
+export function fetchAndStoreRandomStartNode(finalCallback, retries = 0) {
+  if (retries > MAX_RETRIES)
+    return finalCallback(
+      "Max retries exceeded finding acceptable starting node"
+    );
+  // get a bunch of random ids
+  kv.random(1).then(kvResponse => {
+    if (!kvResponse.success) return finalCallback(kvResponse.error);
+    // else try and get node with neighbors
+    graph.getNeighbors(kvResponse.data[0].value).then(gResponse => {
+      if (gResponse.success && gResponse.data.length > 0) {
+        // node found!
+        let node = _generateRoot(
+          kvResponse.data[0].key,
+          kvResponse.data[0].value
+        );
+        store.dispatch(setRootNode(node));
+        return fetchAndStoreNeighbors(node, finalCallback);
+      }
+      // otherwise bad node
+      fetchAndStoreRandomStartNode(finalCallback, retries + 1);
+    });
   });
 }
