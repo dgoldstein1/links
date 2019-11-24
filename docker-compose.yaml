@@ -14,12 +14,12 @@ services:
     environment:
       - GRAPH_DB_ENDPOINT=http://graph:5000
       - TWO_WAY_KV_ENDPOINT=http://kv:5001
-      - MAX_APPROX_NODES=10
+      - MAX_APPROX_NODES=100
       - COMMAND=s
       - METRICS_PORT=8001
       - PARALLELISM=1
       - MS_DELAY=1000
-      - STARTING_ENDPOINT=http://www.synonyms.com/synonym/test-tube
+      - STARTING_ENDPOINT=
 
 
   edge:

@@ -3,11 +3,7 @@ import { Header as H } from "mini.css-react";
 import { connect } from "react-redux";
 import { store } from "../reducers";
 import { updateView } from "../actions/appState";
-import {
-  setGraphLayout,
-  setStartPath,
-  setTargetPath
-} from "../actions/graph";
+import { setGraphLayout, setStartPath, setTargetPath } from "../actions/graph";
 import SearchBar from "./searchBar";
 import "../css/MainView.css";
 import titleImage from "../images/title.png";
