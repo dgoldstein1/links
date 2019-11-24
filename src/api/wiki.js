@@ -24,7 +24,7 @@ export function getDescription(s) {
 }
 
 // gets icon and description by trying to guess title
-export function _queryByTitle(s) {
+export function _queryByTitle(s, retry = 0) {
   // get extracts
   let url = "/services/wiki/w/api.php";
   url += `?action=query`;
@@ -33,16 +33,18 @@ export function _queryByTitle(s) {
   url += `&exlimit=max`;
   url += `&explaintext`;
   url += `&exintro`;
+  url += `&redirects`;
   url += `&titles=${s}`;
 
   return axios
     .get(encodeURI(url))
     .then(r => {
       let pageId = Object.keys(r.data.query.pages)[0];
-      pageId = parseInt(pageId);
       /*jslint eqeq: true*/
       if (!pageId || pageId === -1) return _errOut(s, "no page found");
+      // get extract, if any
       let extract = r.data.query.pages[pageId].extract;
+      if (!extract) return _errOut(s, "no extract found");
       // now get images
       url = "/services/wiki/w/api.php";
       url += `?action=query`;

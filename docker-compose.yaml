@@ -19,6 +19,7 @@ services:
       - METRICS_PORT=8001
       - PARALLELISM=1
       - MS_DELAY=1000
+      - STARTING_ENDPOINT=http://www.synonyms.com/synonym/test-tube
 
 
   edge:

@@ -212,7 +212,7 @@ export function fetchAndStorePath(start, end) {
 export function setStartPath(node) {
   setNewRoot(node, err => {
     if (store.getState().graph.targetNode.id && !err) {
-      return fetchAndStorePath(node, store.getState().graph.targetNode);
+      fetchAndStorePath(node, store.getState().graph.targetNode);
     }
   });
 }
