@@ -191,7 +191,7 @@ export function fetchAndStorePath(start, end) {
   };
   setSelectedNode(start);
   store.dispatch(setGraphLoading(true));
-  graph.shortestPath(start.id, end.id).then(r => {
+  graph.shortestPath(start, end).then(r => {
     if (!r.success) return _errOut(r.error);
     // path found, get entries from values
     // only get entries in middle, already have beginning and end
