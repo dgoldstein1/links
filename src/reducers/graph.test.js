@@ -1,6 +1,66 @@
 import graph from "./graph";
 
 describe("reducers", () => {
+  describe("basic reducers", () => {
+    let testTable = [
+      {
+        type: "CLEAR_GRAPH",
+        testcheckEqual: false
+      },
+      {
+        type: "SET_MAX_NEIGHBORS",
+        maxNeighbors: 1000,
+        testcheckEqual: true
+      },
+      {
+        type: "SET_GRAPH_ERROR",
+        error: "test",
+        testcheckEqual: true
+      },
+      {
+        type: "SET_GRAPH_LAYOUT",
+        layout: "new layout",
+        testcheckEqual: true
+      },
+      {
+        type: "SET_GRAPH_LOADING",
+        loading: true,
+        testcheckEqual: true
+      },
+      {
+        type: "SET_ROOT_NODE",
+        testcheckEqual: true,
+        node: {
+          label: "test",
+          id: 1
+        }
+      },
+      {
+        type: "SET_SELECTED_NODE_INFO",
+        node: { label: "new selected node info" }
+      },
+      {
+        type: "SET_SELECTED_NODE",
+        node: { label: "new selected node" }
+      },
+      {
+        type: "SET_TARGET_NODE",
+        node: { label: "new target node" }
+      }
+    ];
+    // loop through and test each one
+    testTable.forEach(t => {
+      it(t.type, () => {
+        if (test.testcheckEqual) {
+          console.log(t.type !== "CLEAR_GRAPH");
+          expect(graph(undefined, t)).not.toEqual(
+            graph(undefined, { type: "" })
+          );
+        }
+        expect(graph(undefined, t)).toMatchSnapshot();
+      });
+    });
+  });
   describe("graph", () => {
     it("initializes with correct state", () => {
       expect(graph(undefined, { action: undefined })).toMatchSnapshot();

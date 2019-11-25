@@ -1,5 +1,213 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`reducers basic reducers CLEAR_GRAPH 1`] = `
+Object {
+  "error": undefined,
+  "graph": Object {
+    "edges": Array [],
+    "nodes": Array [],
+  },
+  "layout": "hierarchy",
+  "loading": false,
+  "maxNeighbors": 15,
+  "rootNode": Object {},
+  "selectedNode": Object {
+    "description": "",
+    "error": "",
+    "img": "",
+    "loading": true,
+    "node": Object {},
+  },
+  "targetNode": Object {},
+}
+`;
+
+exports[`reducers basic reducers SET_GRAPH_ERROR 1`] = `
+Object {
+  "error": "test",
+  "graph": Object {
+    "edges": Array [],
+    "nodes": Array [],
+  },
+  "layout": "hierarchy",
+  "loading": false,
+  "maxNeighbors": 15,
+  "rootNode": Object {},
+  "selectedNode": Object {
+    "description": "",
+    "error": "",
+    "img": "",
+    "loading": true,
+    "node": Object {},
+  },
+  "targetNode": Object {},
+}
+`;
+
+exports[`reducers basic reducers SET_GRAPH_LAYOUT 1`] = `
+Object {
+  "error": undefined,
+  "graph": Object {
+    "edges": Array [],
+    "nodes": Array [],
+  },
+  "layout": "new layout",
+  "loading": false,
+  "maxNeighbors": 15,
+  "rootNode": Object {},
+  "selectedNode": Object {
+    "description": "",
+    "error": "",
+    "img": "",
+    "loading": true,
+    "node": Object {},
+  },
+  "targetNode": Object {},
+}
+`;
+
+exports[`reducers basic reducers SET_GRAPH_LOADING 1`] = `
+Object {
+  "error": undefined,
+  "graph": Object {
+    "edges": Array [],
+    "nodes": Array [],
+  },
+  "layout": "hierarchy",
+  "loading": true,
+  "maxNeighbors": 15,
+  "rootNode": Object {},
+  "selectedNode": Object {
+    "description": "",
+    "error": "",
+    "img": "",
+    "loading": true,
+    "node": Object {},
+  },
+  "targetNode": Object {},
+}
+`;
+
+exports[`reducers basic reducers SET_MAX_NEIGHBORS 1`] = `
+Object {
+  "error": undefined,
+  "graph": Object {
+    "edges": Array [],
+    "nodes": Array [],
+  },
+  "layout": "hierarchy",
+  "loading": false,
+  "maxNeighbors": 1000,
+  "rootNode": Object {},
+  "selectedNode": Object {
+    "description": "",
+    "error": "",
+    "img": "",
+    "loading": true,
+    "node": Object {},
+  },
+  "targetNode": Object {},
+}
+`;
+
+exports[`reducers basic reducers SET_ROOT_NODE 1`] = `
+Object {
+  "error": undefined,
+  "graph": Object {
+    "edges": Array [],
+    "nodes": Array [],
+  },
+  "layout": "hierarchy",
+  "loading": false,
+  "maxNeighbors": 15,
+  "rootNode": Object {
+    "id": 1,
+    "label": "test",
+    "size": 1,
+    "x": 0,
+    "y": 0,
+  },
+  "selectedNode": Object {
+    "description": "",
+    "error": "",
+    "img": "",
+    "loading": true,
+    "node": Object {},
+  },
+  "targetNode": Object {},
+}
+`;
+
+exports[`reducers basic reducers SET_SELECTED_NODE 1`] = `
+Object {
+  "error": undefined,
+  "graph": Object {
+    "edges": Array [],
+    "nodes": Array [],
+  },
+  "layout": "hierarchy",
+  "loading": false,
+  "maxNeighbors": 15,
+  "rootNode": Object {},
+  "selectedNode": Object {
+    "description": "",
+    "error": "",
+    "img": "",
+    "loading": true,
+    "node": Object {
+      "label": "new selected node",
+    },
+  },
+  "targetNode": Object {},
+}
+`;
+
+exports[`reducers basic reducers SET_SELECTED_NODE_INFO 1`] = `
+Object {
+  "error": undefined,
+  "graph": Object {
+    "edges": Array [],
+    "nodes": Array [],
+  },
+  "layout": "hierarchy",
+  "loading": false,
+  "maxNeighbors": 15,
+  "rootNode": Object {},
+  "selectedNode": Object {
+    "description": undefined,
+    "error": undefined,
+    "img": undefined,
+    "loading": undefined,
+    "node": Object {},
+  },
+  "targetNode": Object {},
+}
+`;
+
+exports[`reducers basic reducers SET_TARGET_NODE 1`] = `
+Object {
+  "error": undefined,
+  "graph": Object {
+    "edges": Array [],
+    "nodes": Array [],
+  },
+  "layout": "hierarchy",
+  "loading": false,
+  "maxNeighbors": 15,
+  "rootNode": Object {},
+  "selectedNode": Object {
+    "description": "",
+    "error": "",
+    "img": "",
+    "loading": true,
+    "node": Object {},
+  },
+  "targetNode": Object {
+    "label": "new target node",
+  },
+}
+`;
+
 exports[`reducers graph ADD_NEIGHBORS_TO_GRAPH adds new values 1`] = `
 Object {
   "error": undefined,
