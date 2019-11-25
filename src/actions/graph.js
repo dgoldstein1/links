@@ -27,22 +27,6 @@ export function setGraphLayout(newLayout) {
   };
 }
 
-export const SET_GRAPH_LOADING = "SET_GRAPH_LOADING";
-export function setGraphLoading(val) {
-  return {
-    type: SET_GRAPH_LOADING,
-    newValue: val
-  };
-}
-
-export const SET_GRAPH_ERROR = "SET_GRAPH_ERROR";
-export function setGraphError(error) {
-  return {
-    type: SET_GRAPH_ERROR,
-    error
-  };
-}
-
 export const SET_GRAPH_PATH = "SET_GRAPH_PATH";
 export function setGraphPath(path) {
   return {
@@ -85,11 +69,11 @@ export function fetchAndStoreNeighbors(
   ignoreEmpty = false
 ) {
   let finalCallback = e => {
-    if (e) store.dispatch(setGraphError(e));
-    store.dispatch(setGraphLoading(false));
+    if (e) store.dispatch({ type: "SET_GRAPH_ERROR", error: e });
+    store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     callback(e);
   };
-  store.dispatch(setGraphLoading(true));
+  store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
   graph.getNeighbors(node.id).then(gr => {
     if (!gr.success) return finalCallback(gr.error);
     // don't do anything if no neighbors
@@ -117,16 +101,16 @@ export function fetchAndStoreNeighbors(
 
 // clears graph, finds neighbors, and sets new root
 export function setNewRoot(node, callback = () => {}) {
-  store.dispatch(setGraphLoading(true));
+  store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
   store.dispatch({ type: "CLEAR_GRAPH" });
   node = _generateRoot(node.label, node.id);
   fetchAndStoreNeighbors(node, err => {
     if (err) {
-      store.dispatch(setGraphError(err));
+      store.dispatch({ type: "SET_GRAPH_ERROR", error: err });
     } else {
       store.dispatch({ type: "SET_ROOT_NODE", node });
     }
-    store.dispatch(setGraphLoading(false));
+    store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     callback(err);
   });
 }
@@ -139,11 +123,11 @@ export function setNewRoot(node, callback = () => {}) {
 export function fetchAndStorePath(start, end) {
   // inner helper function
   let _errOut = e => {
-    store.dispatch(setGraphError(e));
-    store.dispatch(setGraphLoading(false));
+    store.dispatch({ type: "SET_GRAPH_ERROR", error: e });
+    store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
   };
   setSelectedNode(start);
-  store.dispatch(setGraphLoading(true));
+  store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
   graph.shortestPath(start, end).then(r => {
     if (!r.success) return _errOut(r.error);
     // path found, get entries from values
@@ -157,7 +141,7 @@ export function fetchAndStorePath(start, end) {
       nodePath = [start, ...nodePath, end];
       // clear graph and set new path
       store.dispatch(setGraphPath(nodePath));
-      store.dispatch(setGraphLoading(false));
+      store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     });
   });
 }

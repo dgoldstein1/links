@@ -4,11 +4,7 @@ import { connect } from "react-redux";
 import { Sigma, EdgeShapes } from "react-sigma";
 import Dagre from "react-sigma/lib/Dagre";
 import ForceLink from "react-sigma/lib/ForceLink";
-import {
-  fetchAndStoreNeighbors,
-  setGraphError,
-  setSelectedNode
-} from "../actions/graph";
+import { fetchAndStoreNeighbors, setSelectedNode } from "../actions/graph";
 import ErrorCard from "../components/errorCard";
 import { store } from "../reducers";
 import SelectedNodeCard from "../components/selectedNodeCard";
@@ -54,7 +50,9 @@ class Graph extends React.Component {
           <ErrorCard
             error={this.props.error}
             action="close"
-            onAction={() => store.dispatch(setGraphError(undefined))}
+            onAction={() =>
+              store.dispatch({ type: "SET_GRAPH_ERROR", error: undefined })
+            }
             type="warning"
           />
         )}

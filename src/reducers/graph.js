@@ -44,7 +44,7 @@ const visitReducer = (state = initialState, action) => {
       });
     case "SET_GRAPH_LOADING":
       return Object.assign({}, state, {
-        loading: action.newValue
+        loading: action.loading
       });
     case "SET_ROOT_NODE":
       return Object.assign({}, state, {

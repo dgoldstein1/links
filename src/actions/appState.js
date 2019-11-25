@@ -1,5 +1,5 @@
 import { store } from "../reducers/index";
-import { fetchAndStoreRandomStartNode, setGraphError } from "./graph";
+import { fetchAndStoreRandomStartNode } from "./graph";
 import { postUserVisit } from "../api/analytics";
 
 // initializes app on first load
@@ -9,7 +9,7 @@ export function InitAapp(callback = () => {}) {
   postUserVisit();
 
   fetchAndStoreRandomStartNode(err => {
-    if (err) store.dispatch(setGraphError(err));
+    if (err) store.dispatch({ type: "SET_GRAPH_ERROR", error: err });
     store.dispatch({ type: "SET_LOADING", loading: false });
     callback();
   });
