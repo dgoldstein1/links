@@ -1,11 +1,5 @@
 import graph from "./graph";
 
-import {
-  SET_ROOT_NODE,
-  ADD_NEIGHBORS_TO_GRAPH,
-  SET_GRAPH_PATH
-} from "../actions/graph";
-
 describe("reducers", () => {
   describe("graph", () => {
     it("initializes with correct state", () => {
@@ -65,7 +59,7 @@ describe("reducers", () => {
       testTable.forEach(t => {
         it(t.name, () => {
           let action = {
-            type: SET_GRAPH_PATH,
+            type: "SET_GRAPH_PATH",
             ...t
           };
           expect(graph(t.initialState, action)).toMatchSnapshot();
@@ -98,7 +92,7 @@ describe("reducers", () => {
       testTable.forEach(t => {
         it(t.name, () => {
           let action = {
-            type: ADD_NEIGHBORS_TO_GRAPH,
+            type: "ADD_NEIGHBORS_TO_GRAPH",
             ...t
           };
           expect(graph(t.initialState, action)).toMatchSnapshot();
