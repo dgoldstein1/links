@@ -12,6 +12,24 @@ describe("reducers", () => {
       expect(graph(undefined, { action: undefined })).toMatchSnapshot();
     });
 
+    let initialState = {
+      graph: {
+        edges: [
+          {
+            id: "1->-->--2",
+            source: 1,
+            target: 2
+          }
+        ],
+        nodes: [
+          {
+            id: 2,
+            value: "2"
+          }
+        ]
+      }
+    };
+
     describe("SET_GRAPH_PATH", () => {
       let testTable = [
         {
@@ -40,23 +58,7 @@ describe("reducers", () => {
               label: "1"
             }
           ],
-          initialState: {
-            graph: {
-              edges: [
-                {
-                  id: "1->-->--2",
-                  source: 1,
-                  target: 2
-                }
-              ],
-              nodes: [
-                {
-                  id: 2,
-                  value: "2"
-                }
-              ]
-            }
-          }
+          initialState: initialState
         }
       ];
 
@@ -82,45 +84,13 @@ describe("reducers", () => {
         {
           name: "does not add duplicate edges or nodes",
           node: { id: 1, value: "1" },
-          initialState: {
-            graph: {
-              edges: [
-                {
-                  id: "1->-->--2",
-                  source: 1,
-                  target: 2
-                }
-              ],
-              nodes: [
-                {
-                  id: 2,
-                  value: "2"
-                }
-              ]
-            }
-          },
+          initialState: initialState,
           neighbors: [{ id: 2, value: "2" }]
         },
         {
           name: "merges new values with old",
           node: { id: 1, value: "1" },
-          initialState: {
-            graph: {
-              edges: [
-                {
-                  id: "1->-->--2",
-                  source: 1,
-                  target: 2
-                }
-              ],
-              nodes: [
-                {
-                  id: 2,
-                  value: "2"
-                }
-              ]
-            }
-          },
+          initialState: initialState,
           neighbors: [{ id: 2, value: "2" }, { id: 3, value: "3" }]
         }
       ];
