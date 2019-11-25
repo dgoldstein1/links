@@ -2,7 +2,7 @@ import moxios from "moxios";
 import { store } from "../reducers";
 import sinon from "sinon";
 import axios from "axios";
-import { _getIpAddress } from "./analytics";
+import { _getIpAddress, postUserVisit } from "./analytics";
 
 describe("analytics", () => {
   describe("_getIpAddress", () => {
@@ -45,4 +45,28 @@ describe("analytics", () => {
       });
     });
   });
+  // describe("postUserVisits", () => {
+  //   beforeEach(() => {
+  //     moxios.install();
+  //   });
+
+  //   afterEach(() => {
+  //     moxios.uninstall();
+  //   });
+  //   let testTable = [];
+  //   testTable.forEach(t => {
+  //     it(t.name, done => {
+  //       let onFulfilled = sinon.spy();
+  //       moxios.stubRequest(t.url, {
+  //         status: t.responseCode,
+  //         response: t.data
+  //       });
+  //       _getIpAddress().then(ip => {
+  //         expect(ip).toMatchSnapshot();
+  //         done();
+  //       });
+  //     });
+  //   });
+    
+  // })
 });
