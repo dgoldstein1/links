@@ -1,5 +1,3 @@
-// appState.test.js
-
 import appState from "./appState";
 
 describe("reducers", () => {
