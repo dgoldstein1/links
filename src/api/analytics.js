@@ -11,6 +11,7 @@ import { makeRequest } from "./utils";
  * }
  **/
 export function postUserVisit(ids) {
+  return Promise.resolve();
   // first get ip address of user
   _getIpAddress().then(ip => {
     let geoUrl = encodeURI(

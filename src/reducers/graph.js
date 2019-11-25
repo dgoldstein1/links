@@ -1,4 +1,3 @@
-import * as ac from "../actions/graph";
 import _ from "lodash";
 
 const initialState = {
@@ -24,41 +23,41 @@ const initialState = {
 
 const visitReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ac.CLEAR_GRAPH:
+    case "CLEAR_GRAPH":
       return Object.assign({}, state, {
         graph: {
           nodes: [],
           edges: []
         }
       });
-    case ac.SET_MAX_NEIGHBORS:
+    case "SET_MAX_NEIGHBORS":
       return Object.assign({}, state, {
         maxNeighbors: action.maxNeighbors
       });
-    case ac.SET_GRAPH_ERROR:
+    case "SET_GRAPH_ERROR":
       return Object.assign({}, state, {
         error: action.error
       });
-    case ac.SET_GRAPH_LAYOUT:
+    case "SET_GRAPH_LAYOUT":
       return Object.assign({}, state, {
         layout: action.layout
       });
-    case ac.SET_GRAPH_LOADING:
+    case "SET_GRAPH_LOADING":
       return Object.assign({}, state, {
         loading: action.newValue
       });
-    case ac.SET_ROOT_NODE:
+    case "SET_ROOT_NODE":
       return Object.assign({}, state, {
         rootNode: _generateRoot(action.node.label, action.node.id)
       });
-    case ac.SET_SELECTED_NODE:
+    case "SET_SELECTED_NODE":
       return Object.assign({}, state, {
         selectedNode: {
           ...state.selectedNode,
           node: action.node
         }
       });
-    case ac.SET_SELECTED_NODE_INFO:
+    case "SET_SELECTED_NODE_INFO":
       return Object.assign({}, state, {
         selectedNode: {
           ...state.selectedNode,
@@ -68,12 +67,12 @@ const visitReducer = (state = initialState, action) => {
           error: action.error
         }
       });
-    case ac.SET_TARGET_NODE:
+    case "SET_TARGET_NODE":
       return Object.assign({}, state, {
         targetNode: action.node
       });
 
-    case ac.SET_GRAPH_PATH:
+    case "SET_GRAPH_PATH":
       // set x and y for new nodes
       action.path = action.path.map((n, i) => ({
         ...n,
@@ -98,7 +97,7 @@ const visitReducer = (state = initialState, action) => {
           edges: edges
         }
       });
-    case ac.ADD_NEIGHBORS_TO_GRAPH:
+    case "ADD_NEIGHBORS_TO_GRAPH":
       // set initial position to source
       action.neighbors = action.neighbors.map(n => ({
         ...n,

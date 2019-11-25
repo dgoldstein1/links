@@ -1,11 +1,10 @@
 import React from "react";
-import { updateView } from "../actions/appState";
 import { store } from "../reducers";
 import LoadingSpinner from "../components/loadingSpinner";
 import { InitAapp } from "../actions/appState";
 import Footer from "../components/footer";
 // how long to wait on splash
-const SPLASH_TIMEOUT = 5000;
+const SPLASH_TIMEOUT = 5;
 const LOADING_ANIMATE_TIME = 2000;
 // view after splash page
 const NEXT_VIEW = "path";
@@ -85,7 +84,7 @@ class Splash extends React.Component {
     // initi app, change view with clalback
     InitAapp(() => {
       setTimeout(() => {
-        store.dispatch(updateView(NEXT_VIEW));
+        store.dispatch({ type: "UPDATE_VIEW", view: NEXT_VIEW });
       }, SPLASH_TIMEOUT);
     });
   }

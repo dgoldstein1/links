@@ -2,7 +2,6 @@ import React from "react";
 import { Header as H } from "mini.css-react";
 import { connect } from "react-redux";
 import { store } from "../reducers";
-import { updateView } from "../actions/appState";
 import { setGraphLayout, setStartPath, setTargetPath } from "../actions/graph";
 import SearchBar from "./searchBar";
 import "../css/MainView.css";
@@ -45,13 +44,15 @@ function Header(p) {
       </button>
       <button
         className="floatRight"
-        onClick={() => store.dispatch(updateView("settings"))}
+        onClick={() =>
+          store.dispatch({ type: "UPDATE_VIEW", view: "settings" })
+        }
       >
         <span className="icon-settings" />
       </button>
       <button
         className="floatRight"
-        onClick={() => store.dispatch(updateView("about"))}
+        onClick={() => store.dispatch({ type: "UPDATE_VIEW", view: "about" })}
       >
         <span className="icon-help" />
       </button>
