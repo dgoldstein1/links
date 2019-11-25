@@ -13,14 +13,9 @@ const NEXT_VIEW = "path";
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
-/**
- * creates random array of nodes and randomly connects them
- * @return {{nodes : []string, edges : []string}}
- **/
-function _createRandomGraph() {
-  let nodes = [],
-    edges = [];
-  // create nodes array
+
+export function _getNodesForRandomGraph() {
+  let nodes = [];
   let nNodes = getRandomInt(8) + 1;
   for (let i = 0; i < nNodes; i++) {
     nodes.push({
@@ -28,35 +23,35 @@ function _createRandomGraph() {
       label: i
     });
   }
-  // draw at least two nodes and edges
-  nodes.push({
-    id: 100
-  });
-  nodes.push({
-    id: 101
-  });
-  nodes.push({
-    id: 102
-  });
-  nodes.push({
-    id: 103
-  });
-  edges.push({
-    source: 100,
-    target: 101,
-    id: "100 to 101"
-  });
-  edges.push({
-    source: 100,
-    target: 103,
-    id: "100 to 103"
-  });
-  edges.push({
-    source: 103,
-    target: 102,
-    id: "103 to 102"
-  });
-  // randomly connect them
+  // connect at least a few nodes in 10x range
+  for (let i = 100; i < 105; i++) {
+    nodes.push({
+      id: i
+    });
+  }
+  return nodes;
+}
+
+export function _getRandomEdges() {
+  let edges = [];
+  for (let i = 100; i < 103; i++) {
+    edges.push({
+      source: i,
+      target: i + 1,
+      id: `${i} to ${i + 1}`
+    });
+  }
+  return edges;
+}
+
+/**
+ * creates random array of nodes and randomly connects them
+ * @return {{nodes : []string, edges : []string}}
+ **/
+export function _createRandomGraph() {
+  let nodes = _getNodesForRandomGraph(),
+    edges = _getRandomEdges();
+  // create nodes array
   nodes.forEach(n => {
     nodes.forEach(nJ => {
       // randomly connect if is different node
