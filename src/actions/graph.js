@@ -140,7 +140,7 @@ export function fetchAndStorePath(start, end) {
       // insert root and end into array for sanity
       nodePath = [start, ...nodePath, end];
       // clear graph and set new path
-      store.dispatch(setGraphPath(nodePath));
+      store.dispatch({ type: "SET_GRAPH_PATH", path: nodePath });
       store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     });
   });
