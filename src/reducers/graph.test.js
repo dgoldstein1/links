@@ -1,4 +1,5 @@
 import graph from "./graph";
+import { store } from "./index";
 
 describe("reducers", () => {
   describe("basic reducers", () => {
