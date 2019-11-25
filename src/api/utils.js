@@ -9,6 +9,6 @@ export function makeRequest({ method, url, onErrorPrefix = "", body }) {
     }))
     .catch(e => ({
       success: false,
-      error: `${onErrorPrefix}: ${e.response.data}`
+      error: `${onErrorPrefix}: ${e.response.data.error || e.message}`
     }));
 }

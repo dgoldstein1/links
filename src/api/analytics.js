@@ -1,4 +1,6 @@
 import axios from "axios";
+
+import { makeRequest } from "./utils";
 /**
  * gets user's ip address and then posts go website analytics endpoint
  * @return: Promise
@@ -27,17 +29,12 @@ export function postUserVisit(ids) {
           res.data.zip_code = res.data.zip;
         }
         // now post this data to the backend
-        let url = encodeURI(`/analytics/server/visits`);
-        return axios
-          .post(url, res.data)
-          .then(r => ({
-            success: true,
-            data: r.data
-          }))
-          .catch(e => ({
-            success: false,
-            error: "could not post json to analytics backend: " + e.message
-          }));
+        return makeRequest({
+          method: "post",
+          url: "/analytics/server/visits",
+          onErrorPrefix: "could not post json to analytics backend",
+          body: res.data
+        });
       })
       .catch(e => ({
         success: false,
