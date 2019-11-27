@@ -3,3 +3,29 @@
 exports[`analytics _getIpAddress deliminted IP 1`] = `"14.35.263.24"`;
 
 exports[`analytics _getIpAddress normal IP 1`] = `"14.35.263.24"`;
+
+exports[`analytics postUserVisits bad geoIpRequest 1`] = `
+Object {
+  "error": "could not get user IP address: Request failed with status code 500",
+  "success": false,
+}
+`;
+
+exports[`analytics postUserVisits normal IP 1`] = `
+Object {
+  "data": Object {
+    "city": "Sterling",
+    "country_code": "US",
+    "country_name": "United States",
+    "ip": "205.153.92.177",
+    "latitude": 38.952701568603516,
+    "longitude": -77.44322967529297,
+    "metro_code": 0,
+    "region_code": "VA",
+    "time_zone": "",
+    "visit_date": "2019-11-27T01:01:23.504356771Z",
+    "zip_code": "20166",
+  },
+  "success": true,
+}
+`;

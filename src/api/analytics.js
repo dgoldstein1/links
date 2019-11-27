@@ -10,10 +10,9 @@ import { makeRequest } from "./utils";
  *   error : string
  * }
  **/
-export function postUserVisit(ids) {
-  return Promise.resolve();
+export function postUserVisit() {
   // first get ip address of user
-  _getIpAddress().then(ip => {
+  return _getIpAddress().then(ip => {
     let geoUrl = encodeURI(
       `/analytics/api/geoIpServer/${ip}?access_key=7eca814a6de384aab338e110c57fef37`
     );
