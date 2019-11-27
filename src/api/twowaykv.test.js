@@ -24,13 +24,13 @@ describe("twowaykv", () => {
     let testTable = [
       {
         name: "successful request",
-        n : 1,
+        n: 1,
         url: `/services/twowaykv/random?n=1`,
         responseCode: 200,
         data: [
           {
-            "key": "key",
-            "value": 234234
+            key: "key",
+            value: 234234
           }
         ]
       }
@@ -60,13 +60,13 @@ describe("twowaykv", () => {
     let testTable = [
       {
         name: "success",
-        ids : [234234],
+        ids: [234234],
         url: `/services/twowaykv/entriesFromValues`,
         responseCode: 200,
         data: [
           {
-            "key": "key",
-            "value": 234234
+            key: "key",
+            value: 234234
           }
         ]
       }
@@ -84,11 +84,8 @@ describe("twowaykv", () => {
         });
       });
     });
-  
-
-  })
+  });
   describe("search", () => {
-
     beforeEach(() => {
       moxios.install();
     });
@@ -99,13 +96,13 @@ describe("twowaykv", () => {
     let testTable = [
       {
         name: "success",
-        s : "test",
+        s: "test",
         url: `/services/twowaykv/search?q=test`,
         responseCode: 200,
         data: [
           {
-            "key": "key",
-            "value": 234234
+            key: "key",
+            value: 234234
           }
         ]
       }
@@ -123,8 +120,5 @@ describe("twowaykv", () => {
         });
       });
     });
-    
-
-    
-  })
+  });
 });
