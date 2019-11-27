@@ -74,7 +74,6 @@ export function _opensearch(s) {
   url += "&namespace=0";
   url += "&format=json";
   url += `&search=${s}`;
-
   return axios
     .get(encodeURI(url))
     .then(r => {

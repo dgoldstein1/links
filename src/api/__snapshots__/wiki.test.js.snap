@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`wiki _opensearch no page found 1`] = `
+Object {
+  "error": "Could not get description from wikipedia for article dish: no page found",
+  "success": false,
+}
+`;
+
+exports[`wiki _opensearch success 1`] = `
+Object {
+  "description": "Al-Helal Islami Academy & College (Bengali: আল-হেলাল ইসলামী একাডেমি এ্যান্ড কলেজ) is a private higher secondary school in Sapahar, Naogaon District, Bangladesh.",
+  "img": undefined,
+  "success": true,
+}
+`;
+
 exports[`wiki _queryByTitle 500 response 1`] = `
 Object {
   "error": "Could not get description from wikipedia for article Error: Request failed with status code 500: undefined",
@@ -26,5 +41,19 @@ Object {
   "description": "a dish is a dish",
   "img": undefined,
   "success": true,
+}
+`;
+
+exports[`wiki get description _opensearch 1`] = `
+Object {
+  "error": "Could not get description from wikipedia for article Error: Request failed with status code 404: undefined",
+  "success": false,
+}
+`;
+
+exports[`wiki get description query by title 1`] = `
+Object {
+  "error": "Could not get description from wikipedia for article Error: Request failed with status code 404: undefined",
+  "success": false,
 }
 `;
