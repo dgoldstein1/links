@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`twowaykv entriesFromValues success 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "key": "key",
+      "value": 234234,
+    },
+  ],
+  "success": true,
+}
+`;
+
+exports[`twowaykv random() successful request 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "key": "key",
+      "value": 234234,
+    },
+  ],
+  "success": true,
+}
+`;
+
+exports[`twowaykv search success 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "key": "key",
+      "value": 234234,
+    },
+  ],
+  "success": true,
+}
+`;
