@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wiki _queryByTitle 500 response 1`] = `
+Object {
+  "error": "Could not get description from wikipedia for article Error: Request failed with status code 500: undefined",
+  "success": false,
+}
+`;
+
+exports[`wiki _queryByTitle no extract found 1`] = `
+Object {
+  "error": "Could not get description from wikipedia for article test: no extract found",
+  "success": false,
+}
+`;
+
+exports[`wiki _queryByTitle no page id 1`] = `
+Object {
+  "error": "Could not get description from wikipedia for article test: no page found",
+  "success": false,
+}
+`;
+
+exports[`wiki _queryByTitle there is an extract 1`] = `
+Object {
+  "description": "a dish is a dish",
+  "img": undefined,
+  "success": true,
+}
+`;
