@@ -37,7 +37,7 @@ describe("components", () => {
       };
 
       it("searches for new items", done => {
-        searchArgs = undefined
+        searchArgs = undefined;
         let wrapper = shallow(<SearchBar {...props} />);
         expect(wrapper.state(["items"])).toEqual([]);
         wrapper.instance()._onChange({ target: { value: "entry" } });
@@ -50,12 +50,12 @@ describe("components", () => {
       it("sets new value when for on change even if bad response from kv", () => {
         let newProps = {
           ...props,
-          search : e => {
+          search: e => {
             return Promise.resolve({
-              success: false,
+              success: false
             });
           }
-        }
+        };
         let wrapper = shallow(<SearchBar {...props} />);
         expect(wrapper.state(["value"])).toEqual(props.value.label);
         wrapper.instance()._onChange({ target: { value: "entry" } });
@@ -63,7 +63,29 @@ describe("components", () => {
           expect(wraooer.state(["value"])).toEqual("entry");
           done();
         }, 100);
-      })
+      });
+    });
+
+    describe("_renderItem", () => {
+      let wrapper = shallow(<SearchBar {...defaultProps} />);
+      expect(
+        wrapper.instance()._renderItem({ key: "test1" }, false)
+      ).toMatchSnapshot();
+    });
+
+    describe("_onSelect", () => {
+      let wrapper = shallow(<SearchBar {...defaultProps} />);
+      let node = {
+        id: 234,
+        label: "234"
+      };
+      let searchItem = {
+        key: "3234",
+        value: 234
+      };
+      expect(wrapper.state(["value"])).toEqual(defaultProps.value.label);
+      wrapper.instance()._onSelect(node, searchItem);
+      expect(wrapper.state(["value"])).toEqual("234");
     });
   });
 });

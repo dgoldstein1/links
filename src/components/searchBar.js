@@ -11,6 +11,8 @@ class Search extends React.Component {
       items: []
     };
     this._onChange = this._onChange.bind(this);
+    this._renderItem = this._renderItem.bind(this);
+    this._onSelect = this._onSelect.bind(this);
   }
 
   // fired whenever inpput value is change
@@ -26,6 +28,27 @@ class Search extends React.Component {
     this.setState({ value: e.target.value });
   }
 
+  _renderItem(item, highlighted) {
+    return (
+      <div
+        key={item.key}
+        className={highlighted ? "autoCompleteItemHover" : "autoCompleteItem"}
+      >
+        {item.key}
+      </div>
+    );
+  }
+
+  // search items are in the form {key (string), value(int)}
+  // nodes are in form {id(int), label(string)}
+  _onSelect(node, searchItem) {
+    this.props.onSelect({
+      id: searchItem.value,
+      label: searchItem.key
+    });
+    this.setState({ value: node });
+  }
+
   render() {
     return (
       <Autocomplete
@@ -35,27 +58,10 @@ class Search extends React.Component {
         items={this.state.items}
         inputProps={{ placeholder: this.props.placeholder }}
         getItemValue={item => item.key}
-        renderItem={(item, highlighted) => (
-          <div
-            key={item.key}
-            className={
-              highlighted ? "autoCompleteItemHover" : "autoCompleteItem"
-            }
-          >
-            {item.key}
-          </div>
-        )}
+        renderItem={this._renderItem}
         value={this.state.value}
         onChange={this._onChange}
-        onSelect={(value, item) => {
-          // search items are in the form {key (string), value(int)}
-          // nodes are in form {id(int), label(string)}
-          this.props.onSelect({
-            id: item.value,
-            label: item.key
-          });
-          this.setState({ value });
-        }}
+        onSelect={this._onSelect}
       />
     );
   }

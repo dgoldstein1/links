@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[` 1`] = `
+<div
+  className="autoCompleteItem"
+>
+  test1
+</div>
+`;
+
 exports[`components search bar _onChange searches for new items 1`] = `"entry"`;
 
 exports[`components search bar matches snapshot 1`] = `
