@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../css/MainView.css";
 import Autocomplete from "react-autocomplete";
-import { search } from "../api/twowaykv";
 
 class Search extends React.Component {
   constructor(props) {
@@ -18,7 +17,7 @@ class Search extends React.Component {
   _onChange(e) {
     if (e.target.value.length > 0) {
       // search and set items
-      search(e.target.value).then(r => {
+      this.props.search(e.target.value).then(r => {
         if (!r.success) return console.error(r.error);
         // yay, success!
         this.setState({ items: r.data.entries || [] });
@@ -64,6 +63,7 @@ class Search extends React.Component {
 
 Search.propTypes = {
   onSelect: PropTypes.func,
+  search: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.object
 };

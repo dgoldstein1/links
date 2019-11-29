@@ -2,6 +2,7 @@ import React from "react";
 import About from "./about";
 import ErrorCard from "./errorCard";
 import LoadingSpinner from "./loadingSpinner";
+import SearchBar from "./searchBar";
 import renderer from "react-test-renderer";
 
 describe("components", () => {

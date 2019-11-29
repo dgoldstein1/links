@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components search bar _onChange searches for new items 1`] = `"entry"`;
+
+exports[`components search bar matches snapshot 1`] = `
+<Search
+  onSelect={[Function]}
+  placeholder="test"
+  search={[Function]}
+  value={
+    Object {
+      "key": "test-key1",
+      "label": "test1",
+    }
+  }
+/>
+`;

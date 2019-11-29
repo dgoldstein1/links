@@ -6,6 +6,7 @@ import { setGraphLayout, setStartPath, setTargetPath } from "../actions/graph";
 import SearchBar from "./searchBar";
 import "../css/MainView.css";
 import titleImage from "../images/title.png";
+import { search } from "../api/twowaykv";
 
 function Header(p) {
   return (
@@ -17,11 +18,13 @@ function Header(p) {
       <SearchBar
         placeholder="starting at.."
         onSelect={setStartPath}
+        search={search}
         value={p.rootNode}
       />
       <SearchBar
         placeholder="ending at.."
         onSelect={setTargetPath}
+        search={search}
         value={p.targetNode}
       />
 
