@@ -1,8 +1,4 @@
-// appState.test.js
-
 import appState from "./appState";
-
-import { SET_LOADING, UPDATE_VIEW } from "../actions/appState";
 
 describe("reducers", () => {
   describe("appState", () => {
@@ -18,7 +14,7 @@ describe("reducers", () => {
     describe("UPDATE_VIEW", () => {
       it("updates the store with a new view", () => {
         let action = {
-          type: UPDATE_VIEW,
+          type: "UPDATE_VIEW",
           view: "newView"
         };
         expect(appState(undefined, action)).toMatchSnapshot();
@@ -27,10 +23,17 @@ describe("reducers", () => {
     describe("SET_LOADING", () => {
       it("updates the store with new value of loading", () => {
         let action = {
-          type: SET_LOADING,
+          type: "SET_LOADING",
           loading: true
         };
         expect(appState(undefined, action)).toMatchSnapshot();
+      });
+    });
+    describe("SET_LANGUAGE", () => {
+      it("sets new language", () => {
+        expect(
+          appState(undefined, { type: "SET_LANGUAGE", language: "newlang" })
+        ).toMatchSnapshot();
       });
     });
   });

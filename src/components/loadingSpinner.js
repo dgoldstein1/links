@@ -1,8 +1,8 @@
 import React from "react";
 import "../css/LoadingSpinner.css";
-import ForceLink from "react-sigma/lib/ForceLink";
 import { Sigma, EdgeShapes, RelativeSize } from "react-sigma";
 import Dagre from "react-sigma/lib/Dagre";
+import ForceLink from "react-sigma/lib/ForceLink";
 import PropTypes from "prop-types";
 import "../css/Graph.css";
 
@@ -47,7 +47,7 @@ function LoadingSpinner(p) {
 }
 
 LoadingSpinner.propTypes = {
-  animationTime: PropTypes.number.isRequired,
+  animationTime: PropTypes.number,
   graph: PropTypes.object.isRequired,
   height: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,

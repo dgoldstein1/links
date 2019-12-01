@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`reducers appState SET_LANGUAGE sets new language 1`] = `
+Object {
+  "language": "newlang",
+  "loading": true,
+  "view": "splash",
+}
+`;
+
 exports[`reducers appState SET_LOADING updates the store with new value of loading 1`] = `
 Object {
   "language": "english",

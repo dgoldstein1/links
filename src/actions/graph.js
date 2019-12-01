@@ -5,31 +5,6 @@ import * as graph from "../api/biggraph";
 import * as wiki from "../api/wiki";
 import { _generateRoot } from "../reducers/graph";
 
-export const SET_ROOT_NODE = "SET_ROOT_NODE";
-export function setRootNode(node) {
-  return {
-    type: SET_ROOT_NODE,
-    node
-  };
-}
-
-export const SET_MAX_NEIGHBORS = "SET_MAX_NEIGHBORS";
-export function setMaxNeighbors(maxNeighbors) {
-  return {
-    type: SET_MAX_NEIGHBORS,
-    maxNeighbors
-  };
-}
-
-export const SET_SELECTED_NODE_INFO = "SET_SELECTED_NODE_INFO";
-export function setSelectedNodeInfo(info) {
-  return {
-    type: SET_SELECTED_NODE_INFO,
-    ...info
-  };
-}
-
-export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
 export function setSelectedNode(node, animate = true) {
   let selectedNodeId;
   try {
@@ -38,54 +13,17 @@ export function setSelectedNode(node, animate = true) {
   if (node.id === selectedNodeId) return;
   fetchAndStoreSelectedNodeInfo(node, animate);
   store.dispatch({
-    type: SET_SELECTED_NODE,
+    type: "SET_SELECTED_NODE",
     node
   });
 }
 
-export const SET_TARGET_NODE = "SET_TARGET_NODE";
-export function setTargetNode(node) {
-  return {
-    type: SET_TARGET_NODE,
-    node
-  };
-}
-
-export const ADD_NEIGHBORS_TO_GRAPH = "ADD_NEIGHBORS_TO_GRAPH";
-export function addNeighborsToGraph(node, neighbors) {
-  return {
-    type: ADD_NEIGHBORS_TO_GRAPH,
-    node,
-    neighbors
-  };
-}
-
-export const SET_GRAPH_LAYOUT = "SET_GRAPH_LAYOUT";
 export function setGraphLayout(newLayout) {
+  if (store.getState().view !== "path")
+    store.dispatch({ type: "UPDATE_VIEW", view: "path" });
   return {
-    type: SET_GRAPH_LAYOUT,
+    type: "SET_GRAPH_LAYOUT",
     layout: newLayout
-  };
-}
-
-export const CLEAR_GRAPH = "CLEAR_GRAPH";
-export function clearGraph() {
-  return { type: CLEAR_GRAPH };
-}
-
-export const SET_GRAPH_LOADING = "SET_GRAPH_LOADING";
-export function setGraphLoading(val) {
-  return {
-    type: SET_GRAPH_LOADING,
-    newValue: val
-  };
-}
-
-export const SET_GRAPH_ERROR = "SET_GRAPH_ERROR";
-export function setGraphError(error) {
-  return {
-    type: SET_GRAPH_ERROR,
-    error
   };
 }
 
@@ -111,17 +49,16 @@ export function _animateViews() {
  **/
 export function fetchAndStoreSelectedNodeInfo(node, animate) {
   // set as loading
-  store.dispatch(setSelectedNodeInfo({ loading: true }));
+  store.dispatch({ type: "SET_SELECTED_NODE_INFO", loading: true });
   if (animate) _animateViews();
   // fetch from api
   wiki.getDescription(node.label).then(r => {
     // set result in store
-    store.dispatch(
-      setSelectedNodeInfo({
-        ...r,
-        loading: false
-      })
-    );
+    store.dispatch({
+      type: "SET_SELECTED_NODE_INFO",
+      ...r,
+      loading: false
+    });
   });
 }
 
@@ -132,11 +69,11 @@ export function fetchAndStoreNeighbors(
   ignoreEmpty = false
 ) {
   let finalCallback = e => {
-    if (e) store.dispatch(setGraphError(e));
-    store.dispatch(setGraphLoading(false));
+    if (e) store.dispatch({ type: "SET_GRAPH_ERROR", error: e });
+    store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     callback(e);
   };
-  store.dispatch(setGraphLoading(true));
+  store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
   graph.getNeighbors(node.id).then(gr => {
     if (!gr.success) return finalCallback(gr.error);
     // don't do anything if no neighbors
@@ -156,7 +93,7 @@ export function fetchAndStoreNeighbors(
       });
       // set in store
       setSelectedNode(node);
-      store.dispatch(addNeighborsToGraph(node, neighbors));
+      store.dispatch({ type: "ADD_NEIGHBORS_TO_GRAPH", node, neighbors });
       return finalCallback();
     });
   });
@@ -164,16 +101,16 @@ export function fetchAndStoreNeighbors(
 
 // clears graph, finds neighbors, and sets new root
 export function setNewRoot(node, callback = () => {}) {
-  store.dispatch(setGraphLoading(true));
-  store.dispatch(clearGraph());
+  store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
+  store.dispatch({ type: "CLEAR_GRAPH" });
   node = _generateRoot(node.label, node.id);
   fetchAndStoreNeighbors(node, err => {
     if (err) {
-      store.dispatch(setGraphError(err));
+      store.dispatch({ type: "SET_GRAPH_ERROR", error: err });
     } else {
-      store.dispatch(setRootNode(node));
+      store.dispatch({ type: "SET_ROOT_NODE", node });
     }
-    store.dispatch(setGraphLoading(false));
+    store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     callback(err);
   });
 }
@@ -186,11 +123,11 @@ export function setNewRoot(node, callback = () => {}) {
 export function fetchAndStorePath(start, end) {
   // inner helper function
   let _errOut = e => {
-    store.dispatch(setGraphError(e));
-    store.dispatch(setGraphLoading(false));
+    store.dispatch({ type: "SET_GRAPH_ERROR", error: e });
+    store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
   };
   setSelectedNode(start);
-  store.dispatch(setGraphLoading(true));
+  store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
   graph.shortestPath(start, end).then(r => {
     if (!r.success) return _errOut(r.error);
     // path found, get entries from values
@@ -203,8 +140,8 @@ export function fetchAndStorePath(start, end) {
       // insert root and end into array for sanity
       nodePath = [start, ...nodePath, end];
       // clear graph and set new path
-      store.dispatch(setGraphPath(nodePath));
-      store.dispatch(setGraphLoading(false));
+      store.dispatch({ type: "SET_GRAPH_PATH", path: nodePath });
+      store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     });
   });
 }
@@ -218,7 +155,7 @@ export function setStartPath(node) {
 }
 
 export function setTargetPath(node) {
-  store.dispatch(setTargetNode(node));
+  store.dispatch({ type: "SET_TARGET_NODE", node });
   if (store.getState().graph.rootNode.id) {
     fetchAndStorePath(store.getState().graph.rootNode, node);
   }
@@ -243,7 +180,7 @@ export function fetchAndStoreRandomStartNode(finalCallback, retries = 0) {
           kvResponse.data[0].key,
           kvResponse.data[0].value
         );
-        store.dispatch(setRootNode(node));
+        store.dispatch({ type: "SET_ROOT_NODE", node });
         return fetchAndStoreNeighbors(node, finalCallback);
       }
       // otherwise bad node

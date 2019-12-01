@@ -19,9 +19,7 @@ class MainView extends React.Component {
             <Header />
             {this.props.view === "about" && <About />}
             {this.props.view === "settings" && <Settings />}
-            {(this.props.view === "explore" || this.props.view === "path") && (
-              <Graph />
-            )}
+            {this.props.view === "path" && <Graph />}
           </div>
         )}
       </div>

@@ -1,4 +1,4 @@
-import axios from "axios";
+import { makeRequest } from "./utils";
 import { store } from "../reducers";
 /**
  * @param {int} id
@@ -9,21 +9,13 @@ import { store } from "../reducers";
   }
  **/
 export function getNeighbors(id) {
-  let url = encodeURI(
-    `/services/biggraph/neighbors?node=${id}&limit=${
+  return makeRequest({
+    method: "get",
+    url: `/services/biggraph/neighbors?node=${id}&limit=${
       store.getState().graph.maxNeighbors
-    }`
-  );
-  return axios
-    .get(url)
-    .then(r => ({
-      success: true,
-      data: r.data
-    }))
-    .catch(e => ({
-      success: false,
-      error: `Could not get neighbors :(  ${e.response.data.error}`
-    }));
+    }`,
+    onErrorPrefix: "Could not get neighbors"
+  });
 }
 
 /**
@@ -33,19 +25,9 @@ export function getNeighbors(id) {
  * @return {promise} {success, error, data}
  **/
 export function shortestPath(start, end) {
-  let url = encodeURI(
-    `services/biggraph/shortestPath?start=${start.id}&end=${end.id}`
-  );
-  return axios
-    .get(url)
-    .then(r => ({
-      success: true,
-      data: r.data
-    }))
-    .catch(e => ({
-      success: false,
-      error: `Could not get path from "${start.label}" to "${end.label}": ${
-        e.response.data.error
-      }`
-    }));
+  return makeRequest({
+    method: "get",
+    url: `services/biggraph/shortestPath?start=${start.id}&end=${end.id}`,
+    onErrorPrefix: `Could not get path from "${start.label}" to "${end.label}"`
+  });
 }

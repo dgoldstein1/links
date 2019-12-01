@@ -1,4 +1,4 @@
-import axios from "axios";
+import { makeRequest } from "./utils";
 
 /**
  * fetches random nodes from twowaykv
@@ -11,17 +11,11 @@ import axios from "axios";
  *}
  **/
 export function random(n) {
-  let url = encodeURI(`/services/twowaykv/random?n=${n}`);
-  return axios
-    .get(url)
-    .then(r => ({
-      success: true,
-      data: r.data
-    }))
-    .catch(e => ({
-      success: false,
-      error: "Error getting random entry: " + e.message
-    }));
+  return makeRequest({
+    method: "get",
+    url: `/services/twowaykv/random?n=${n}`,
+    onErrorPrefix: "Error getting random entry"
+  });
 }
 
 /**
@@ -30,17 +24,12 @@ export function random(n) {
  * @return same response type as above
  **/
 export function entriesFromValues(ids) {
-  let url = encodeURI(`/services/twowaykv/entriesFromValues`);
-  return axios
-    .post(url, ids)
-    .then(r => ({
-      success: true,
-      data: r.data
-    }))
-    .catch(e => ({
-      success: false,
-      error: "Error getting entries from values: " + e.message
-    }));
+  return makeRequest({
+    method: "post",
+    url: "/services/twowaykv/entriesFromValues",
+    onErrorPrefix: "Error getting entries from values",
+    body: ids
+  });
 }
 
 /**
@@ -49,15 +38,9 @@ export function entriesFromValues(ids) {
  * @return same response type as above
  **/
 export function search(s) {
-  let url = encodeURI(`/services/twowaykv/search?q=${s}`);
-  return axios
-    .get(url)
-    .then(r => ({
-      success: true,
-      data: r.data
-    }))
-    .catch(e => ({
-      success: false,
-      error: "Error getting searching keys: " + e.message
-    }));
+  return makeRequest({
+    method: "get",
+    url: `/services/twowaykv/search?q=${s}`,
+    onErrorPrefix: "Error searching keys"
+  });
 }

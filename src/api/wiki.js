@@ -41,7 +41,7 @@ export function _queryByTitle(s, retry = 0) {
     .then(r => {
       let pageId = Object.keys(r.data.query.pages)[0];
       /*jslint eqeq: true*/
-      if (!pageId || pageId === -1) return _errOut(s, "no page found");
+      if (!pageId || pageId + "" === "-1") return _errOut(s, "no page found");
       // get extract, if any
       let extract = r.data.query.pages[pageId].extract;
       if (!extract) return _errOut(s, "no extract found");
@@ -74,7 +74,6 @@ export function _opensearch(s) {
   url += "&namespace=0";
   url += "&format=json";
   url += `&search=${s}`;
-
   return axios
     .get(encodeURI(url))
     .then(r => {

@@ -2,11 +2,11 @@ import React from "react";
 import { Header as H } from "mini.css-react";
 import { connect } from "react-redux";
 import { store } from "../reducers";
-import { updateView } from "../actions/appState";
 import { setGraphLayout, setStartPath, setTargetPath } from "../actions/graph";
 import SearchBar from "./searchBar";
 import "../css/MainView.css";
 import titleImage from "../images/title.png";
+import { search } from "../api/twowaykv";
 
 function Header(p) {
   return (
@@ -18,15 +18,18 @@ function Header(p) {
       <SearchBar
         placeholder="starting at.."
         onSelect={setStartPath}
+        search={search}
         value={p.rootNode}
       />
       <SearchBar
         placeholder="ending at.."
         onSelect={setTargetPath}
+        search={search}
         value={p.targetNode}
       />
 
       <button
+        id="search-button"
         onClick={() =>
           setStartPath({ id: p.rootNode.id, label: p.rootNode.label })
         }
@@ -35,23 +38,28 @@ function Header(p) {
         search
       </button>
       <button
-        onClick={() => {
+        id="layout-toggle-button"
+        onClick={() =>
           store.dispatch(
             setGraphLayout(p.layout === "cluster" ? "hierarchy" : "cluster")
-          );
-        }}
+          )
+        }
       >
         {p.layout === "cluster" ? "hierarchy" : "cluster"}
       </button>
       <button
+        id="settings-icon-button"
         className="floatRight"
-        onClick={() => store.dispatch(updateView("settings"))}
+        onClick={() =>
+          store.dispatch({ type: "UPDATE_VIEW", view: "settings" })
+        }
       >
         <span className="icon-settings" />
       </button>
       <button
+        id="help-icon-button"
         className="floatRight"
-        onClick={() => store.dispatch(updateView("about"))}
+        onClick={() => store.dispatch({ type: "UPDATE_VIEW", view: "about" })}
       >
         <span className="icon-help" />
       </button>

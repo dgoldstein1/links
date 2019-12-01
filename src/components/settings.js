@@ -1,8 +1,6 @@
 import React from "react";
 import Footer from "./footer";
 import { store } from "../reducers";
-import { setMaxNeighbors } from "../actions/graph";
-import { setLanguage } from "../actions/appState";
 import { connect } from "react-redux";
 import "../css/MainView.css";
 
@@ -17,7 +15,9 @@ function Settings(props) {
           <select
             id="language-select"
             value={props.language}
-            onChange={e => store.dispatch(setLanguage(e.target.value))}
+            onChange={e =>
+              store.dispatch({ type: "SET_LANGUAGE", language: e.target.value })
+            }
           >
             <option value="english">English</option>
           </select>
@@ -32,7 +32,10 @@ function Settings(props) {
             max="250"
             value={props.maxNeighbors}
             onChange={e =>
-              store.dispatch(setMaxNeighbors(parseInt(e.target.value)))
+              store.dispatch({
+                type: "SET_MAX_NEIGHBORS",
+                maxNeighbors: parseInt(e.target.value)
+              })
             }
           />
         </fieldset>

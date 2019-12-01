@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`api utils make request GET request with response code 500 1`] = `
+Object {
+  "error": "error getting ...: Request failed with status code 500",
+  "success": false,
+}
+`;
+
+exports[`api utils make request normal GET request 1`] = `
+Object {
+  "data": Object {
+    "test": "test",
+  },
+  "success": true,
+}
+`;
+
+exports[`api utils make request normal POST request 1`] = `
+Object {
+  "data": Object {
+    "test": "test",
+  },
+  "success": true,
+}
+`;
