@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`selectedNodeCard matches snapshots description bigger than word limit 1`] = `
+<div
+  className="selectedCardContainer"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm"
+    >
+      <div
+        className="card fluid"
+      >
+        <div>
+          <h1>
+            <a
+              href="https://en.wikipedia.org/wiki/test"
+            >
+              test
+            </a>
+          </h1>
+          <p>
+            this is a test description longer than the word limit this is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than t... 
+            <a
+              href="https://en.wikipedia.org/wiki/test"
+            >
+              (more)
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`selectedNodeCard matches snapshots no description 1`] = `
+<div
+  className="selectedCardContainer"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm"
+    >
+      <div
+        className="card fluid"
+      >
+        <div>
+          <h1>
+            <a
+              href="https://en.wikipedia.org/wiki/test"
+            >
+              test
+            </a>
+          </h1>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`selectedNodeCard matches snapshots success 1`] = `
+<div
+  className="selectedCardContainer"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm"
+    >
+      <div
+        className="card fluid"
+      >
+        <div>
+          <h1>
+            <a
+              href="https://en.wikipedia.org/wiki/test"
+            >
+              test
+            </a>
+          </h1>
+          <p>
+            Test description
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

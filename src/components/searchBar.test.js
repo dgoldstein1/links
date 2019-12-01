@@ -83,9 +83,10 @@ describe("components", () => {
         key: "3234",
         value: 234
       };
+
       expect(wrapper.state(["value"])).toEqual(defaultProps.value.label);
       wrapper.instance()._onSelect(node, searchItem);
-      expect(wrapper.state(["value"])).toEqual("234");
+      expect(wrapper.state(["value"])).toEqual({ id: 234, label: "234" });
     });
   });
 });
