@@ -43,17 +43,3 @@ Object {
   "success": true,
 }
 `;
-
-exports[`wiki get description _opensearch 1`] = `
-Object {
-  "error": "Could not get description from wikipedia for article Error: Request failed with status code 404: undefined",
-  "success": false,
-}
-`;
-
-exports[`wiki get description query by title 1`] = `
-Object {
-  "error": "Could not get description from wikipedia for article Error: Request failed with status code 404: undefined",
-  "success": false,
-}
-`;

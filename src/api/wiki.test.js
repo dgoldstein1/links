@@ -10,7 +10,8 @@ describe("wiki", () => {
       {
         name: "query by title",
         s: "test",
-        before: () => {}
+        before: () => {},
+        expectedSuccess: false
       },
       {
         name: "_opensearch",
@@ -54,14 +55,15 @@ describe("wiki", () => {
             status: 200,
             response: setup.getImageResponse
           });
-        }
+        },
+        expectedSuccess: false
       }
     ];
     testTable.forEach(t => {
       it(t.name, done => {
         t.before();
         getDescription(t.s).then(r => {
-          expect(r).toMatchSnapshot();
+          expect(r.success).toEqual(t.expectedSuccess);
           done();
         });
       });
