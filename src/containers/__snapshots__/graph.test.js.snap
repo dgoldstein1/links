@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+Object {
+  "error": undefined,
+  "type": "SET_GRAPH_ERROR",
+}
+`;
+
+exports[`Graph matches snapshots cluster 1`] = `
+<div
+  className="contentContainer graidentBackground"
+>
+  <div
+    className="hiddenScroll"
+  >
+    <div
+      className="sigmaContainer"
+    >
+      <div
+        style={
+          Object {
+            "height": "518px",
+          }
+        }
+      />
+    </div>
+    <div
+      className="selectedCardContainer"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-sm"
+        >
+          <div
+            className="card fluid"
+          >
+            <div>
+              <h1>
+                <a
+                  href="https://en.wikipedia.org/wiki/test"
+                >
+                  test
+                </a>
+              </h1>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Graph matches snapshots error 1`] = `
+<div
+  className="contentContainer graidentBackground"
+>
+  <div
+    className="errorCardContainer"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm"
+      >
+        <div
+          className="card fluid warning"
+        >
+          <h1>
+            warning
+          </h1>
+          <p>
+            an error
+          </p>
+          <label
+            className="drawer-close"
+            htlmfor="drawer-control"
+          />
+          <br />
+          <button
+            onClick={[Function]}
+          >
+            close
+          </button>
+          <button>
+            <a
+              href="https://github.com/dgoldstein1/links/issues/new"
+            >
+              report bug
+            </a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="hiddenScroll"
+  >
+    <div
+      className="selectedCardContainer"
+    />
+  </div>
+</div>
+`;
+
+exports[`Graph matches snapshots hierarchy 1`] = `
+<div
+  className="contentContainer graidentBackground"
+>
+  <div
+    className="hiddenScroll"
+  >
+    <div
+      className="sigmaContainer"
+    >
+      <div
+        style={
+          Object {
+            "height": "518px",
+          }
+        }
+      />
+    </div>
+    <div
+      className="selectedCardContainer"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-sm"
+        >
+          <div
+            className="card fluid"
+          >
+            <div>
+              <h1>
+                <a
+                  href="https://en.wikipedia.org/wiki/test"
+                >
+                  test
+                </a>
+              </h1>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Graph matches snapshots loading 1`] = `
+<div
+  className="contentContainer graidentBackground"
+>
+  <div
+    className="spinner secondary"
+  />
+  <div
+    className="hiddenScroll"
+  >
+    <div
+      className="selectedCardContainer"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-sm"
+        >
+          <div
+            className="card fluid"
+          >
+            <div>
+              <h1>
+                <a
+                  href="https://en.wikipedia.org/wiki/test"
+                >
+                  test
+                </a>
+              </h1>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

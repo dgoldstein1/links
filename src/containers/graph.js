@@ -48,6 +48,7 @@ class Graph extends React.Component {
         )}
         {!this.props.loading && this.props.error && (
           <ErrorCard
+            id="graph-error-card"
             error={this.props.error}
             action="close"
             onAction={() =>
@@ -60,6 +61,7 @@ class Graph extends React.Component {
           {!this.props.loading && !this.props.error && (
             <div className="sigmaContainer">
               <Sigma
+                id="sigma-graph"
                 onClickNode={e =>
                   fetchAndStoreNeighbors(e.data.node, () => {}, true)
                 }
