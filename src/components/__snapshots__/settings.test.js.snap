@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+Object {
+  "language": "english",
+  "type": "SET_LANGUAGE",
+}
+`;
+
+exports[` 2`] = `
+Object {
+  "maxNeighbors": 234234,
+  "type": "SET_MAX_NEIGHBORS",
+}
+`;
+
+exports[`Settings matches snapshots success 1`] = `
+<div
+  className="about-and-settings"
+>
+  <h1>
+    Settings
+  </h1>
+  <form>
+    <fieldset>
+      <legend>
+        General
+      </legend>
+      <label
+        for="language-select"
+      >
+        Language
+      </label>
+      <select
+        id="language-select"
+        onChange={[Function]}
+        value="english"
+      >
+        <option
+          value="english"
+        >
+          English
+        </option>
+      </select>
+    </fieldset>
+    <fieldset>
+      <legend>
+        Graph
+      </legend>
+      <label
+        for="neighbor-limit"
+      >
+        Maximum # neighbors / node
+      </label>
+      <input
+        id="neighbor-limit"
+        max="250"
+        min="1"
+        onChange={[Function]}
+        type="number"
+        value={15}
+      />
+    </fieldset>
+    <button>
+      <a
+        href="https://github.com/dgoldstein1/links/issues/new"
+      >
+        Report issue or bug
+      </a>
+    </button>
+  </form>
+  <footer
+    className="App-footer"
+  >
+    © 2019 David Goldstein |
+     
+    <a
+      href="http://davidcharlesgoldstein.com?ref=links-ui"
+    >
+      Personal Website
+    </a>
+     
+    | 
+    <a
+      href="/LICENSE"
+    >
+      License
+    </a>
+     | 
+    <a
+      href="/VERSION"
+    >
+      Version
+    </a>
+  </footer>
+</div>
+`;
