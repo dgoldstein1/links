@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Splash matches snapshots cluster 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="App-header"
+  >
+    <h1
+      className="App-title"
+    >
+      Links
+    </h1>
+    <p
+      className="App-intro"
+    >
+      Make Connections!
+    </p>
+  </div>
+  <div
+    className="contentContainer"
+  >
+    <div
+      style={
+        Object {
+          "height": "400px",
+          "width": "1024px",
+        }
+      }
+    />
+  </div>
+  <footer
+    className="App-footer"
+  >
+    © 2019 David Goldstein |
+     
+    <a
+      href="http://davidcharlesgoldstein.com?ref=links-ui"
+    >
+      Personal Website
+    </a>
+     
+    | 
+    <a
+      href="/LICENSE"
+    >
+      License
+    </a>
+     | 
+    <a
+      href="/VERSION"
+    >
+      Version
+    </a>
+  </footer>
+</div>
+`;
