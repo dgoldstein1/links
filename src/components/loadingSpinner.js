@@ -47,7 +47,7 @@ function LoadingSpinner(p) {
 }
 
 LoadingSpinner.propTypes = {
-  animationTime: PropTypes.number.isRequired,
+  animationTime: PropTypes.number,
   graph: PropTypes.object.isRequired,
   height: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
