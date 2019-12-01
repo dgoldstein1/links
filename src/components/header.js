@@ -29,6 +29,7 @@ function Header(p) {
       />
 
       <button
+        id="search-button"
         onClick={() =>
           setStartPath({ id: p.rootNode.id, label: p.rootNode.label })
         }
@@ -37,15 +38,17 @@ function Header(p) {
         search
       </button>
       <button
-        onClick={() => {
+        id="layout-toggle-button"
+        onClick={() =>
           store.dispatch(
             setGraphLayout(p.layout === "cluster" ? "hierarchy" : "cluster")
-          );
-        }}
+          )
+        }
       >
         {p.layout === "cluster" ? "hierarchy" : "cluster"}
       </button>
       <button
+        id="settings-icon-button"
         className="floatRight"
         onClick={() =>
           store.dispatch({ type: "UPDATE_VIEW", view: "settings" })
@@ -54,6 +57,7 @@ function Header(p) {
         <span className="icon-settings" />
       </button>
       <button
+        id="help-icon-button"
         className="floatRight"
         onClick={() => store.dispatch({ type: "UPDATE_VIEW", view: "about" })}
       >

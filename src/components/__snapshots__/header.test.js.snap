@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+Object {
+  "layout": "hierarchy",
+  "type": "SET_GRAPH_LAYOUT",
+}
+`;
+
+exports[` 2`] = `
+Object {
+  "type": "UPDATE_VIEW",
+  "view": "settings",
+}
+`;
+
+exports[` 3`] = `
+Object {
+  "type": "UPDATE_VIEW",
+  "view": "about",
+}
+`;
+
+exports[`Header matches snapshots cluster 1`] = `
+<header
+  className="header twoSearchBars sticky"
+>
+  <a
+    className="floatLeft button"
+    href="/"
+  >
+    <img
+      alt="logo"
+      className="logo"
+      src="title.png"
+    />
+  </a>
+  <div
+    style={
+      Object {
+        "display": "inline-block",
+      }
+    }
+  >
+    <input
+      aria-autocomplete="list"
+      aria-expanded={false}
+      autoComplete="off"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder="starting at.."
+      role="combobox"
+      value="root node"
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "display": "inline-block",
+      }
+    }
+  >
+    <input
+      aria-autocomplete="list"
+      aria-expanded={false}
+      autoComplete="off"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder="ending at.."
+      role="combobox"
+      value="target node"
+    />
+  </div>
+  <button
+    id="search-button"
+    onClick={[Function]}
+  >
+    <span
+      className="icon-search"
+    />
+    search
+  </button>
+  <button
+    id="layout-toggle-button"
+    onClick={[Function]}
+  >
+    hierarchy
+  </button>
+  <button
+    className="floatRight"
+    id="settings-icon-button"
+    onClick={[Function]}
+  >
+    <span
+      className="icon-settings"
+    />
+  </button>
+  <button
+    className="floatRight"
+    id="help-icon-button"
+    onClick={[Function]}
+  >
+    <span
+      className="icon-help"
+    />
+  </button>
+</header>
+`;
+
+exports[`Header matches snapshots hierachy 1`] = `
+<header
+  className="header twoSearchBars sticky"
+>
+  <a
+    className="floatLeft button"
+    href="/"
+  >
+    <img
+      alt="logo"
+      className="logo"
+      src="title.png"
+    />
+  </a>
+  <div
+    style={
+      Object {
+        "display": "inline-block",
+      }
+    }
+  >
+    <input
+      aria-autocomplete="list"
+      aria-expanded={false}
+      autoComplete="off"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder="starting at.."
+      role="combobox"
+      value="root node"
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "display": "inline-block",
+      }
+    }
+  >
+    <input
+      aria-autocomplete="list"
+      aria-expanded={false}
+      autoComplete="off"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder="ending at.."
+      role="combobox"
+      value="target node"
+    />
+  </div>
+  <button
+    id="search-button"
+    onClick={[Function]}
+  >
+    <span
+      className="icon-search"
+    />
+    search
+  </button>
+  <button
+    id="layout-toggle-button"
+    onClick={[Function]}
+  >
+    cluster
+  </button>
+  <button
+    className="floatRight"
+    id="settings-icon-button"
+    onClick={[Function]}
+  >
+    <span
+      className="icon-settings"
+    />
+  </button>
+  <button
+    className="floatRight"
+    id="help-icon-button"
+    onClick={[Function]}
+  >
+    <span
+      className="icon-help"
+    />
+  </button>
+</header>
+`;
