@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "./footer";
 import { store } from "../reducers";
-import { setMaxNeighbors } from "../actions/graph";
 import { connect } from "react-redux";
 import "../css/MainView.css";
 
