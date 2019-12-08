@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/zsais/go-gin-prometheus"
 	"net/http"
@@ -9,11 +10,9 @@ import (
 func main() {
 	router := gin.Default()
 	router.Use(gin.Logger())
-	router.LoadHTMLGlob("./build")
-	router.Static("/static", "static")
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", nil)
-	})
+
+	router.Use(static.Serve("/", static.LocalFile("./build", true)))
+
 	router.GET("/VERSION", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "VERSION", nil)
 	})
