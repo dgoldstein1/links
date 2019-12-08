@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/zsais/go-gin-prometheus"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -23,5 +25,6 @@ func main() {
 	p := ginprometheus.NewPrometheus("gin")
 	p.Use(router)
 	// Start and run the server
-	router.Run(":5000")
+	fmt.Println(os.Getenv("PORT"))
+	router.Run(fmt.Sprintf(":%s", os.Getenv("PORT")))
 }
