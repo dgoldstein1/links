@@ -52,6 +52,19 @@ services:
       - kv
       - graph
 
+  # links:
+  #   image: dgoldstein1/links
+  #   build:
+  #     context: .
+  #     dockerfile: ./Dockerfile
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     - PORT=3000
+  #   depends_on:
+  #     - kv
+  #     - graph
+
   kv:
     image: dgoldstein1/twowaykv:1.0.0
     ports:
