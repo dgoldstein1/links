@@ -4,3 +4,4 @@ VERSION
 server
 links-server
 links
+static-files
