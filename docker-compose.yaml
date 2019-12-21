@@ -51,6 +51,7 @@ services:
       - 3000:3000
     environment:
       - PORT=3000
+      - links_outgoing_url=file:///static-files
     depends_on:
       - kv
       - graph

@@ -14,7 +14,10 @@ FROM dgoldstein1/reverse-proxy:0.1.3
 RUN mkdir -p /static-files
 COPY LICENSE /static-files/LICENSE
 COPY VERSION /static-files/VERSION
-COPY --from=build /app/build /build
+COPY --from=build /app/build /static-files/
+
+ENV links_incoming_path /
+ENV links_outgoing_url file:///static-files
 
 # configure reverse-proxy
 ENV PORT "3000"
@@ -28,8 +31,6 @@ ENV twowaykv_incoming_path /services/twowaykv/
 ENV twowaykv_outgoing_url http://kv:5001
 ENV wikipedia_incoming_path /services/wiki/
 ENV wikipedia_outgoing_url https://en.wikipedia.org
-ENV links_incoming_path /
-ENV links_outgoing_url file:///build
 ###############
 ## analytics ##
 ###############
