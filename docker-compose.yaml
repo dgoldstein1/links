@@ -21,49 +21,40 @@ services:
       - MS_DELAY=1000
       - STARTING_ENDPOINT=
 
-
-  edge:
-    image: dgoldstein1/edge-dev
-    build:
-      context: .
-      dockerfile: ./docker/edge/dockerfile
-    ports:
-      - 8443:80
-    restart: always
-
-  links:
-    image: links-ui:dev
-    build:
-      context: .
-      dockerfile: docker/links-dev/dockerfile
-    volumes:
-      - ./:/usr/src/app
-    ports:
-      - 3000:3000
-    environment:
-      - REACT_APP_ENV=development
-      - REACT_APP_TWOWAYKV_ENDPOINT=/services/twowaykv
-      - REACT_APP_BIGGRAPH_ENDPOINT=/services/biggraph
-      - REACT_APP_WIKIMETA_ENDPOINT=/services/wiki/w/api.php
-      - REACT_APP_ANALYTICS_ENDPOINT=/analytics/server
-      - REACT_APP_GEO_IP_ENDPOINT=/analytics/api/geoIpServer
-      - REACT_APP_GEO_IP_ACCESS_KEY=7eca814a6de384aab338e110c57fef37
-    depends_on:
-      - kv
-      - graph
-
   # links:
-  #   image: dgoldstein1/links
+  #   image: links-ui:dev
   #   build:
   #     context: .
-  #     dockerfile: ./Dockerfile
+  #     dockerfile: docker/links-dev/dockerfile
+  #   volumes:
+  #     - ./:/usr/src/app
   #   ports:
   #     - 3000:3000
   #   environment:
-  #     - PORT=3000
+  #     - REACT_APP_ENV=development
+  #     - REACT_APP_TWOWAYKV_ENDPOINT=/services/twowaykv
+  #     - REACT_APP_BIGGRAPH_ENDPOINT=/services/biggraph
+  #     - REACT_APP_WIKIMETA_ENDPOINT=/services/wiki/w/api.php
+  #     - REACT_APP_ANALYTICS_ENDPOINT=/analytics/server
+  #     - REACT_APP_GEO_IP_ENDPOINT=/analytics/api/geoIpServer
+  #     - REACT_APP_GEO_IP_ACCESS_KEY=7eca814a6de384aab338e110c57fef37
   #   depends_on:
   #     - kv
   #     - graph
+
+  links:
+    image: dgoldstein1/links
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+      - links_outgoing_url=file:///static-files
+    depends_on:
+      - kv
+      - graph
 
   kv:
     image: dgoldstein1/twowaykv:1.0.0
