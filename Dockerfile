@@ -21,29 +21,6 @@ ENV links_outgoing_url file:///static-files
 
 # configure reverse-proxy
 ENV PORT "3000"
-ENV services biggraph,twowaykv,geoip,wikipedia,analytics,grafana,prometheus,links
-###################
-## core services ##
-###################
-ENV biggraph_incoming_path /services/biggraph/
-ENV biggraph_outgoing_url http://graph:5000
-ENV twowaykv_incoming_path /services/twowaykv/
-ENV twowaykv_outgoing_url http://kv:5001
-ENV wikipedia_incoming_path /services/wiki/
-ENV wikipedia_outgoing_url https://en.wikipedia.org
-###############
-## analytics ##
-###############
-ENV geoip_incoming_path /analytics/api/geoIpServer/
-ENV geoip_outgoing_url http://api.ipstack.com
-ENV analytics_incoming_path /analytics/server/
-ENV analytics_outgoing_url http://analytics-server:5000
-###########
-## admin ##
-###########
-ENV grafana_incoming_path /admin/grafana/
-ENV grafana_outgoing_url http://grafana:3000
-ENV prometheus_incoming_path /admin/prometheus/
-ENV prometheus_outgoing_url http://prom:9090
+ENV services links
 
 CMD ./reverseProxy

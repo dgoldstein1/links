@@ -12,45 +12,50 @@ import { makeRequest } from "./utils";
  **/
 export function postUserVisit() {
   // first get ip address of user
-  return _getIpAddress().then(ip => {
-    let geoUrl = encodeURI(
-      `/analytics/api/geoIpServer/${ip}?access_key=7eca814a6de384aab338e110c57fef37`
-    );
-    // add in href, if exists
-    return axios
-      .get(geoUrl)
-      .then(res => {
-        if (res.data) {
-          // add in referrer code
-          res.data.href = new URLSearchParams(window.location.search).get(
-            "href"
-          );
-          // small cleanup on attributes
-          res.data.zip_code = res.data.zip;
-        }
-        // now post this data to the backend
-        return makeRequest({
-          method: "post",
-          url: "/analytics/server/visits",
-          onErrorPrefix: "could not post json to analytics backend",
-          body: res.data
+  let geoUrl = encodeURI(
+    `/analytics/api/geoIpServer/v1?apiKey=at_Mb3nWUvk1iAL4W97H5Fs1LxAXjRCn&ipAddress=8.8.8.8`
+  );
+  // add in href, if exists
+  return axios
+    .get(geoUrl)
+    .then(res => {
+      // check for failure
+      if (!res.data)
+        return Promise.resolve({
+          success: false,
+          error: "Could not get IP address from 3rd party"
         });
-      })
-      .catch(e => ({
-        success: false,
-        error: "could not get user IP address: " + e.message
-      }));
-  });
+      // now post this data to the backend
+      return makeRequest({
+        method: "post",
+        url: "/analytics/server/visits",
+        onErrorPrefix: "could not post json to analytics backend",
+        body: _formatDataToAnalyticsBackend(res)
+      });
+    })
+    .catch(e => ({
+      success: false,
+      error: "could not get user IP address: " + e.message
+    }));
 }
 
-export function _getIpAddress() {
-  let geoUrl = encodeURI(
-    `/analytics/api/geoIpServer/check?access_key=7eca814a6de384aab338e110c57fef37`
-  );
-  return axios.get(geoUrl).then(r => {
-    // delimit IP address, if needed
-    if (r.data.ip && r.data.ip.includes(","))
-      r.data.ip = r.data.ip.split(",")[0];
-    return Promise.resolve(r.data.ip);
-  });
+/**
+ * formats data
+ *   from: https://geo.ipify.org/docs
+ *   into: https://github.com/dgoldstein1/websiteanalytics-backend#visits-1
+ **/
+export function _formatDataToAnalyticsBackend(ipifyResponse) {
+  let d = {
+    ip: ipifyResponse.data.ip,
+    city: ipifyResponse.data.location.city,
+    country_code: ipifyResponse.data.location.country,
+    latitude: ipifyResponse.data.location.lat,
+    longitude: ipifyResponse.data.location.lng,
+    region_code: ipifyResponse.data.location.region,
+    time_zone: "ipify" + ipifyResponse.data.location.timezone,
+    zip_code: ipifyResponse.data.location.postalCode
+  };
+  // add in referrer code
+  d.href = new URLSearchParams(window.location.search).get("href");
+  return d;
 }
