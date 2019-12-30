@@ -10,25 +10,27 @@ describe("analytics", () => {
       {
         name: "normal response",
         res: {
-          ip: "96.72.50.249",
-          location: {
-            country: "US",
-            region: "Minnesota",
-            city: "Hastings",
-            lat: 44.7443,
-            lng: -92.8514,
-            postalCode: "55033",
-            timezone: "-06:00",
-            geonameId: 5029500
-          },
-          as: {
-            asn: 7922,
-            name: "Comcast",
-            route: "96.64.0.0/11",
-            domain: "https://corporate.comcast.com/",
-            type: "Cable/DSL/ISP"
-          },
-          isp: "Comcast Cable Communications, LLC"
+          data: {
+            ip: "96.72.50.249",
+            location: {
+              country: "US",
+              region: "Minnesota",
+              city: "Hastings",
+              lat: 44.7443,
+              lng: -92.8514,
+              postalCode: "55033",
+              timezone: "-06:00",
+              geonameId: 5029500
+            },
+            as: {
+              asn: 7922,
+              name: "Comcast",
+              route: "96.64.0.0/11",
+              domain: "https://corporate.comcast.com/",
+              type: "Cable/DSL/ISP"
+            },
+            isp: "Comcast Cable Communications, LLC"
+          }
         }
       }
     ];
@@ -38,7 +40,7 @@ describe("analytics", () => {
       });
     });
   });
-  describe.skip("postUserVisits", () => {
+  describe("postUserVisits", () => {
     beforeEach(() => {
       moxios.install();
     });

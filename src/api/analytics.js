@@ -46,14 +46,14 @@ export function postUserVisit() {
  **/
 export function _formatDataToAnalyticsBackend(ipifyResponse) {
   let d = {
-    ip: ipifyResponse.ip,
-    city: ipifyResponse.location.city,
-    country_code: ipifyResponse.location.country,
-    latitude: ipifyResponse.location.lat,
-    longitude: ipifyResponse.location.lng,
-    region_code: ipifyResponse.location.region,
-    time_zone: "ipify" + ipifyResponse.location.timezone,
-    zip_code: ipifyResponse.location.postalCode
+    ip: ipifyResponse.data.ip,
+    city: ipifyResponse.data.location.city,
+    country_code: ipifyResponse.data.location.country,
+    latitude: ipifyResponse.data.location.lat,
+    longitude: ipifyResponse.data.location.lng,
+    region_code: ipifyResponse.data.location.region,
+    time_zone: "ipify" + ipifyResponse.data.location.timezone,
+    zip_code: ipifyResponse.data.location.postalCode
   };
   // add in referrer code
   d.href = new URLSearchParams(window.location.search).get("href");
