@@ -1,9 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`analytics _getIpAddress deliminted IP 1`] = `"14.35.263.24"`;
-
-exports[`analytics _getIpAddress normal IP 1`] = `"14.35.263.24"`;
-
 exports[`analytics postUserVisits bad geoIpRequest 1`] = `
 Object {
   "error": "could not get user IP address: Request failed with status code 500",
