@@ -44,9 +44,10 @@ export function postUserVisit() {
  *   from: https://geo.ipify.org/docs
  *   into: https://github.com/dgoldstein1/websiteanalytics-backend#visits-1
  **/
-function _formatDataToAnalyticsBackend(ipifyResponse) {
+export function _formatDataToAnalyticsBackend(ipifyResponse) {
   let d = {};
   // add in referrer code
   d.href = new URLSearchParams(window.location.search).get("href");
   //
+  return d;
 }

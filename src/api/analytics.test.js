@@ -2,10 +2,43 @@ import moxios from "moxios";
 import { store } from "../reducers";
 import sinon from "sinon";
 import axios from "axios";
-import { _getIpAddress, postUserVisit } from "./analytics";
+import { _formatDataToAnalyticsBackend, postUserVisit } from "./analytics";
 
 describe("analytics", () => {
-  describe("postUserVisits", () => {
+  describe("_formatDataToAnalyticsBackend", () => {
+    let testTable = [
+      {
+        name: "normal response",
+        res: {
+          ip: "96.72.50.249",
+          location: {
+            country: "US",
+            region: "Minnesota",
+            city: "Hastings",
+            lat: 44.7443,
+            lng: -92.8514,
+            postalCode: "55033",
+            timezone: "-06:00",
+            geonameId: 5029500
+          },
+          as: {
+            asn: 7922,
+            name: "Comcast",
+            route: "96.64.0.0/11",
+            domain: "https://corporate.comcast.com/",
+            type: "Cable/DSL/ISP"
+          },
+          isp: "Comcast Cable Communications, LLC"
+        }
+      }
+    ];
+    testTable.forEach(t => {
+      it(t.name, () => {
+        expect(_formatDataToAnalyticsBackend(t.res)).toMatchSnapshot();
+      });
+    });
+  });
+  describe.skip("postUserVisits", () => {
     beforeEach(() => {
       moxios.install();
     });

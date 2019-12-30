@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`analytics _formatDataToAnalyticsBackend normal response 1`] = `
+Object {
+  "href": null,
+}
+`;
+
 exports[`analytics postUserVisits bad geoIpRequest 1`] = `
 Object {
   "error": "could not get user IP address: Request failed with status code 500",
