@@ -19,22 +19,34 @@ export function postUserVisit() {
   return axios
     .get(geoUrl)
     .then(res => {
-      if (res.data) {
-        // add in referrer code
-        res.data.href = new URLSearchParams(window.location.search).get("href");
-        // small cleanup on attributes
-        res.data.zip_code = res.data.zip;
-      }
+      // check for failure
+      if (!res.data)
+        return Promise.resolve({
+          success: false,
+          error: "Could not get IP address from 3rd party"
+        });
       // now post this data to the backend
       return makeRequest({
         method: "post",
         url: "/analytics/server/visits",
         onErrorPrefix: "could not post json to analytics backend",
-        body: res.data
+        body: _formatDataToAnalyticsBackend(res)
       });
     })
     .catch(e => ({
       success: false,
       error: "could not get user IP address: " + e.message
     }));
+}
+
+/**
+ * formats data
+ *   from: https://geo.ipify.org/docs
+ *   into: https://github.com/dgoldstein1/websiteanalytics-backend#visits-1
+ **/
+function _formatDataToAnalyticsBackend(ipifyResponse) {
+  let d = {};
+  // add in referrer code
+  d.href = new URLSearchParams(window.location.search).get("href");
+  //
 }
