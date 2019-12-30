@@ -45,9 +45,17 @@ export function postUserVisit() {
  *   into: https://github.com/dgoldstein1/websiteanalytics-backend#visits-1
  **/
 export function _formatDataToAnalyticsBackend(ipifyResponse) {
-  let d = {};
+  let d = {
+    ip: ipifyResponse.ip,
+    city: ipifyResponse.location.city,
+    country_code: ipifyResponse.location.country,
+    latitude: ipifyResponse.location.lat,
+    longitude: ipifyResponse.location.lng,
+    region_code: ipifyResponse.location.region,
+    time_zone: "ipify" + ipifyResponse.location.timezone,
+    zip_code: ipifyResponse.location.postalCode
+  };
   // add in referrer code
   d.href = new URLSearchParams(window.location.search).get("href");
-  //
   return d;
 }

@@ -2,7 +2,15 @@
 
 exports[`analytics _formatDataToAnalyticsBackend normal response 1`] = `
 Object {
+  "city": "Hastings",
+  "country_code": "US",
   "href": null,
+  "ip": "96.72.50.249",
+  "latitude": 44.7443,
+  "longitude": -92.8514,
+  "region_code": "Minnesota",
+  "time_zone": "ipify-06:00",
+  "zip_code": "55033",
 }
 `;
 
