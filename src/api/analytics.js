@@ -11,26 +11,36 @@ import { makeRequest } from "./utils";
  * }
  **/
 export function postUserVisit() {
-  // first get ip address of user
-  let geoUrl = encodeURI(
-    `/analytics/api/geoIpServer/v1?apiKey=at_Mb3nWUvk1iAL4W97H5Fs1LxAXjRCn&ipAddress=8.8.8.8`
-  );
-  // add in href, if exists
+  // get client ip address
   return axios
-    .get(geoUrl)
-    .then(res => {
-      // check for failure
-      if (!res.data)
+    .get("/myip")
+    .then(r => {
+      if (!r.data)
         return Promise.resolve({
           success: false,
-          error: "Could not get IP address from 3rd party"
+          error: "Could not get client ip address from reverse proxy"
         });
-      // now post this data to the backend
-      return makeRequest({
-        method: "post",
-        url: "/analytics/server/visits",
-        onErrorPrefix: "could not post json to analytics backend",
-        body: _formatDataToAnalyticsBackend(res)
+      // first get ip address of user
+      let geoUrl = encodeURI(
+        `/analytics/api/geoIpServer/v1?apiKey=at_Mb3nWUvk1iAL4W97H5Fs1LxAXjRCn&ipAddress=${
+          r.data.ip
+        }`
+      );
+      // add in href, if exists
+      return axios.get(geoUrl).then(res => {
+        // check for failure
+        if (!res.data)
+          return Promise.resolve({
+            success: false,
+            error: "Could not get IP address from 3rd party"
+          });
+        // now post this data to the backend
+        return makeRequest({
+          method: "post",
+          url: "/analytics/server/visits",
+          onErrorPrefix: "could not post json to analytics backend",
+          body: _formatDataToAnalyticsBackend(res)
+        });
       });
     })
     .catch(e => ({

@@ -77,7 +77,7 @@ services:
   #     - prometheus_outgoing_url=http://prom:9090
   #   depends_on:
   #     - kv
-      - graph
+      # - graph
 
   kv:
     image: dgoldstein1/twowaykv:1.0.0
