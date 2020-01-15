@@ -8,7 +8,7 @@ RUN npm install react-scripts@3.0.1 -g
 RUN npm run build
 
 # production environment
-FROM dgoldstein1/reverse-proxy:0.1.4
+FROM dgoldstein1/reverse-proxy:0.1.3
 
 # copy in assets
 RUN mkdir -p /static-files
