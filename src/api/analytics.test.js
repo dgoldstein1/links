@@ -127,7 +127,7 @@ describe("analytics", () => {
         moxios.stubRequest("/myip", {
           status: 200,
           response: {
-            ip: "8.8.8.8"
+            ip: "8.8.8.8:2356"
           }
         });
         postUserVisit().then(r => {
