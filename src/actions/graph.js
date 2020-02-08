@@ -129,17 +129,20 @@ export function fetchAndStorePath(start, end) {
   };
   setSelectedNode(start);
   store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
-  graph.shortestPath(start, end).then(r => {
-    if (!r.success) return _errOut(r.error);
+  graph.shortestPath(start, end).then(gr => {
+    if (!gr.success) return _errOut(gr.error);
     // path found, get entries from values
-    let keysToFetch = _.uniq(_.flatten(r.data))
-    keysToFetch = _.remove(keysToFetch, n => (n === start.id || n === end.id))
+    let keysToFetch = _.uniq(_.flatten(gr.data))
+    keysToFetch = _.remove(keysToFetch, n => (n !== start.id && n !== end.id))
     // only get entries in middle, already have beginning and end
-    kv.entriesFromValues(keysToFetch).then(r => {
-      if (!r.success) return _errOut(r.error);
+    kv.entriesFromValues(keysToFetch).then(kvr => {
+      if (!kvr.success) return _errOut(kvr.error);
       // transfrom response to nodes
-      r.data.entries = r.data.entries || [];
-      let nodePath = r.data.entries.map(e => ({ id: e.value, label: e.key }));
+      kvr.data.entries = kvr.data.entries || [];
+
+      console.log("g response:", gr.data)
+      console.log("kv response:", kvr.data.entries)
+      let nodePath = kvr.data.entries.map(e => ({ id: e.value, label: e.key }));
       // insert root and end into array for sanity
       nodePath = [start, ...nodePath, end];
       // clear graph and set new path
