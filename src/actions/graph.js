@@ -4,6 +4,7 @@ import * as kv from "../api/twowaykv";
 import * as graph from "../api/biggraph";
 import * as wiki from "../api/wiki";
 import { _generateRoot } from "../reducers/graph";
+import _ from "lodash";
 
 export function setSelectedNode(node, animate = true) {
   let selectedNodeId;
@@ -26,15 +27,6 @@ export function setGraphLayout(newLayout) {
     layout: newLayout
   };
 }
-
-export const SET_GRAPH_PATH = "SET_GRAPH_PATH";
-export function setGraphPath(path) {
-  return {
-    type: SET_GRAPH_PATH,
-    path
-  };
-}
-
 export const GRAPH_ANIMATE_TIME = 1500;
 export function _animateViews() {
   store.dispatch(setGraphLayout("hierarchy"));
@@ -128,19 +120,19 @@ export function fetchAndStorePath(start, end) {
   };
   setSelectedNode(start);
   store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
-  graph.shortestPath(start, end).then(r => {
-    if (!r.success) return _errOut(r.error);
+  graph.shortestPath(start, end).then(gr => {
+    if (!gr.success) return _errOut(gr.error);
     // path found, get entries from values
+    let keysToFetch = _.uniq(_.flatten(gr.data));
     // only get entries in middle, already have beginning and end
-    kv.entriesFromValues(r.data.slice(1, -1)).then(r => {
-      if (!r.success) return _errOut(r.error);
+    kv.entriesFromValues(keysToFetch).then(kvr => {
+      if (!kvr.success) return _errOut(kvr.error);
       // transfrom response to nodes
-      r.data.entries = r.data.entries || [];
-      let nodePath = r.data.entries.map(e => ({ id: e.value, label: e.key }));
-      // insert root and end into array for sanity
-      nodePath = [start, ...nodePath, end];
-      // clear graph and set new path
-      store.dispatch({ type: "SET_GRAPH_PATH", path: nodePath });
+      store.dispatch({
+        type: "SET_GRAPH_PATH",
+        paths: gr.data,
+        entries: kvr.data.entries || []
+      });
       store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     });
   });

@@ -89,30 +89,51 @@ describe("reducers", () => {
       let testTable = [
         {
           name: "adds normal path",
-          path: [
+          paths: [
+            [744709700, 723299825, 677783103, 796940464],
+            [744709700, 376056243, 517868288, 796940464],
+            [744709700, 598316364, 266061808, 796940464]
+          ],
+          entries: [
             {
-              id: 1,
-              label: "1"
+              key: "6",
+              value: 744709700
             },
             {
-              id: 2,
-              label: "2"
+              key: "51",
+              value: 723299825
             },
             {
-              id: 3,
-              label: "3"
+              key: "61",
+              value: 677783103
+            },
+            {
+              key: "32",
+              value: 796940464
+            },
+            {
+              key: "79",
+              value: 376056243
+            },
+            {
+              key: "74",
+              value: 517868288
+            },
+            {
+              key: "1",
+              value: 598316364
+            },
+            {
+              key: "31",
+              value: 266061808
             }
           ],
           initialState: undefined
         },
         {
           name: "clears graph if it's already there",
-          path: [
-            {
-              id: 1,
-              label: "1"
-            }
-          ],
+          paths: [],
+          entries: [],
           initialState: initialState
         }
       ];
