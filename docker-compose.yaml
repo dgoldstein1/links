@@ -35,6 +35,8 @@ services:
     build:
       context: .
       dockerfile: docker/links-dev/dockerfile
+    environment:
+      - REACT_APP_ENV=development
     volumes:
       - ./:/usr/src/app
 
