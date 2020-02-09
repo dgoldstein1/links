@@ -27,7 +27,7 @@ export function getNeighbors(id) {
 export function shortestPath(start, end) {
   return makeRequest({
     method: "get",
-    url: `services/biggraph/shortestPath?start=${start.id}&end=${end.id}&n=3`,
+    url: `services/biggraph/shortestPath?start=${start.id}&end=${end.id}&n=3&unique=true`,
     onErrorPrefix: `Could not get path from "${start.label}" to "${end.label}"`
   });
 }

@@ -27,15 +27,6 @@ export function setGraphLayout(newLayout) {
     layout: newLayout
   };
 }
-
-export const SET_GRAPH_PATH = "SET_GRAPH_PATH";
-export function setGraphPath(path) {
-  return {
-    type: SET_GRAPH_PATH,
-    path
-  };
-}
-
 export const GRAPH_ANIMATE_TIME = 1500;
 export function _animateViews() {
   store.dispatch(setGraphLayout("hierarchy"));
@@ -133,20 +124,11 @@ export function fetchAndStorePath(start, end) {
     if (!gr.success) return _errOut(gr.error);
     // path found, get entries from values
     let keysToFetch = _.uniq(_.flatten(gr.data))
-    keysToFetch = _.remove(keysToFetch, n => (n !== start.id && n !== end.id))
     // only get entries in middle, already have beginning and end
     kv.entriesFromValues(keysToFetch).then(kvr => {
       if (!kvr.success) return _errOut(kvr.error);
       // transfrom response to nodes
-      kvr.data.entries = kvr.data.entries || [];
-
-      console.log("g response:", gr.data)
-      console.log("kv response:", kvr.data.entries)
-      let nodePath = kvr.data.entries.map(e => ({ id: e.value, label: e.key }));
-      // insert root and end into array for sanity
-      nodePath = [start, ...nodePath, end];
-      // clear graph and set new path
-      // store.dispatch({ type: "SET_GRAPH_PATH", path: nodePath });
+      store.dispatch({ type: "SET_GRAPH_PATH", paths: gr.data, entries: kvr.data.entries || [] });
       store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     });
   });
