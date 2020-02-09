@@ -75,30 +75,29 @@ const visitReducer = (state = initialState, action) => {
     case "SET_GRAPH_PATH":
       // create array of all nodes from entries
       let nodes = action.entries.map(e => ({
-        id : e.value,
-        label : e.key,
-        size : 1,
-      }))
+        id: e.value,
+        label: e.key,
+        size: 1
+      }));
       // create edges from each path in graph
-      let edges = []
-      let entriesReverseMap = {}
-      action.entries.forEach(e => entriesReverseMap[e.value] = e.key)
+      let edges = [];
+      let entriesReverseMap = {};
+      action.entries.forEach(e => (entriesReverseMap[e.value] = e.key));
       action.paths.forEach(p => {
         p.forEach((id, i) => {
           // dont add edge if we've reached the end
-          if (i === p.length -1 )return;
+          if (i === p.length - 1) return;
           // lookup this entry and next entry
           edges.push({
-            id: `${id}->-->--${p[i+1]}`,
+            id: `${id}->-->--${p[i + 1]}`,
             source: id,
-            target: p[i+1],
+            target: p[i + 1],
             color: "gray"
-          });          
-
-        })
-      })
+          });
+        });
+      });
       return Object.assign({}, state, {
-        graph: {nodes, edges}
+        graph: { nodes, edges }
       });
     case "ADD_NEIGHBORS_TO_GRAPH":
       // set initial position to source

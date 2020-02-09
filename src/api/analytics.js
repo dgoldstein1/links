@@ -20,7 +20,7 @@ export function postUserVisit() {
           success: false,
           error: "Could not get client ip address from reverse proxy"
         });
-      let ip = r.data.ip && r.data.ip.split(":")[0]
+      let ip = r.data.ip && r.data.ip.split(":")[0];
       // first get ip address of user
       let geoUrl = encodeURI(
         `/analytics/api/geoIpServer/v1?apiKey=at_Mb3nWUvk1iAL4W97H5Fs1LxAXjRCn&ipAddress=${ip}`

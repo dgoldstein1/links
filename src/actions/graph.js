@@ -4,7 +4,7 @@ import * as kv from "../api/twowaykv";
 import * as graph from "../api/biggraph";
 import * as wiki from "../api/wiki";
 import { _generateRoot } from "../reducers/graph";
-import _ from "lodash"
+import _ from "lodash";
 
 export function setSelectedNode(node, animate = true) {
   let selectedNodeId;
@@ -123,12 +123,16 @@ export function fetchAndStorePath(start, end) {
   graph.shortestPath(start, end).then(gr => {
     if (!gr.success) return _errOut(gr.error);
     // path found, get entries from values
-    let keysToFetch = _.uniq(_.flatten(gr.data))
+    let keysToFetch = _.uniq(_.flatten(gr.data));
     // only get entries in middle, already have beginning and end
     kv.entriesFromValues(keysToFetch).then(kvr => {
       if (!kvr.success) return _errOut(kvr.error);
       // transfrom response to nodes
-      store.dispatch({ type: "SET_GRAPH_PATH", paths: gr.data, entries: kvr.data.entries || [] });
+      store.dispatch({
+        type: "SET_GRAPH_PATH",
+        paths: gr.data,
+        entries: kvr.data.entries || []
+      });
       store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     });
   });
