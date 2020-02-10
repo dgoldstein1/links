@@ -596,7 +596,7 @@ exports[`MainView matches snapshots path 1`] = `
           <label
             for="neighbor-limit"
           >
-            Maximum # neighbors / node
+            Maximum number of neighbors per node
           </label>
           <input
             id="neighbor-limit"
@@ -605,6 +605,41 @@ exports[`MainView matches snapshots path 1`] = `
             onChange={[Function]}
             type="number"
           />
+          <br />
+          <label
+            for="max-shortest-paths"
+          >
+            Maximum number of shortest paths
+          </label>
+          <input
+            id="max-shortest-paths"
+            max="250"
+            min="1"
+            onChange={[Function]}
+            type="number"
+          />
+          <br />
+          <label
+            for="all-paths-unique"
+          >
+            All nodes in path algorithms should be unique
+          </label>
+          <select
+            id="all-paths-unique"
+            onChange={[Function]}
+            value="undefined"
+          >
+            <option
+              value="true"
+            >
+              True
+            </option>
+            <option
+              value="false"
+            >
+              False
+            </option>
+          </select>
         </fieldset>
         <button>
           <a
@@ -771,7 +806,7 @@ exports[`MainView matches snapshots settings page 1`] = `
           <label
             for="neighbor-limit"
           >
-            Maximum # neighbors / node
+            Maximum number of neighbors per node
           </label>
           <input
             id="neighbor-limit"
@@ -780,6 +815,41 @@ exports[`MainView matches snapshots settings page 1`] = `
             onChange={[Function]}
             type="number"
           />
+          <br />
+          <label
+            for="max-shortest-paths"
+          >
+            Maximum number of shortest paths
+          </label>
+          <input
+            id="max-shortest-paths"
+            max="250"
+            min="1"
+            onChange={[Function]}
+            type="number"
+          />
+          <br />
+          <label
+            for="all-paths-unique"
+          >
+            All nodes in path algorithms should be unique
+          </label>
+          <select
+            id="all-paths-unique"
+            onChange={[Function]}
+            value="undefined"
+          >
+            <option
+              value="true"
+            >
+              True
+            </option>
+            <option
+              value="false"
+            >
+              False
+            </option>
+          </select>
         </fieldset>
         <button>
           <a

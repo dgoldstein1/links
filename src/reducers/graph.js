@@ -15,13 +15,15 @@ const initialState = {
     nodes: [],
     edges: []
   },
+  maxShortestPaths: 5,
+  pathsAreUnique: true,
   loading: false,
   error: undefined,
   layout: "hierarchy",
   maxNeighbors: 15
 };
 
-const visitReducer = (state = initialState, action) => {
+const graphReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CLEAR_GRAPH":
       return Object.assign({}, state, {
@@ -50,6 +52,15 @@ const visitReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         rootNode: _generateRoot(action.node.label, action.node.id)
       });
+    case "SET_MAX_SHORTEST_PATHS":
+      return Object.assign({}, state, {
+        maxShortestPaths: action.maxShortestPaths
+      });
+    case "SET_ALL_PATHS_UNIQUE":
+      return Object.assign({}, state, {
+        pathsAreUnique: action.pathsAreUnique
+      });
+
     case "SET_SELECTED_NODE":
       return Object.assign({}, state, {
         selectedNode: {
@@ -77,7 +88,8 @@ const visitReducer = (state = initialState, action) => {
       let nodes = action.entries.map(e => ({
         id: e.value,
         label: e.key,
-        size: 1
+        size: 1,
+        color: "red"
       }));
       // create edges from each path in graph
       let edges = [];
@@ -92,7 +104,7 @@ const visitReducer = (state = initialState, action) => {
             id: `${id}->-->--${p[i + 1]}`,
             source: id,
             target: p[i + 1],
-            color: "gray"
+            color: "red"
           });
         });
       });
@@ -138,4 +150,4 @@ export function _generateRoot(label, id) {
   };
 }
 
-export default visitReducer;
+export default graphReducer;

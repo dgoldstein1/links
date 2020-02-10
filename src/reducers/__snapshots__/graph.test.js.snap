@@ -10,6 +10,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -32,6 +34,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -54,6 +58,8 @@ Object {
   "layout": "new layout",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -76,6 +82,8 @@ Object {
   "layout": "hierarchy",
   "loading": true,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -98,6 +106,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 1000,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -120,6 +130,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {
     "id": 1,
     "label": "test",
@@ -148,6 +160,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -172,6 +186,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": undefined,
@@ -194,6 +210,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -234,6 +252,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -310,55 +330,55 @@ Object {
   "graph": Object {
     "edges": Array [
       Object {
-        "color": "gray",
+        "color": "red",
         "id": "744709700->-->--723299825",
         "source": 744709700,
         "target": 723299825,
       },
       Object {
-        "color": "gray",
+        "color": "red",
         "id": "723299825->-->--677783103",
         "source": 723299825,
         "target": 677783103,
       },
       Object {
-        "color": "gray",
+        "color": "red",
         "id": "677783103->-->--796940464",
         "source": 677783103,
         "target": 796940464,
       },
       Object {
-        "color": "gray",
+        "color": "red",
         "id": "744709700->-->--376056243",
         "source": 744709700,
         "target": 376056243,
       },
       Object {
-        "color": "gray",
+        "color": "red",
         "id": "376056243->-->--517868288",
         "source": 376056243,
         "target": 517868288,
       },
       Object {
-        "color": "gray",
+        "color": "red",
         "id": "517868288->-->--796940464",
         "source": 517868288,
         "target": 796940464,
       },
       Object {
-        "color": "gray",
+        "color": "red",
         "id": "744709700->-->--598316364",
         "source": 744709700,
         "target": 598316364,
       },
       Object {
-        "color": "gray",
+        "color": "red",
         "id": "598316364->-->--266061808",
         "source": 598316364,
         "target": 266061808,
       },
       Object {
-        "color": "gray",
+        "color": "red",
         "id": "266061808->-->--796940464",
         "source": 266061808,
         "target": 796940464,
@@ -366,41 +386,49 @@ Object {
     ],
     "nodes": Array [
       Object {
+        "color": "red",
         "id": 744709700,
         "label": "6",
         "size": 1,
       },
       Object {
+        "color": "red",
         "id": 723299825,
         "label": "51",
         "size": 1,
       },
       Object {
+        "color": "red",
         "id": 677783103,
         "label": "61",
         "size": 1,
       },
       Object {
+        "color": "red",
         "id": 796940464,
         "label": "32",
         "size": 1,
       },
       Object {
+        "color": "red",
         "id": 376056243,
         "label": "79",
         "size": 1,
       },
       Object {
+        "color": "red",
         "id": 517868288,
         "label": "74",
         "size": 1,
       },
       Object {
+        "color": "red",
         "id": 598316364,
         "label": "1",
         "size": 1,
       },
       Object {
+        "color": "red",
         "id": 266061808,
         "label": "31",
         "size": 1,
@@ -410,6 +438,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -441,6 +471,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",

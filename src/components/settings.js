@@ -24,7 +24,9 @@ function Settings(props) {
         </fieldset>
         <fieldset>
           <legend>Graph</legend>
-          <label for="neighbor-limit">Maximum # neighbors / node</label>
+          <label for="neighbor-limit">
+            Maximum number of neighbors per node
+          </label>
           <input
             id="neighbor-limit"
             type="number"
@@ -38,6 +40,40 @@ function Settings(props) {
               })
             }
           />
+          <br />
+          <label for="max-shortest-paths">
+            Maximum number of shortest paths
+          </label>
+          <input
+            id="max-shortest-paths"
+            type="number"
+            min="1"
+            max="250"
+            value={props.maxShortestPaths}
+            onChange={e =>
+              store.dispatch({
+                type: "SET_MAX_SHORTEST_PATHS",
+                maxShortestPaths: parseInt(e.target.value)
+              })
+            }
+          />
+          <br />
+          <label for="all-paths-unique">
+            All nodes in path algorithms should be unique
+          </label>
+          <select
+            id="all-paths-unique"
+            value={props.pathsAreUnique + ""}
+            onChange={e =>
+              store.dispatch({
+                type: "SET_ALL_PATHS_UNIQUE",
+                pathsAreUnique: e.target.value === "true"
+              })
+            }
+          >
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
         </fieldset>
         <button>
           <a href="https://github.com/dgoldstein1/links/issues/new">
@@ -53,6 +89,8 @@ function Settings(props) {
 
 let mapStateToProps = state => ({
   language: state.appState.language,
-  maxNeighbors: state.graph.maxNeighbors
+  maxNeighbors: state.graph.maxNeighbors,
+  maxShortestPaths: state.graph.maxShortestPaths,
+  pathsAreUnique: state.graph.pathsAreUnique
 });
 export default connect(mapStateToProps)(Settings);
