@@ -125,7 +125,7 @@ const graphReducer = (state = initialState, action) => {
           id: `${action.node.id}->-->--${n.id}`,
           source: action.node.id,
           target: n.id,
-          color : "black",
+          color: "black"
         });
       });
       // add in node to make sure it's in list of nodes
