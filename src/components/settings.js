@@ -90,7 +90,7 @@ function Settings(props) {
 let mapStateToProps = state => ({
   language: state.appState.language,
   maxNeighbors: state.graph.maxNeighbors,
-  maxShortestPaths : state.graph.maxShortestPaths,
-  pathsAreUnique : state.graph.pathsAreUnique,
+  maxShortestPaths: state.graph.maxShortestPaths,
+  pathsAreUnique: state.graph.pathsAreUnique
 });
 export default connect(mapStateToProps)(Settings);

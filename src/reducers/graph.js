@@ -89,7 +89,7 @@ const graphReducer = (state = initialState, action) => {
         id: e.value,
         label: e.key,
         size: 1,
-        color : "red",
+        color: "red"
       }));
       // create edges from each path in graph
       let edges = [];
@@ -104,7 +104,7 @@ const graphReducer = (state = initialState, action) => {
             id: `${id}->-->--${p[i + 1]}`,
             source: id,
             target: p[i + 1],
-            color: "red",
+            color: "red"
           });
         });
       });
@@ -123,7 +123,7 @@ const graphReducer = (state = initialState, action) => {
         edgesToAdd.push({
           id: `${action.node.id}->-->--${n.id}`,
           source: action.node.id,
-          target: n.id,
+          target: n.id
         });
       });
       // add in node to make sure it's in list of nodes
