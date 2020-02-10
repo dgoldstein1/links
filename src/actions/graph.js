@@ -198,25 +198,19 @@ export function expandAll() {
       }
     });
     if (idsToFetch.length == 0) {
-      store.dispatch({
-        type: "SET_GRAPH_ERROR",
-        error: "could not expand nodes"
-      });
       return store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     }
     // get values for all the ids we just fetched
     idsToFetch = _.uniq(idsToFetch);
     return kv.entriesFromValues(idsToFetch).then(r => {
       if (!r.success) {
-        store.dispatch({
-          type: "SET_GRAPH_ERROR",
-          error: "could not fetch ids from twowaykv " + JSON.strinify(r.errors)
-        });
         return store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
       }
       // create big cache of ids
       let idsToNodes = {};
-      r.data.entries.forEach(e => (idsToNodes[e.value] = e));
+      r.data.entries.forEach(
+        e => (idsToNodes[e.value] = { id: e.key, value: e.label })
+      );
       nodes.forEach(n => (idsToNodes[n.id] = n));
       // add each new set of neighbors
       for (let id in idsToNewNeighbors) {
@@ -227,7 +221,9 @@ export function expandAll() {
           neighbors
         });
       }
-      return store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
+      setTimeout(() => {
+        return store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
+      }, 100);
     });
   });
 }
