@@ -10,6 +10,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -32,6 +34,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -54,6 +58,8 @@ Object {
   "layout": "new layout",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -76,6 +82,8 @@ Object {
   "layout": "hierarchy",
   "loading": true,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -98,6 +106,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 1000,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -120,6 +130,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {
     "id": 1,
     "label": "test",
@@ -148,6 +160,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -172,6 +186,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": undefined,
@@ -194,6 +210,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -234,6 +252,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -410,6 +430,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -441,6 +463,8 @@ Object {
   "layout": "hierarchy",
   "loading": false,
   "maxNeighbors": 15,
+  "maxShortestPaths": 5,
+  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",

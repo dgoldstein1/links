@@ -22,14 +22,16 @@ export function getNeighbors(id) {
  * gets shortest path from one node to anotther
  * @param {node} start
  * @param {node} end
+ * @param {number} max number of paths to fetch
+ * @param {bool} should all nodes be unique?
  * @return {promise} {success, error, data}
  **/
 export function shortestPath(start, end) {
   return makeRequest({
     method: "get",
-    url: `services/biggraph/shortestPath?start=${start.id}&end=${
-      end.id
-    }&n=3&unique=true`,
+    url: `services/biggraph/shortestPath?start=${start.id}&end=${end.id}&n=${
+      store.getState().graph.maxShortestPaths
+    }&unique=${store.getState().graph.pathsAreUnique}`,
     onErrorPrefix: `Could not get path from "${start.label}" to "${end.label}"`
   });
 }

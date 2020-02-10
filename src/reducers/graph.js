@@ -15,13 +15,15 @@ const initialState = {
     nodes: [],
     edges: []
   },
+  maxShortestPaths : 5,
+  pathsAreUnique : true,
   loading: false,
   error: undefined,
   layout: "hierarchy",
   maxNeighbors: 15
 };
 
-const visitReducer = (state = initialState, action) => {
+const graphReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CLEAR_GRAPH":
       return Object.assign({}, state, {
@@ -138,4 +140,4 @@ export function _generateRoot(label, id) {
   };
 }
 
-export default visitReducer;
+export default graphReducer;
