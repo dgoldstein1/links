@@ -15,8 +15,8 @@ const initialState = {
     nodes: [],
     edges: []
   },
-  maxShortestPaths : 5,
-  pathsAreUnique : true,
+  maxShortestPaths: 5,
+  pathsAreUnique: true,
   loading: false,
   error: undefined,
   layout: "hierarchy",
@@ -52,6 +52,15 @@ const graphReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         rootNode: _generateRoot(action.node.label, action.node.id)
       });
+    case "SET_MAX_SHORTEST_PATHS":
+      return Object.assign({}, state, {
+        maxShortestPaths: action.maxShortestPaths
+      });
+    case "SET_ALL_PATHS_UNIQUE":
+      return Object.assign({}, state, {
+        pathsAreUnique: action.pathsAreUnique
+      });
+
     case "SET_SELECTED_NODE":
       return Object.assign({}, state, {
         selectedNode: {
@@ -79,7 +88,8 @@ const graphReducer = (state = initialState, action) => {
       let nodes = action.entries.map(e => ({
         id: e.value,
         label: e.key,
-        size: 1
+        size: 1,
+        color : "red",
       }));
       // create edges from each path in graph
       let edges = [];
@@ -94,7 +104,7 @@ const graphReducer = (state = initialState, action) => {
             id: `${id}->-->--${p[i + 1]}`,
             source: id,
             target: p[i + 1],
-            color: "gray"
+            color: "red",
           });
         });
       });
@@ -113,7 +123,7 @@ const graphReducer = (state = initialState, action) => {
         edgesToAdd.push({
           id: `${action.node.id}->-->--${n.id}`,
           source: action.node.id,
-          target: n.id
+          target: n.id,
         });
       });
       // add in node to make sure it's in list of nodes
