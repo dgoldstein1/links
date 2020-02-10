@@ -183,38 +183,51 @@ export function fetchAndStoreRandomStartNode(finalCallback, retries = 0) {
 
 // expands all nodes in the graph
 export function expandAll() {
+  store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
   // fetch all neighbors of current nodes
   let nodes = store.getState().graph.graph.nodes;
   let promises = nodes.map(n => graph.getNeighbors(n.id));
   return Promise.all(promises).then(values => {
     // create map of succesfull nodes
-    let idsToNeighbors = {};
+    let idsToNewNeighbors = {};
     let idsToFetch = [];
     nodes.forEach((n, i) => {
       if (values[i].success) {
-        idsToNeighbors[n.id] = values[i].data;
+        idsToNewNeighbors[n.id] = values[i].data;
         idsToFetch.push(...values[i].data);
       }
     });
-    if (idsToFetch.length == 0)
-      return store.dispatch({
+    if (idsToFetch.length == 0) {
+      store.dispatch({
         type: "SET_GRAPH_ERROR",
         error: "could not expand nodes"
       });
+      return store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
+    }
     // get values for all the ids we just fetched
     idsToFetch = _.uniq(idsToFetch);
     return kv.entriesFromValues(idsToFetch).then(r => {
-      if (!r.success)
-        return store.dispatch({
+      if (!r.success) {
+        store.dispatch({
           type: "SET_GRAPH_ERROR",
-          error: "could not fetch ids from twowaykv " + r.error
+          error: "could not fetch ids from twowaykv " + JSON.strinify(r.errors)
         });
-      // everything fetched, pass to store
-      store.dispatch({
-        type: "ADD_ALL_NEIGHBORS",
-        idsToNeighbors,
-        entriesFromValues: r.data
-      });
+        return store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
+      }
+      // create big cache of ids
+      let idsToNodes = {};
+      r.data.entries.forEach(e => (idsToNodes[e.value] = e));
+      nodes.forEach(n => (idsToNodes[n.id] = n));
+      // add each new set of neighbors
+      for (let id in idsToNewNeighbors) {
+        let neighbors = idsToNewNeighbors[id].map(n => idsToNodes[n]);
+        store.dispatch({
+          type: "ADD_NEIGHBORS_TO_GRAPH",
+          node: idsToNodes[id],
+          neighbors
+        });
+      }
+      return store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     });
   });
 }
