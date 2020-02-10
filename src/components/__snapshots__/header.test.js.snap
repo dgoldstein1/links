@@ -93,6 +93,12 @@ exports[`Header matches snapshots cluster 1`] = `
     hierarchy
   </button>
   <button
+    id="expand-all-button"
+    onClick={[Function]}
+  >
+    expand all
+  </button>
+  <button
     className="floatRight"
     id="settings-icon-button"
     onClick={[Function]}
@@ -183,6 +189,12 @@ exports[`Header matches snapshots hierachy 1`] = `
     onClick={[Function]}
   >
     cluster
+  </button>
+  <button
+    id="expand-all-button"
+    onClick={[Function]}
+  >
+    expand all
   </button>
   <button
     className="floatRight"

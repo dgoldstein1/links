@@ -76,6 +76,12 @@ exports[`MainView matches snapshots about page 1`] = `
         hierarchy
       </button>
       <button
+        id="expand-all-button"
+        onClick={[Function]}
+      >
+        expand all
+      </button>
+      <button
         className="floatRight"
         id="settings-icon-button"
         onClick={[Function]}
@@ -544,6 +550,12 @@ exports[`MainView matches snapshots path 1`] = `
         hierarchy
       </button>
       <button
+        id="expand-all-button"
+        onClick={[Function]}
+      >
+        expand all
+      </button>
+      <button
         className="floatRight"
         id="settings-icon-button"
         onClick={[Function]}
@@ -752,6 +764,12 @@ exports[`MainView matches snapshots settings page 1`] = `
         onClick={[Function]}
       >
         hierarchy
+      </button>
+      <button
+        id="expand-all-button"
+        onClick={[Function]}
+      >
+        expand all
       </button>
       <button
         className="floatRight"
