@@ -197,7 +197,7 @@ export function expandAll() {
         idsToFetch.push(...values[i].data);
       }
     });
-    if (idsToFetch.length == 0) {
+    if (idsToFetch.length === 0) {
       return store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     }
     // get values for all the ids we just fetched
@@ -213,6 +213,7 @@ export function expandAll() {
       );
       nodes.forEach(n => (idsToNodes[n.id] = n));
       // add each new set of neighbors
+      // eslint-disable-next-line no-unused-vars
       for (let id in idsToNewNeighbors) {
         let neighbors = idsToNewNeighbors[id].map(n => idsToNodes[n]);
         store.dispatch({
