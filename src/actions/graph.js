@@ -221,9 +221,7 @@ export function expandAll() {
           neighbors
         });
       }
-      setTimeout(() => {
-        return store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
-      }, 100);
+      store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
     });
   });
 }
