@@ -180,3 +180,41 @@ export function fetchAndStoreRandomStartNode(finalCallback, retries = 0) {
     });
   });
 }
+
+// expands all nodes in the graph
+export function expandAll() {
+  // fetch all neighbors of current nodes
+  let nodes = store.getState().graph.graph.nodes;
+  let promises = nodes.map(n => graph.getNeighbors(n.id));
+  return Promise.all(promises).then(values => {
+    // create map of succesfull nodes
+    let idsToNeighbors = {};
+    let idsToFetch = [];
+    nodes.forEach((n, i) => {
+      if (values[i].success) {
+        idsToNeighbors[n.id] = values[i].data;
+        idsToFetch.push(...values[i].data);
+      }
+    });
+    if (idsToFetch.length == 0)
+      return store.dispatch({
+        type: "SET_GRAPH_ERROR",
+        error: "could not expand nodes"
+      });
+    // get values for all the ids we just fetched
+    idsToFetch = _.uniq(idsToFetch);
+    return kv.entriesFromValues(idsToFetch).then(r => {
+      if (!r.success)
+        return store.dispatch({
+          type: "SET_GRAPH_ERROR",
+          error: "could not fetch ids from twowaykv " + r.error
+        });
+      // everything fetched, pass to store
+      store.dispatch({
+        type: "ADD_ALL_NEIGHBORS",
+        idsToNeighbors,
+        entriesFromValues: r.data
+      });
+    });
+  });
+}
