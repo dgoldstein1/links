@@ -180,3 +180,49 @@ export function fetchAndStoreRandomStartNode(finalCallback, retries = 0) {
     });
   });
 }
+
+// expands all nodes in the graph
+export function expandAll() {
+  store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
+  // fetch all neighbors of current nodes
+  let nodes = store.getState().graph.graph.nodes;
+  let promises = nodes.map(n => graph.getNeighbors(n.id));
+  return Promise.all(promises).then(values => {
+    // create map of succesfull nodes
+    let idsToNewNeighbors = {};
+    let idsToFetch = [];
+    nodes.forEach((n, i) => {
+      if (values[i].success) {
+        idsToNewNeighbors[n.id] = values[i].data;
+        idsToFetch.push(...values[i].data);
+      }
+    });
+    if (idsToFetch.length === 0) {
+      return store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
+    }
+    // get values for all the ids we just fetched
+    idsToFetch = _.uniq(idsToFetch);
+    return kv.entriesFromValues(idsToFetch).then(r => {
+      if (!r.success) {
+        return store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
+      }
+      // create big cache of ids
+      let idsToNodes = {};
+      r.data.entries.forEach(
+        e => (idsToNodes[e.value] = { id: e.value, label: e.key })
+      );
+      nodes.forEach(n => (idsToNodes[n.id] = n));
+      // add each new set of neighbors
+      // eslint-disable-next-line no-unused-vars
+      for (let id in idsToNewNeighbors) {
+        let neighbors = idsToNewNeighbors[id].map(n => idsToNodes[n]);
+        store.dispatch({
+          type: "ADD_NEIGHBORS_TO_GRAPH",
+          node: idsToNodes[id],
+          neighbors
+        });
+      }
+      store.dispatch({ type: "SET_GRAPH_LOADING", loading: false });
+    });
+  });
+}

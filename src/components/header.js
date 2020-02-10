@@ -2,7 +2,12 @@ import React from "react";
 import { Header as H } from "mini.css-react";
 import { connect } from "react-redux";
 import { store } from "../reducers";
-import { setGraphLayout, setStartPath, setTargetPath } from "../actions/graph";
+import {
+  setGraphLayout,
+  setStartPath,
+  setTargetPath,
+  expandAll
+} from "../actions/graph";
 import SearchBar from "./searchBar";
 import "../css/MainView.css";
 import titleImage from "../images/title.png";
@@ -46,6 +51,9 @@ function Header(p) {
         }
       >
         {p.layout === "cluster" ? "hierarchy" : "cluster"}
+      </button>
+      <button id="expand-all-button" onClick={expandAll}>
+        {"expand all"}
       </button>
       <button
         id="settings-icon-button"

@@ -120,10 +120,12 @@ const graphReducer = (state = initialState, action) => {
       // get list of edges to add
       let edgesToAdd = [];
       action.neighbors.forEach(n => {
+        if (!n.id) console.log(n);
         edgesToAdd.push({
           id: `${action.node.id}->-->--${n.id}`,
           source: action.node.id,
-          target: n.id
+          target: n.id,
+          color: "black"
         });
       });
       // add in node to make sure it's in list of nodes
