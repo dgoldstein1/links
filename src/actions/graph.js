@@ -209,7 +209,7 @@ export function expandAll() {
       // create big cache of ids
       let idsToNodes = {};
       r.data.entries.forEach(
-        e => (idsToNodes[e.value] = { id: e.key, value: e.label })
+        e => (idsToNodes[e.value] = { id: e.value, label: e.key })
       );
       nodes.forEach(n => (idsToNodes[n.id] = n));
       // add each new set of neighbors
