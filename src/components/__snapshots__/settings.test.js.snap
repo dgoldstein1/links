@@ -73,28 +73,6 @@ exports[`Settings matches snapshots success 1`] = `
         onChange={[Function]}
         type="number"
       />
-      <br />
-      <label
-        for="all-paths-unique"
-      >
-        All nodes in path algorithms should be unique
-      </label>
-      <select
-        id="all-paths-unique"
-        onChange={[Function]}
-        value="undefined"
-      >
-        <option
-          value="true"
-        >
-          True
-        </option>
-        <option
-          value="false"
-        >
-          False
-        </option>
-      </select>
     </fieldset>
     <button>
       <a
