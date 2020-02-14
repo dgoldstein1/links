@@ -16,7 +16,6 @@ const initialState = {
     edges: []
   },
   maxShortestPaths: 5,
-  pathsAreUnique: true,
   loading: false,
   error: undefined,
   layout: "hierarchy",

@@ -57,23 +57,6 @@ function Settings(props) {
               })
             }
           />
-          <br />
-          <label for="all-paths-unique">
-            All nodes in path algorithms should be unique
-          </label>
-          <select
-            id="all-paths-unique"
-            value={props.pathsAreUnique + ""}
-            onChange={e =>
-              store.dispatch({
-                type: "SET_ALL_PATHS_UNIQUE",
-                pathsAreUnique: e.target.value === "true"
-              })
-            }
-          >
-            <option value="true">True</option>
-            <option value="false">False</option>
-          </select>
         </fieldset>
         <button>
           <a href="https://github.com/dgoldstein1/links/issues/new">

@@ -11,7 +11,6 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -35,7 +34,6 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -59,7 +57,6 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -83,7 +80,6 @@ Object {
   "loading": true,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -107,7 +103,6 @@ Object {
   "loading": false,
   "maxNeighbors": 1000,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -131,7 +126,6 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {
     "id": 1,
     "label": "test",
@@ -161,7 +155,6 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -187,7 +180,6 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": undefined,
@@ -211,7 +203,6 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -254,7 +245,6 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -441,7 +431,6 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -474,7 +463,6 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
-  "pathsAreUnique": true,
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
