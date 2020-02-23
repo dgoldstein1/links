@@ -31,7 +31,7 @@ export function shortestPath(start, end) {
     method: "get",
     url: `services/biggraph/shortestPath?start=${start.id}&end=${end.id}&n=${
       store.getState().graph.maxShortestPaths
-    }`,
+    }&directed=${store.getState().graph.directedShortestPath}`,
     onErrorPrefix: `Could not get path from "${start.label}" to "${end.label}"`
   });
 }
