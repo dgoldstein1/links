@@ -73,6 +73,27 @@ exports[`Settings matches snapshots success 1`] = `
         onChange={[Function]}
         type="number"
       />
+      <br />
+      <label
+        for="directed-shortest-path"
+      >
+        Directed Shortest Path
+      </label>
+      <select
+        id="directed-shortest-path"
+        onChange={[Function]}
+      >
+        <option
+          value="true"
+        >
+          true
+        </option>
+        <option
+          value="false"
+        >
+          false
+        </option>
+      </select>
     </fieldset>
     <button>
       <a

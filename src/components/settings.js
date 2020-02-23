@@ -57,6 +57,18 @@ function Settings(props) {
               })
             }
           />
+          <br/>
+          <label for="directed-shortest-path">Directed Shortest Path</label>
+          <select
+            id="directed-shortest-path"
+            value={props.directedShortestPath}
+            onChange={e =>
+              store.dispatch({ type: "SET_DIRECTED_SHORTEST_PATH", directedShortestPath: e.target.value === "true" })
+            }
+          >
+            <option value={"true"}>true</option>
+            <option value={"false"}>false</option>
+          </select>
         </fieldset>
         <button>
           <a href="https://github.com/dgoldstein1/links/issues/new">
@@ -74,6 +86,6 @@ let mapStateToProps = state => ({
   language: state.appState.language,
   maxNeighbors: state.graph.maxNeighbors,
   maxShortestPaths: state.graph.maxShortestPaths,
-  pathsAreUnique: state.graph.pathsAreUnique
+  directedShortestPath : state.graph.directedShortestPath,
 });
 export default connect(mapStateToProps)(Settings);
