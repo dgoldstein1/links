@@ -2,6 +2,7 @@
 
 exports[`reducers basic reducers CLEAR_GRAPH 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": undefined,
   "graph": Object {
     "edges": Array [],
@@ -25,6 +26,7 @@ Object {
 
 exports[`reducers basic reducers SET_GRAPH_ERROR 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": "test",
   "graph": Object {
     "edges": Array [],
@@ -48,6 +50,7 @@ Object {
 
 exports[`reducers basic reducers SET_GRAPH_LAYOUT 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": undefined,
   "graph": Object {
     "edges": Array [],
@@ -71,6 +74,7 @@ Object {
 
 exports[`reducers basic reducers SET_GRAPH_LOADING 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": undefined,
   "graph": Object {
     "edges": Array [],
@@ -94,6 +98,7 @@ Object {
 
 exports[`reducers basic reducers SET_MAX_NEIGHBORS 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": undefined,
   "graph": Object {
     "edges": Array [],
@@ -117,6 +122,7 @@ Object {
 
 exports[`reducers basic reducers SET_ROOT_NODE 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": undefined,
   "graph": Object {
     "edges": Array [],
@@ -146,6 +152,7 @@ Object {
 
 exports[`reducers basic reducers SET_SELECTED_NODE 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": undefined,
   "graph": Object {
     "edges": Array [],
@@ -171,6 +178,7 @@ Object {
 
 exports[`reducers basic reducers SET_SELECTED_NODE_INFO 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": undefined,
   "graph": Object {
     "edges": Array [],
@@ -194,6 +202,7 @@ Object {
 
 exports[`reducers basic reducers SET_TARGET_NODE 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": undefined,
   "graph": Object {
     "edges": Array [],
@@ -219,6 +228,7 @@ Object {
 
 exports[`reducers graph ADD_NEIGHBORS_TO_GRAPH adds new values 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": undefined,
   "graph": Object {
     "edges": Array [
@@ -318,6 +328,7 @@ Object {
 
 exports[`reducers graph SET_GRAPH_PATH adds normal path 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": undefined,
   "graph": Object {
     "edges": Array [
@@ -454,6 +465,7 @@ Object {
 
 exports[`reducers graph initializes with correct state 1`] = `
 Object {
+  "directedShortestPath": true,
   "error": undefined,
   "graph": Object {
     "edges": Array [],
