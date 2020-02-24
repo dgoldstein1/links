@@ -45,16 +45,16 @@ export function fetchAndStoreSelectedNodeInfo(node, animate) {
   if (animate) _animateViews();
   // fetch from api
   wiki.getDescription(node.label).then(r => {
-    // get centrality info from graph 
+    // get centrality info from graph
     graph.centrality([node.id]).then(centralityR => {
       // set result in store
       store.dispatch({
         type: "SET_SELECTED_NODE_INFO",
         ...r,
-        centrality : centralityR.data[node.id],
+        centrality: centralityR.data[node.id],
         loading: false
       });
-    })
+    });
   });
 }
 

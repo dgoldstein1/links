@@ -36,10 +36,10 @@ export function shortestPath(start, end) {
   });
 }
 
-export function centrality(nodes=[]) {
+export function centrality(nodes = []) {
   return makeRequest({
-    method : "post",
+    method: "post",
     url: `/services/biggraph/centrality`,
-    body : nodes
-  })
+    body: nodes
+  });
 }
