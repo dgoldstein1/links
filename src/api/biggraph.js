@@ -29,9 +29,17 @@ export function getNeighbors(id) {
 export function shortestPath(start, end) {
   return makeRequest({
     method: "get",
-    url: `services/biggraph/shortestPath?start=${start.id}&end=${end.id}&n=${
+    url: `/services/biggraph/shortestPath?start=${start.id}&end=${end.id}&n=${
       store.getState().graph.maxShortestPaths
     }&directed=${store.getState().graph.directedShortestPath}`,
     onErrorPrefix: `Could not get path from "${start.label}" to "${end.label}"`
   });
+}
+
+export function centrality(nodes=[]) {
+  return makeRequest({
+    method : "post",
+    url: `/services/biggraph/centrality`,
+    body : nodes
+  })
 }

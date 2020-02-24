@@ -79,7 +79,8 @@ const graphReducer = (state = initialState, action) => {
           description: action.description,
           img: action.img,
           loading: action.loading,
-          error: action.error
+          error: action.error,
+          centrality : action.centrality,
         }
       });
     case "SET_TARGET_NODE":
