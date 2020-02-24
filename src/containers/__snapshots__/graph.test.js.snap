@@ -20,7 +20,7 @@ exports[`Graph matches snapshots cluster 1`] = `
       <div
         style={
           Object {
-            "height": "518px",
+            "height": "368px",
           }
         }
       />
@@ -121,7 +121,7 @@ exports[`Graph matches snapshots hierarchy 1`] = `
       <div
         style={
           Object {
-            "height": "518px",
+            "height": "368px",
           }
         }
       />

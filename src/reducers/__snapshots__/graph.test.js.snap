@@ -190,6 +190,7 @@ Object {
   "maxShortestPaths": 5,
   "rootNode": Object {},
   "selectedNode": Object {
+    "centrality": undefined,
     "description": undefined,
     "error": undefined,
     "img": undefined,

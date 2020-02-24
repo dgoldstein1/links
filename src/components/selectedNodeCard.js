@@ -21,7 +21,7 @@ function SelectedNodeCard(graph) {
       <p>{sNode.description.length === 0 ? sNode.error : sNode.description}</p>
     );
   };
-
+  console.log(sNode.centrality);
   return (
     <div className="selectedCardContainer">
       {!graph.error && (
@@ -43,6 +43,42 @@ function SelectedNodeCard(graph) {
                     className="section media"
                     style={sNode.img}
                   />
+                )}
+                {sNode.centrality && Object.keys(sNode.centrality).length > 1 && (
+                  <div className="inner-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>
+                            <a href="https://reference.wolfram.com/language/ref/ClosenessCentrality.html">
+                              closness
+                            </a>
+                          </th>
+                          <th>
+                            <a href="https://reference.wolfram.com/language/ref/DegreeCentrality.html">
+                              degree centrality
+                            </a>
+                          </th>
+                          <th>
+                            <a href="http://mathworld.wolfram.com/GraphEccentricity.html">
+                              eccentricity
+                            </a>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td data-label="closeness">
+                            {sNode.centrality.closeness}
+                          </td>
+                          <td data-label="degree">{sNode.centrality.degree}</td>
+                          <td data-label="eccentricity">
+                            {sNode.centrality.eccentricity}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 )}
               </div>
             </div>

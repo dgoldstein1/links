@@ -16,7 +16,7 @@ const initialState = {
     edges: []
   },
   maxShortestPaths: 5,
-  directedShortestPath : true,
+  directedShortestPath: true,
   loading: false,
   error: undefined,
   layout: "hierarchy",
@@ -35,7 +35,7 @@ const graphReducer = (state = initialState, action) => {
     case "SET_DIRECTED_SHORTEST_PATH":
       return Object.assign({}, state, {
         directedShortestPath: action.directedShortestPath
-      });      
+      });
     case "SET_MAX_NEIGHBORS":
       return Object.assign({}, state, {
         maxNeighbors: action.maxNeighbors
@@ -79,7 +79,8 @@ const graphReducer = (state = initialState, action) => {
           description: action.description,
           img: action.img,
           loading: action.loading,
-          error: action.error
+          error: action.error,
+          centrality: action.centrality
         }
       });
     case "SET_TARGET_NODE":
