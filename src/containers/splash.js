@@ -1,5 +1,4 @@
 import React from "react";
-import { store } from "../reducers";
 import LoadingSpinner from "../components/loadingSpinner";
 import { InitAapp, ChooseGraphType } from "../actions/appState";
 import Footer from "../components/footer";
