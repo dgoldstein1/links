@@ -1,94 +1,85 @@
 import React from "react";
 import Footer from "./footer";
-import { store } from "../reducers";
 import { connect } from "react-redux";
 import "../css/MainView.css";
 
 function Top(props) {
   return (
-    <div className="about-and-Top">
-      <h1>Top</h1>
-      <form>
-        <fieldset>
-          <legend>General</legend>
-          <label for="language-select">Language</label>
-          <select
-            id="language-select"
-            value={props.language}
-            onChange={e =>
-              store.dispatch({ type: "SET_LANGUAGE", language: e.target.value })
-            }
-          >
-            <option value="english">English</option>
-          </select>
-        </fieldset>
-        <fieldset>
-          <legend>Graph</legend>
-          <label for="neighbor-limit">
-            Maximum number of neighbors per node
-          </label>
-          <input
-            id="neighbor-limit"
-            type="number"
-            min="1"
-            max="250"
-            value={props.maxNeighbors}
-            onChange={e =>
-              store.dispatch({
-                type: "SET_MAX_NEIGHBORS",
-                maxNeighbors: parseInt(e.target.value)
-              })
-            }
-          />
-          <br />
-          <label for="max-shortest-paths">
-            Maximum number of shortest paths
-          </label>
-          <input
-            id="max-shortest-paths"
-            type="number"
-            min="1"
-            max="250"
-            value={props.maxShortestPaths}
-            onChange={e =>
-              store.dispatch({
-                type: "SET_MAX_SHORTEST_PATHS",
-                maxShortestPaths: parseInt(e.target.value)
-              })
-            }
-          />
-          <br />
-          <label for="directed-shortest-path">Directed Shortest Path</label>
-          <select
-            id="directed-shortest-path"
-            value={props.directedShortestPath}
-            onChange={e =>
-              store.dispatch({
-                type: "SET_DIRECTED_SHORTEST_PATH",
-                directedShortestPath: e.target.value === "true"
-              })
-            }
-          >
-            <option value={"true"}>true</option>
-            <option value={"false"}>false</option>
-          </select>
-        </fieldset>
-        <button>
-          <a href="https://github.com/dgoldstein1/links/issues/new">
-            Report issue or bug
+    <div>
+      <h1>Structural information for top ranking nodes</h1>
+      <table>
+        <caption>
+          <a href="https://reference.wolfram.com/language/ref/BetweennessCentrality.html">
+            Betweeness
           </a>
-        </button>
-      </form>
-
+        </caption>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Node</th>
+            <th>Normalized Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.topInfo.betweenessNodes.map((n, i) => (
+            <tr>
+              <td data-label="Rank">{i + 1}</td>
+              <td data-label="Node">{props.topInfo.idCache[n.id]}</td>
+              <td data-label="Normalized-Value">{n.val}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <br />
+      <table>
+        <caption>
+          <a href="https://reference.wolfram.com/language/ref/PageRankCentrality.html">
+            Page Rank
+          </a>
+        </caption>
+        <tbody>
+          {props.topInfo.pageRank.map((n, i) => (
+            <tr>
+              <td data-label="Rank">{i + 1}</td>
+              <td data-label="Node">{props.topInfo.idCache[n.id]}</td>
+              <td data-label="Normalized-Value">{n.val}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <table>
+        <caption>
+          <a href="https://reference.wolfram.com/language/ref/BetweennessCentrality.html">
+            Betweeness [Edges]
+          </a>
+        </caption>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Start Node</th>
+            <th>End Node</th>
+            <th>Normalized Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.topInfo.betweenessEdges.map((n, i) => (
+            <tr>
+              <td data-label="Rank">{i + 1}</td>
+              <td data-label="Start Node">
+                {props.topInfo.idCache[n.startId]}
+              </td>
+              <td data-label="End Node">{props.topInfo.idCache[n.endId]}</td>
+              <td data-label="Normalized-Value">{n.val}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <Footer />
     </div>
   );
 }
 
 let mapStateToProps = state => ({
-  language: state.appState.language,
-  maxNeighbors: state.graph.maxNeighbors,
-  maxShortestPaths: state.graph.maxShortestPaths,
-  directedShortestPath: state.graph.directedShortestPath
+  topInfo: state.graph.topInfo
 });
 export default connect(mapStateToProps)(Top);
