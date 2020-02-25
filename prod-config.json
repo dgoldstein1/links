@@ -1,16 +1,28 @@
 {
   "supportedGraphs": [
     {
-      "name": "dev",
-      "graphEndpoint": "/services/dev/biggraph",
-      "kvEndpoint": "/services/dev/twowaykv",
-      "lookupEndpoint": "/services/dev/wiki"
+      "name": "English Synonyms",
+      "graphEndpoint": "/services/synonyms/biggraph",
+      "kvEndpoint": "/services/synonyms/twowaykv",
+      "lookupEndpoint": "/services/synonyms/wiki"
     },
     {
-      "name": "counties",
+      "name": "US Counties",
       "graphEndpoint": "/services/counties/biggraph",
       "kvEndpoint": "/services/counties/twowaykv",
       "lookupEndpoint": "/services/counties/wiki"
+    },
+    {
+      "name": "المرادفات العربية",
+      "graphEndpoint": "/services/synonymsAR/biggraph",
+      "kvEndpoint": "/services/synonymsAR/twowaykv",
+      "lookupEndpoint": "/services/synonymsAR/wiki"
+    },
+    {
+      "name": "Moby Dick",
+      "graphEndpoint": "/services/mobydick/biggraph",
+      "kvEndpoint": "/services/mobydick/twowaykv",
+      "lookupEndpoint": "/services/mobydick/wiki"
     }
   ]
 }
