@@ -42,7 +42,7 @@ services:
 
   # uncomment for prod
   links:
-    image: dgoldstein1/links
+    image: dgoldstein1/links:latest
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -57,8 +57,6 @@ services:
       ###################
       - links-bundle_incoming_path=/
       - links-bundle_outgoing_url=file:///static-files
-      - links-config_incoming_path=/config
-      - links-config_outgoing_url=file:///prod-config.json
       #################
       ## dev backend ##
       #################
