@@ -42,7 +42,7 @@ services:
 
   # uncomment for prod
   # links:
-  #   image: dgoldstein1/links
+  #   image: dgoldstein1/links:latest
   #   build:
   #     context: .
   #     dockerfile: ./Dockerfile
@@ -51,18 +51,30 @@ services:
   #   environment:
   #     # configure reverse-proxy
   #     - PORT=3000
-  #     - services=biggraph,twowaykv,geoip,wikipedia,analytics,grafana,prometheus,links
+  #     - services=biggraphdev,twowaykvdev,geoip,lookupdev,analytics,grafana,prometheus,links,biggraphcounties,twowaykvcounties,lookupcounties
   #     ###################
   #     ## core services ##
   #     ###################
-  #     - links_incoming_path=/
-  #     - links_outgoing_url=file:///static-files
-  #     - biggraph_incoming_path=/services/biggraph/
-  #     - biggraph_outgoing_url=http://graph:5000
-  #     - twowaykv_incoming_path=/services/twowaykv/
-  #     - twowaykv_outgoing_url=http://kv:5001
-  #     - wikipedia_incoming_path=/services/wiki/
-  #     - wikipedia_outgoing_url=https://en.wikipedia.org
+  #     - links-bundle_incoming_path=/
+  #     - links-bundle_outgoing_url=file:///static-files
+  #     #################
+  #     ## dev backend ##
+  #     #################
+  #     - biggraphdev_incoming_path=/services/dev/biggraph/
+  #     - biggraphdev_outgoing_url=http://graph:5000
+  #     - twowaykvdev_incoming_path=/services/dev/twowaykv/
+  #     - twowaykvdev_outgoing_url=http://kv:5001
+  #     - lookupdev_incoming_path=/services/dev/wiki/
+  #     - lookupdev_outgoing_url=https://en.wikipedia.org
+  #     ######################
+  #     ## counties backend ##
+  #     ######################
+  #     - biggraphcounties_incoming_path=/services/counties/biggraph/
+  #     - biggraphcounties_outgoing_url=http://graph-counties:5000
+  #     - twowaykvcounties_incoming_path=/services/counties/twowaykv/
+  #     - twowaykvcounties_outgoing_url=http://kv-counties:5001
+  #     - lookupcounties_incoming_path=/services/counties/wiki/
+  #     - lookupcounties_outgoing_url=https://en.wikipedia.org
   #     ###############
   #     ## analytics ##
   #     ###############
@@ -81,23 +93,53 @@ services:
   #     - kv
   #     - graph
 
-  kv:
+  kv-counties:
     image: dgoldstein1/twowaykv:1.0.1
     ports:
       - 5001:5001
     depends_on:
       - prom
 
-  graph:
+    environment:
+      - USE_S3=true
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_ACCESS_KEY_ID
+      - AWS_KV_PATH=s3://links-deployment/counties/twowaykv/counties
+      - GRAPH_DB_STORE_DIR=/db/twowaykv
+      - SAVE_INTERVAL=120
+
+  graph-counties:
     image: dgoldstein1/biggraph:latest
     ports:
       - 5000:5000
-      - 8001:8001
+    depends_on:
+      - prom
+    environment:
+      - GRAPH_SAVE_INTERVAL=60
+      - AWS_ACCESS_KEY_ID
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_GRAPH_PATH=s3://links-deployment/counties/biggraph/counties.graph
+      - AWS_SECRET_ACCESS_KEY
+      - GRAPH_SAVE_PATH=/data/counties.graph
+      - USE_S3=true
+  kv:
+    image: dgoldstein1/twowaykv:1.0.1
+    ports:
+      - 5003:5001
+    depends_on:
+      - prom
+
+  graph:
+    image: dgoldstein1/biggraph:latest
+    ports:
+      - 5002:5000
     depends_on:
       - prom
     environment:
       - GRAPH_SAVE_PATH=/data/wikipedia_graph.graph
       - GRAPH_SAVE_INTERVAL=60
+
 
   ################
   ## Monitoring ##
@@ -139,7 +181,7 @@ services:
     depends_on:
       - mongodb
     ports:
-      - 5002:5000
+      - 5005:5000
 
   mongodb:
     image: 'mongo:4.0.5'

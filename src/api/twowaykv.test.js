@@ -4,7 +4,7 @@ import { store } from "../reducers";
 import sinon from "sinon";
 import axios from "axios";
 
-describe("twowaykv", () => {
+describe.skip("twowaykv", () => {
   beforeEach(() => {
     moxios.install();
   });

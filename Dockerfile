@@ -15,6 +15,7 @@ RUN mkdir -p /static-files
 COPY LICENSE /static-files/LICENSE
 COPY VERSION /static-files/VERSION
 COPY --from=build /app/build /static-files/
+COPY ./prod-config.json /static-files/config.json
 
 ENV links_incoming_path /
 ENV links_outgoing_url file:///static-files

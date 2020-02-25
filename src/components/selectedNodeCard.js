@@ -21,7 +21,6 @@ function SelectedNodeCard(graph) {
       <p>{sNode.description.length === 0 ? sNode.error : sNode.description}</p>
     );
   };
-  console.log(sNode.centrality);
   return (
     <div className="selectedCardContainer">
       {!graph.error && (

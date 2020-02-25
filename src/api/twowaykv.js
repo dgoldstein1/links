@@ -1,4 +1,5 @@
 import { makeRequest } from "./utils";
+import { store } from "../reducers";
 
 /**
  * fetches random nodes from twowaykv
@@ -13,7 +14,7 @@ import { makeRequest } from "./utils";
 export function random(n) {
   return makeRequest({
     method: "get",
-    url: `/services/twowaykv/random?n=${n}`,
+    url: `${store.getState().appState.graphConfig.kvEndpoint}/random?n=${n}`,
     onErrorPrefix: "Error getting random entry"
   });
 }
@@ -26,7 +27,9 @@ export function random(n) {
 export function entriesFromValues(ids) {
   return makeRequest({
     method: "post",
-    url: "/services/twowaykv/entriesFromValues",
+    url: `${
+      store.getState().appState.graphConfig.kvEndpoint
+    }/entriesFromValues`,
     onErrorPrefix: "Error getting entries from values",
     body: ids
   });
@@ -40,7 +43,7 @@ export function entriesFromValues(ids) {
 export function search(s) {
   return makeRequest({
     method: "get",
-    url: `/services/twowaykv/search?q=${s}`,
+    url: `${store.getState().appState.graphConfig.kvEndpoint}/search?q=${s}`,
     onErrorPrefix: "Error searching keys"
   });
 }

@@ -9,24 +9,24 @@ const mockStore = configureStore([]);
 describe("MainView", () => {
   describe("matches snapshots", () => {
     let testTable = [
-      {
-        name: "splash page, no loading",
-        state: {
-          appState: {
-            view: "splash",
-            loading: false
-          }
-        }
-      },
-      {
-        name: "splash page, is loading",
-        state: {
-          appState: {
-            view: "splash",
-            loading: true
-          }
-        }
-      },
+      // {
+      //   name: "splash page, no loading",
+      //   state: {
+      //     appState: {
+      //       view: "splash",
+      //       loading: false
+      //     }
+      //   }
+      // },
+      // {
+      //   name: "splash page, is loading",
+      //   state: {
+      //     appState: {
+      //       view: "splash",
+      //       loading: true
+      //     }
+      //   }
+      // },
       {
         name: "about page",
         state: {
