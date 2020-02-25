@@ -1,0 +1,16 @@
+{
+  "supportedGraphs": [
+    {
+      "name": "dev",
+      "graphEndpoint": "/services/dev/biggraph/",
+      "kvEndpoint": "/services/dev/twowaykv/",
+      "lookupEndpoint": "/services/dev/wiki"
+    },
+    {
+      "name": "counties",
+      "graphEndpoint": "/services/counties/biggraph/",
+      "kvEndpoint": "/services/counties/twowaykv/",
+      "lookupEndpoint": "/services/counties/wiki"
+    }
+  ]
+}
