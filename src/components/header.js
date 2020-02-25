@@ -6,7 +6,8 @@ import {
   setGraphLayout,
   setStartPath,
   setTargetPath,
-  expandAll
+  expandAll,
+  fetchAndStoreTop
 } from "../actions/graph";
 import SearchBar from "./searchBar";
 import "../css/MainView.css";
@@ -19,7 +20,9 @@ function Header(p) {
       <a href="/" className="floatLeft">
         <img alt="logo" src={titleImage} className="logo" />
       </a>
-
+      <button id="about-this-graph" onClick={fetchAndStoreTop}>
+        {`about '${store.getState().appState.graphConfig.name}'`}
+      </button>
       <SearchBar
         placeholder="starting at.."
         onSelect={setStartPath}

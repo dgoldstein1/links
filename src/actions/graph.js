@@ -230,3 +230,16 @@ export function expandAll() {
     });
   });
 }
+
+export function fetchAndStoreTop() {
+  if (store.getState().appState.topLoading) return;
+  store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
+  store.dispatch({ type: "SET_TOP_LOADING", loading: true });
+  return graph.top().then(r => {
+    if (r.success) {
+      store.dispatch({ type: "SET_TOP_INFO", info: r.data });
+      store.dispatch({ type: "UPDATE_VIEW", view: "top" });
+    }
+    store.dispatch({ type: "SET_TOP_LOADING", loading: true });
+  });
+}

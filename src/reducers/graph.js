@@ -20,7 +20,12 @@ const initialState = {
   loading: false,
   error: undefined,
   layout: "hierarchy",
-  maxNeighbors: 15
+  maxNeighbors: 15,
+  topInfo: {
+    betweenessEdges: [],
+    betweenessNodes: [],
+    pageRank: []
+  }
 };
 
 const graphReducer = (state = initialState, action) => {
