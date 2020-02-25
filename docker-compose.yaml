@@ -27,60 +27,111 @@ services:
       context: .
       dockerfile: ./docker/edge/dockerfile
     ports:
-      - 3000:80
+      - 3005:80
     restart: always
 
-  links:
-    image: links-ui:dev
-    build:
-      context: .
-      dockerfile: docker/links-dev/dockerfile
-    environment:
-      - REACT_APP_ENV=development
-    volumes:
-      - ./:/usr/src/app
-
-  # uncomment for prod
   # links:
-  #   image: dgoldstein1/links
+  #   image: links-ui:dev
   #   build:
   #     context: .
-  #     dockerfile: ./Dockerfile
-  #   ports:
-  #     - 3000:3000
+  #     dockerfile: docker/links-dev/dockerfile
   #   environment:
-  #     # configure reverse-proxy
-  #     - PORT=3000
-  #     - services=biggraph,twowaykv,geoip,wikipedia,analytics,grafana,prometheus,links
-  #     ###################
-  #     ## core services ##
-  #     ###################
-  #     - links_incoming_path=/
-  #     - links_outgoing_url=file:///static-files
-  #     - biggraph_incoming_path=/services/biggraph/
-  #     - biggraph_outgoing_url=http://graph:5000
-  #     - twowaykv_incoming_path=/services/twowaykv/
-  #     - twowaykv_outgoing_url=http://kv:5001
-  #     - wikipedia_incoming_path=/services/wiki/
-  #     - wikipedia_outgoing_url=https://en.wikipedia.org
-  #     ###############
-  #     ## analytics ##
-  #     ###############
-  #     - geoip_incoming_path=/analytics/api/geoIpServer/
-  #     - geoip_outgoing_url=https://geo.ipify.org/api/
-  #     - analytics_incoming_path=/analytics/server/
-  #     - analytics_outgoing_url=http://analytics-server:5000
-  #     ###########
-  #     ## admin ##
-  #     ###########
-  #     - grafana_incoming_path=/admin/grafana/
-  #     - grafana_outgoing_url=http://grafana:3000
-  #     - prometheus_incoming_path=/admin/prometheus/
-  #     - prometheus_outgoing_url=http://prom:9090
-  #   depends_on:
-  #     - kv
-  #     - graph
+  #     - REACT_APP_ENV=development
+  #   volumes:
+  #     - ./:/usr/src/app
 
+  # uncomment for prod
+  links:
+    image: dgoldstein1/links
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      # configure reverse-proxy
+      - PORT=3000
+      - services=biggraph,twowaykv,geoip,wikipedia,analytics,grafana,prometheus,links
+      ###################
+      ## core services ##
+      ###################
+      - links-bundle_incoming_path=/
+      - links-bundle_outgoing_url=file:///static-files
+      - links-config_incoming_path=/config
+      - links-config_outgoing_url=file:///prod-config.json
+      #################
+      ## dev backend ##
+      #################
+      - biggraph-dev_incoming_path=/services/dev/biggraph/
+      - biggraph-dev_outgoing_url=http://graph:5000
+      - twowaykv-dev_incoming_path=/services/dev/twowaykv/
+      - twowaykv-dev_outgoing_url=http://kv:5001
+      - lookup-dev_incoming_path=/services/dev/wiki/
+      - lookup-dev_outgoing_url=https://en.wikipedia.org
+      ######################
+      ## counties backend ##
+      ######################
+      - biggraph-counties_incoming_path=/services/counties/biggraph/
+      - biggraph-counties_outgoing_url=http://graph:5000
+      - twowaykv-counties_incoming_path=/services/counties/twowaykv/
+      - twowaykv-counties_outgoing_url=http://kv:5001
+      - lookup-counties_incoming_path=/services/counties/wiki/
+      - lookup-dev_outgoing_url=https://en.wikipedia.org
+      ###############
+      ## analytics ##
+      ###############
+      - geoip_incoming_path=/analytics/api/geoIpServer/
+      - geoip_outgoing_url=https://geo.ipify.org/api/
+      - analytics_incoming_path=/analytics/server/
+      - analytics_outgoing_url=http://analytics-server:5000
+      ###########
+      ## admin ##
+      ###########
+      - grafana_incoming_path=/admin/grafana/
+      - grafana_outgoing_url=http://grafana:3000
+      - prometheus_incoming_path=/admin/prometheus/
+      - prometheus_outgoing_url=http://prom:9090
+    depends_on:
+      - kv
+      - graph
+
+  kv-counties:
+    image: dgoldstein1/twowaykv:1.0.1
+    ports:
+      - 5001:5001
+    depends_on:
+      - prom
+
+    environment:
+      - USE_S3=true
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_ACCESS_KEY_ID
+      - AWS_KV_PATH=s3://links-deployment/counties/twowaykv/counties
+      # - AWS_KV_PATH=s3://links-deployment/synonyms/twowaykv
+      - AWS_SYNC_DIRECTORY=s3://links-deployment/counties/twowaykv/counties
+      # - AWS_SYNC_DIRECTORY=s3://links-deployment/synonyms/twowaykv
+      - GRAPH_DB_STORE_DIR=/db/twowaykv
+      - SAVE_INTERVAL=120
+
+  graph-counties:
+    image: dgoldstein1/biggraph:latest
+    ports:
+      - 5000:5000
+      - 8001:8001
+    depends_on:
+      - prom
+    environment:
+      - GRAPH_SAVE_INTERVAL=60
+      - AWS_ACCESS_KEY_ID
+      - AWS_DEFAULT_REGION=us-east-1
+      # - AWS_GRAPH_PATH=s3://links-deployment/counties/biggraph/counties.graph
+      - AWS_GRAPH_PATH=s3://links-deployment/synonyms/biggraph/current_graph.graph
+      - AWS_SECRET_ACCESS_KEY
+      # - AWS_SYNC_DIRECTORY=s3://links-deployment/counties/biggraph
+      - AWS_SYNC_DIRECTORY=s3://links-deployment/synonyms/biggraph
+      - GRAPH_SAVE_PATH=/data/counties.graph
+      - USE_S3=true
   kv:
     image: dgoldstein1/twowaykv:1.0.1
     ports:
@@ -98,6 +149,7 @@ services:
     environment:
       - GRAPH_SAVE_PATH=/data/wikipedia_graph.graph
       - GRAPH_SAVE_INTERVAL=60
+
 
   ################
   ## Monitoring ##
