@@ -1,4 +1,5 @@
 import axios from "axios";
+import { store } from "../reducers";
 
 let _errOut = (s, e) => ({
   success: false,
@@ -26,7 +27,7 @@ export function getDescription(s) {
 // gets icon and description by trying to guess title
 export function _queryByTitle(s, retry = 0) {
   // get extracts
-  let url = "/services/wiki/w/api.php";
+  let url = `${store.getState().appState.graphConfig.lookupEndpoint}/w/api.php`;
   url += `?action=query`;
   url += `&format=json`;
   url += `&prop=extracts`;
@@ -46,7 +47,7 @@ export function _queryByTitle(s, retry = 0) {
       let extract = r.data.query.pages[pageId].extract;
       if (!extract) return _errOut(s, "no extract found");
       // now get images
-      url = "/services/wiki/w/api.php";
+      url = `${store.getState().appState.graphConfig.lookupEndpoint}/w/api.php`;
       url += `?action=query`;
       url += `&prop=pageimages`;
       url += `&format=json`;
@@ -68,7 +69,7 @@ export function _queryByTitle(s, retry = 0) {
 // result in an opensearch
 export function _opensearch(s) {
   // get extracts
-  let url = "/services/wiki/w/api.php";
+  let url = `${store.getState().appState.graphConfig.lookupEndpoint}/w/api.php`;
   url += "?action=opensearch";
   url += "&limit=1";
   url += "&namespace=0";
@@ -81,7 +82,7 @@ export function _opensearch(s) {
       if (!pageTitle) return _errOut(s, "no page found");
       let extract = r.data[2];
       // now get images
-      url = "/services/wiki/w/api.php";
+      url = `${store.getState().appState.graphConfig.lookupEndpoint}/w/api.php`;
       url += `?action=query`;
       url += `&prop=pageimages`;
       url += `&format=json`;
