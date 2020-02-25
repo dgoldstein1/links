@@ -3,11 +3,10 @@ import { store } from "../reducers";
 import LoadingSpinner from "../components/loadingSpinner";
 import { InitAapp } from "../actions/appState";
 import Footer from "../components/footer";
+import { connect } from "react-redux";
 // how long to wait on splash
-const SPLASH_TIMEOUT = 5000;
 const LOADING_ANIMATE_TIME = 2000;
 // view after splash page
-const NEXT_VIEW = "path";
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -82,11 +81,7 @@ class Splash extends React.Component {
       this.setState({ loading: false });
     }, LOADING_ANIMATE_TIME);
     // initi app, change view with clalback
-    InitAapp(() => {
-      setTimeout(() => {
-        store.dispatch({ type: "UPDATE_VIEW", view: NEXT_VIEW });
-      }, SPLASH_TIMEOUT);
-    });
+    InitAapp();
   }
 
   render() {
@@ -95,6 +90,9 @@ class Splash extends React.Component {
         <div className="App-header">
           <h1 className="App-title">Links</h1>
           <p className="App-intro">Make Connections!</p>
+          {this.props.config.supportedGraphs.map(g => (
+            <button className="large">{g.name}</button>  
+          ))}
         </div>
         <LoadingSpinner
           graph={this.state.graph}
@@ -109,4 +107,7 @@ class Splash extends React.Component {
   }
 }
 
-export default Splash;
+let mapStateToProps = state => ({
+  config : state.appState.config
+});
+export default connect(mapStateToProps)(Splash);
