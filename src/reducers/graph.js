@@ -20,11 +20,21 @@ const initialState = {
   loading: false,
   error: undefined,
   layout: "hierarchy",
-  maxNeighbors: 15
+  maxNeighbors: 15,
+  topInfo: {
+    betweenessEdges: [],
+    betweenessNodes: [],
+    pageRank: [],
+    idCache: {}
+  }
 };
 
 const graphReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "SET_TOP_INFO":
+      return Object.assign({}, state, {
+        topInfo: action.info
+      });
     case "CLEAR_GRAPH":
       return Object.assign({}, state, {
         graph: {

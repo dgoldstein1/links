@@ -5,11 +5,17 @@ const initialState = {
   config: {
     supportedGraphs: []
   },
-  graphConfig: {}
+  graphConfig: {},
+  topLoading: false
 };
 
 const visitReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "SET_TOP_LOADING":
+      return Object.assign({}, state, {
+        topLoading: action.loading
+      });
+
     case "SET_CONFIG":
       return Object.assign({}, state, {
         config: action.config

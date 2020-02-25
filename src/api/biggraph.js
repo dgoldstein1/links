@@ -45,3 +45,10 @@ export function centrality(nodes = []) {
     body: nodes
   });
 }
+
+export function top() {
+  return makeRequest({
+    method: "get",
+    url: `${store.getState().appState.graphConfig.graphEndpoint}/top`
+  });
+}
