@@ -91,7 +91,7 @@ class Splash extends React.Component {
           <h1 className="App-title">Links</h1>
           <p className="App-intro">Make Connections!</p>
           {this.props.config.supportedGraphs.map(g => (
-            <button onClick={() => ChooseGraphType(g)}>{g.name}</button>  
+            <button onClick={() => ChooseGraphType(g)}>{g.name}</button>
           ))}
         </div>
         <LoadingSpinner
@@ -108,6 +108,6 @@ class Splash extends React.Component {
 }
 
 let mapStateToProps = state => ({
-  config : state.appState.config
+  config: state.appState.config
 });
 export default connect(mapStateToProps)(Splash);

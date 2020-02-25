@@ -11,9 +11,9 @@ import { store } from "../reducers";
 export function getNeighbors(id) {
   return makeRequest({
     method: "get",
-    url: `${store.getState().appState.graphConfig.graphEndpoint}/neighbors?node=${id}&limit=${
-      store.getState().graph.maxNeighbors
-    }`,
+    url: `${
+      store.getState().appState.graphConfig.graphEndpoint
+    }/neighbors?node=${id}&limit=${store.getState().graph.maxNeighbors}`,
     onErrorPrefix: "Could not get neighbors"
   });
 }
@@ -29,7 +29,9 @@ export function getNeighbors(id) {
 export function shortestPath(start, end) {
   return makeRequest({
     method: "get",
-    url: `${store.getState().appState.graphConfig.graphEndpoint}/shortestPath?start=${start.id}&end=${end.id}&n=${
+    url: `${
+      store.getState().appState.graphConfig.graphEndpoint
+    }/shortestPath?start=${start.id}&end=${end.id}&n=${
       store.getState().graph.maxShortestPaths
     }&directed=${store.getState().graph.directedShortestPath}`,
     onErrorPrefix: `Could not get path from "${start.label}" to "${end.label}"`

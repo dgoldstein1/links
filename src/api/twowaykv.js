@@ -27,7 +27,9 @@ export function random(n) {
 export function entriesFromValues(ids) {
   return makeRequest({
     method: "post",
-    url: `${store.getState().appState.graphConfig.kvEndpoint}/entriesFromValues`,
+    url: `${
+      store.getState().appState.graphConfig.kvEndpoint
+    }/entriesFromValues`,
     onErrorPrefix: "Error getting entries from values",
     body: ids
   });

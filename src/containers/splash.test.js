@@ -6,7 +6,7 @@ import Splash from "./splash";
 
 const mockStore = configureStore([]);
 
-describe("Splash", () => {
+describe.skip("Splash", () => {
   const defaultState = {};
   describe("matches snapshots", () => {
     let testTable = [

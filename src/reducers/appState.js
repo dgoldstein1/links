@@ -2,10 +2,10 @@ const initialState = {
   language: "english",
   loading: true, // the app is / isn't loading
   view: "splash", // one of "path", "splash", "about", "settings"
-  config : {
-    supportedGraphs : []
+  config: {
+    supportedGraphs: []
   },
-  graphConfig : {},
+  graphConfig: {}
 };
 
 const visitReducer = (state = initialState, action) => {
@@ -15,10 +15,10 @@ const visitReducer = (state = initialState, action) => {
         config: action.config
       });
 
-     case "SET_CHOSEN_GRAPH_CONFIG":
-       return Object.assign({}, state, {
-         graphConfig: action.g
-       });
+    case "SET_CHOSEN_GRAPH_CONFIG":
+      return Object.assign({}, state, {
+        graphConfig: action.g
+      });
 
     case "SET_LANGUAGE":
       return Object.assign({}, state, {
