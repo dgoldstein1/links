@@ -51,7 +51,7 @@ services:
     environment:
       # configure reverse-proxy
       - PORT=3000
-      - services=biggraph,twowaykv,geoip,wikipedia,analytics,grafana,prometheus,links
+      - services=biggraphdev,twowaykvdev,geoip,lookupdev,analytics,grafana,prometheus,links,biggraphcounties,twowaykvcounties,lookupcounties
       ###################
       ## core services ##
       ###################
@@ -62,21 +62,21 @@ services:
       #################
       ## dev backend ##
       #################
-      - biggraph-dev_incoming_path=/services/dev/biggraph/
-      - biggraph-dev_outgoing_url=http://graph:5000
-      - twowaykv-dev_incoming_path=/services/dev/twowaykv/
-      - twowaykv-dev_outgoing_url=http://kv:5001
-      - lookup-dev_incoming_path=/services/dev/wiki/
-      - lookup-dev_outgoing_url=https://en.wikipedia.org
+      - biggraphdev_incoming_path=/services/dev/biggraph/
+      - biggraphdev_outgoing_url=http://graph:5000
+      - twowaykvdev_incoming_path=/services/dev/twowaykv/
+      - twowaykvdev_outgoing_url=http://kv:5001
+      - lookupdev_incoming_path=/services/dev/wiki/
+      - lookupdev_outgoing_url=https://en.wikipedia.org
       ######################
       ## counties backend ##
       ######################
-      - biggraph-counties_incoming_path=/services/counties/biggraph/
-      - biggraph-counties_outgoing_url=http://graph:5000
-      - twowaykv-counties_incoming_path=/services/counties/twowaykv/
-      - twowaykv-counties_outgoing_url=http://kv:5001
-      - lookup-counties_incoming_path=/services/counties/wiki/
-      - lookup-dev_outgoing_url=https://en.wikipedia.org
+      - biggraphcounties_incoming_path=/services/counties/biggraph/
+      - biggraphcounties_outgoing_url=http://graph-counties:5000
+      - twowaykvcounties_incoming_path=/services/counties/twowaykv/
+      - twowaykvcounties_outgoing_url=http://kv-counties:5001
+      - lookupcounties_incoming_path=/services/counties/wiki/
+      - lookupcounties_outgoing_url=https://en.wikipedia.org
       ###############
       ## analytics ##
       ###############
@@ -118,7 +118,6 @@ services:
     image: dgoldstein1/biggraph:latest
     ports:
       - 5000:5000
-      - 8001:8001
     depends_on:
       - prom
     environment:
@@ -135,15 +134,14 @@ services:
   kv:
     image: dgoldstein1/twowaykv:1.0.1
     ports:
-      - 5001:5001
+      - 5003:5001
     depends_on:
       - prom
 
   graph:
     image: dgoldstein1/biggraph:latest
     ports:
-      - 5000:5000
-      - 8001:8001
+      - 5002:5000
     depends_on:
       - prom
     environment:
@@ -191,7 +189,7 @@ services:
     depends_on:
       - mongodb
     ports:
-      - 5002:5000
+      - 5005:5000
 
   mongodb:
     image: 'mongo:4.0.5'
