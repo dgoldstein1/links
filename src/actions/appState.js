@@ -24,7 +24,7 @@ export function InitAapp(callback = () => {}) {
 
 export function ChooseGraphType(g) {
 	store.dispatch({ type: "SET_LOADING", loading: true });
-	// store initial settings
+	store.dispatch({type : "SET_CHOSEN_GRAPH_CONFIG", g})
 
 
   fetchAndStoreRandomStartNode(err => {

@@ -11,7 +11,7 @@ import { store } from "../reducers";
 export function getNeighbors(id) {
   return makeRequest({
     method: "get",
-    url: `/services/biggraph/neighbors?node=${id}&limit=${
+    url: `${store.getState().appState.graphConfig.graphEndpoint}neighbors?node=${id}&limit=${
       store.getState().graph.maxNeighbors
     }`,
     onErrorPrefix: "Could not get neighbors"
@@ -29,7 +29,7 @@ export function getNeighbors(id) {
 export function shortestPath(start, end) {
   return makeRequest({
     method: "get",
-    url: `/services/biggraph/shortestPath?start=${start.id}&end=${end.id}&n=${
+    url: `${store.getState().appState.graphConfig.graphEndpoint}shortestPath?start=${start.id}&end=${end.id}&n=${
       store.getState().graph.maxShortestPaths
     }&directed=${store.getState().graph.directedShortestPath}`,
     onErrorPrefix: `Could not get path from "${start.label}" to "${end.label}"`
@@ -39,7 +39,7 @@ export function shortestPath(start, end) {
 export function centrality(nodes = []) {
   return makeRequest({
     method: "post",
-    url: `/services/biggraph/centrality`,
+    url: `${store.getState().appState.graphConfig.graphEndpoint}centrality`,
     body: nodes
   });
 }

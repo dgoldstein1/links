@@ -5,6 +5,7 @@ const initialState = {
   config : {
     supportedGraphs : []
   },
+  graphConfig : {},
 };
 
 const visitReducer = (state = initialState, action) => {
@@ -13,6 +14,11 @@ const visitReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         config: action.config
       });
+
+     case "SET_CHOSEN_GRAPH_CONFIG":
+       return Object.assign({}, state, {
+         graphConfig: action.g
+       });
 
     case "SET_LANGUAGE":
       return Object.assign({}, state, {

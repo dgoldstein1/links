@@ -1,7 +1,7 @@
 import React from "react";
 import { store } from "../reducers";
 import LoadingSpinner from "../components/loadingSpinner";
-import { InitAapp } from "../actions/appState";
+import { InitAapp, ChooseGraphType } from "../actions/appState";
 import Footer from "../components/footer";
 import { connect } from "react-redux";
 // how long to wait on splash
@@ -91,7 +91,7 @@ class Splash extends React.Component {
           <h1 className="App-title">Links</h1>
           <p className="App-intro">Make Connections!</p>
           {this.props.config.supportedGraphs.map(g => (
-            <button className="large">{g.name}</button>  
+            <button onClick={() => ChooseGraphType(g)}>{g.name}</button>  
           ))}
         </div>
         <LoadingSpinner
