@@ -24,12 +24,17 @@ const initialState = {
   topInfo: {
     betweenessEdges: [],
     betweenessNodes: [],
-    pageRank: []
+    pageRank: [],
+    idCache: {}
   }
 };
 
 const graphReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "SET_TOP_INFO":
+      return Object.assign({}, state, {
+        topInfo: action.info
+      });
     case "CLEAR_GRAPH":
       return Object.assign({}, state, {
         graph: {

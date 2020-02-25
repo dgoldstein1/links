@@ -237,9 +237,25 @@ export function fetchAndStoreTop() {
   store.dispatch({ type: "SET_TOP_LOADING", loading: true });
   return graph.top().then(r => {
     if (r.success) {
-      store.dispatch({ type: "SET_TOP_INFO", info: r.data });
-      store.dispatch({ type: "UPDATE_VIEW", view: "top" });
+      // make big cache of ids to store
+      let ids = [];
+      r.data.betweenessNodes.forEach(n => ids.push(n.id));
+      r.data.pageRank.forEach(n => ids.push(n.id));
+      r.data.betweenessEdges.forEach(
+        n => ids.push(n.startId) && ids.push(n.endId)
+      );
+      ids = _.uniq(ids);
+      return kv.entriesFromValues(ids).then(idResp => {
+        let idCache = {};
+        if (idResp.success) {
+          idResp.data.entries.forEach(v => {
+            idCache[v.value] = v.key;
+          });
+        }
+        store.dispatch({ type: "SET_TOP_INFO", info: { ...r.data, idCache } });
+        store.dispatch({ type: "UPDATE_VIEW", view: "top" });
+        store.dispatch({ type: "SET_TOP_LOADING", loading: true });
+      });
     }
-    store.dispatch({ type: "SET_TOP_LOADING", loading: true });
   });
 }
