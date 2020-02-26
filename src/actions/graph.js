@@ -239,11 +239,13 @@ export function fetchAndStoreTop() {
     if (r.success) {
       // make big cache of ids to store
       let ids = [];
-      r.data.betweenessNodes.forEach(n => ids.push(n.id));
-      r.data.pageRank.forEach(n => ids.push(n.id));
-      r.data.betweenessEdges.forEach(
-        n => ids.push(n.startId) && ids.push(n.endId)
-      );
+      if (r.data.betweenessNodes) r.data.betweenessNodes.forEach(n => ids.push(n.id));
+      if (r.data.pageRank) r.data.pageRank.forEach(n => ids.push(n.id));
+      if (r.data.betweenessEdges) {
+        r.data.betweenessEdges.forEach(
+          n => ids.push(n.startId) && ids.push(n.endId)
+        );
+      }
       ids = _.uniq(ids);
       return kv.entriesFromValues(ids).then(idResp => {
         let idCache = {};
