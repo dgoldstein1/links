@@ -25,6 +25,8 @@ export function random(n) {
  * @return same response type as above
  **/
 export function entriesFromValues(ids) {
+  // make all ids int
+  ids = ids.map(i => parseInt(i));
   return makeRequest({
     method: "post",
     url: `${
