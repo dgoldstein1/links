@@ -24,6 +24,12 @@ const initialState = {
   topInfo: {
     pageRank: [],
     idCache: {}
+  },
+  overallGraphInfo: {
+    nodes: 0,
+    edges: 0,
+    averageInDegree: 0,
+    averageOutDegree: 0
   }
 };
 
@@ -32,6 +38,10 @@ const graphReducer = (state = initialState, action) => {
     case "SET_TOP_INFO":
       return Object.assign({}, state, {
         topInfo: action.info
+      });
+    case "SET_OVERALL_GRAPH_INFO":
+      return Object.assign({}, state, {
+        overallGraphInfo: action.info
       });
     case "CLEAR_GRAPH":
       return Object.assign({}, state, {

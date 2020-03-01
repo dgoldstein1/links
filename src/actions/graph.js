@@ -235,11 +235,11 @@ export function fetchAndStoreTop() {
   if (store.getState().appState.topLoading) return;
   store.dispatch({ type: "SET_GRAPH_LOADING", loading: true });
   store.dispatch({ type: "SET_TOP_LOADING", loading: true });
-  return graph.top().then(r => {
+  return graph.overallGraphData().then(r => {
     if (r.success) {
       // make big cache of ids to store
       let ids = [];
-      if (r.data.pageRank) r.data.pageRank.forEach(n => ids.push(n.id));
+      if (r.top.pageRank) r.top.pageRank.forEach(n => ids.push(n.id));
       ids = _.uniq(ids);
       return kv.entriesFromValues(ids).then(idResp => {
         let idCache = {};
@@ -248,7 +248,8 @@ export function fetchAndStoreTop() {
             idCache[v.value] = v.key;
           });
         }
-        store.dispatch({ type: "SET_TOP_INFO", info: { ...r.data, idCache } });
+        store.dispatch({ type: "SET_TOP_INFO", info: { ...r.top, idCache } });
+        store.dispatch({ type: "SET_OVERALL_GRAPH_INFO", info: { ...r.info } });
         store.dispatch({ type: "UPDATE_VIEW", view: "top" });
         store.dispatch({ type: "SET_TOP_LOADING", loading: true });
       });

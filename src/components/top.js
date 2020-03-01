@@ -6,8 +6,37 @@ import "../css/Top.css";
 function Top(props) {
   return (
     <div className="main">
-      <h1>Structural information for top ranking nodes</h1>
-      <br />
+      <table className="hoverable top-table">
+        <caption className="table-caption">
+          <a className="table-title" href="">
+            Overall Info
+          </a>
+          - Overall information on the graph, including average number of in /
+          out degrees across the graph, total number of nodes, and total number
+          of edges.
+        </caption>
+        <thead>
+          <tr>
+            <th>Nodes</th>
+            <th>Edges</th>
+            <th>Average In-Degree</th>
+            <th>Average Out-Degree</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Nodes">{props.overallGraphInfo.nNodes}</td>
+            <td data-label="Edges">{props.overallGraphInfo.nEdges}</td>
+            <td data-label="Average In-Degree">
+              {props.overallGraphInfo.avgInDegree}
+            </td>
+            <td data-label="Average Out-Degree">
+              {props.overallGraphInfo.avgOutDegree}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h1>Node Rank</h1>
       <table className="hoverable top-table">
         <caption className="table-caption">
           <a
@@ -25,7 +54,7 @@ function Top(props) {
           <tr>
             <th>Rank</th>
             <th>Node</th>
-            <th>Normalized-Value</th>
+            <th>Normalized Value</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +62,7 @@ function Top(props) {
             <tr key={i}>
               <td data-label="Rank">{i + 1}</td>
               <td data-label="Node">{props.topInfo.idCache[n.id]}</td>
-              <td data-label="Normalized-Value">{n.val}</td>
+              <td data-label="Normalized Value">{n.val}</td>
             </tr>
           ))}
         </tbody>
@@ -44,6 +73,7 @@ function Top(props) {
 }
 
 let mapStateToProps = state => ({
-  topInfo: state.graph.topInfo
+  topInfo: state.graph.topInfo,
+  overallGraphInfo: state.graph.overallGraphInfo
 });
 export default connect(mapStateToProps)(Top);
