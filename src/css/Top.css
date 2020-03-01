@@ -1,0 +1,21 @@
+.main {
+	text-align: center;
+}
+
+.table-title {
+	text-align: left;
+	text-indent: 25px;
+	font-size: 25px;
+	font-style: bold;
+}
+
+.top-table {
+	text-align: left;
+
+}
+
+table:not(.horizontal) {
+    overflow: unset;
+    max-height: unset;
+}
+

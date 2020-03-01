@@ -117,11 +117,11 @@ const graphReducer = (state = initialState, action) => {
             id: `${id}->-->--${p[i + 1]}`,
             source: parseInt(id),
             target: parseInt(p[i + 1]),
-            color: "red",
+            color: "red"
           });
         });
       });
-      edges = _.uniqBy(edges, "id")
+      edges = _.uniqBy(edges, "id");
       return Object.assign({}, state, {
         graph: { nodes, edges }
       });
@@ -144,7 +144,7 @@ const graphReducer = (state = initialState, action) => {
       });
       // add in node to make sure it's in list of nodes
       action.neighbors.push(action.node);
-      edgesToAdd = _.uniqBy(edgesToAdd, "id")
+      edgesToAdd = _.uniqBy(edgesToAdd, "id");
       // return state
       return Object.assign({}, state, {
         graph: {
