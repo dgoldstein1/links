@@ -1,5 +1,6 @@
 .main {
 	text-align: center;
+	margin: 25px;
 }
 
 .table-title {
@@ -24,3 +25,7 @@ table:not(.horizontal) {
     max-height: unset;
 }
 
+.table-intro {
+	text-align: left;
+	margin: 10px;
+}

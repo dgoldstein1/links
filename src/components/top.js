@@ -6,6 +6,16 @@ import "../css/Top.css";
 function Top(props) {
   return (
     <div className="main">
+      <div>
+        <h1>"{props.graphName}"</h1>
+        {props.graphName === "dev" && (
+          <div className="table-intro">
+            The 'dev' graph is generated when the links-dev container starts. It
+            randomly inserts 100 nodes with a random number of edges each in the
+            range 3-5. This is used for local development.
+          </div>
+        )}
+      </div>
       <table className="hoverable top-table">
         <caption className="table-caption">
           <a className="table-title" href="">
@@ -36,7 +46,6 @@ function Top(props) {
           </tr>
         </tbody>
       </table>
-      <h1>Node Rank</h1>
       <table className="hoverable top-table">
         <caption className="table-caption">
           <a
@@ -74,6 +83,7 @@ function Top(props) {
 
 let mapStateToProps = state => ({
   topInfo: state.graph.topInfo,
-  overallGraphInfo: state.graph.overallGraphInfo
+  overallGraphInfo: state.graph.overallGraphInfo,
+  graphName: state.appState.graphConfig.name
 });
 export default connect(mapStateToProps)(Top);
