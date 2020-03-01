@@ -9,11 +9,25 @@ function Top(props) {
       <h1>Structural information for top ranking nodes</h1>
       <br />
       <table className="hoverable top-table">
-        <caption className="table-title">
-          <a href="https://reference.wolfram.com/language/ref/PageRankCentrality.html">
+        <caption className="table-caption">
+          <a
+            className="table-title"
+            href="https://en.wikipedia.org/wiki/PageRank"
+          >
             Page Rank
           </a>
+          - The probability distribution used to represent the likelihood that a
+          person randomly clicking on links will arrive at any particular page.
+          Nodes with higher scores have higher centrality and more likely to be
+          reached by a random walk.
         </caption>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Node</th>
+            <th>Normalized-Value</th>
+          </tr>
+        </thead>
         <tbody>
           {props.topInfo.pageRank.map((n, i) => (
             <tr key={i}>
