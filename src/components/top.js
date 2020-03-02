@@ -18,7 +18,7 @@ function Top(props) {
       </div>
       <table className="hoverable top-table">
         <caption className="table-caption">
-          <a className="table-title" href="">
+          <a className="table-title" href="https://en.wikipedia.org/wiki/Degree_(graph_theory)">
             Overall Info
           </a>
           - Overall information on the graph, including average number of in /
