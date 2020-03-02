@@ -1,0 +1,31 @@
+.main {
+	text-align: center;
+	margin: 25px;
+}
+
+.table-title {
+	text-align: left;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.table-caption {
+	text-align: left;
+	font-size: 18px;
+	font-style: italic;
+}
+
+.top-table {
+	text-align: left;
+
+}
+
+table:not(.horizontal) {
+    overflow: unset;
+    max-height: unset;
+}
+
+.table-intro {
+	text-align: left;
+	margin: 10px;
+}

@@ -46,9 +46,20 @@ export function centrality(nodes = []) {
   });
 }
 
-export function top() {
+export function overallGraphData() {
   return makeRequest({
     method: "get",
-    url: `${store.getState().appState.graphConfig.graphEndpoint}/top`
+    url: `${store.getState().appState.graphConfig.graphEndpoint}/info`
+  }).then(r => {
+    return makeRequest({
+      method: "get",
+      url: `${store.getState().appState.graphConfig.graphEndpoint}/top`
+    }).then(d => {
+      return Promise.resolve({
+        success: r.success && d.success,
+        top: d.data,
+        info: r.data
+      });
+    });
   });
 }

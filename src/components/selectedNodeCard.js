@@ -58,11 +58,6 @@ function SelectedNodeCard(graph) {
                               degree centrality
                             </a>
                           </th>
-                          <th>
-                            <a href="http://mathworld.wolfram.com/GraphEccentricity.html">
-                              eccentricity
-                            </a>
-                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -71,9 +66,6 @@ function SelectedNodeCard(graph) {
                             {sNode.centrality.closeness}
                           </td>
                           <td data-label="degree">{sNode.centrality.degree}</td>
-                          <td data-label="eccentricity">
-                            {sNode.centrality.eccentricity}
-                          </td>
                         </tr>
                       </tbody>
                     </table>

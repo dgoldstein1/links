@@ -22,10 +22,14 @@ const initialState = {
   layout: "hierarchy",
   maxNeighbors: 15,
   topInfo: {
-    betweenessEdges: [],
-    betweenessNodes: [],
     pageRank: [],
     idCache: {}
+  },
+  overallGraphInfo: {
+    nodes: 0,
+    edges: 0,
+    averageInDegree: 0,
+    averageOutDegree: 0
   }
 };
 
@@ -34,6 +38,10 @@ const graphReducer = (state = initialState, action) => {
     case "SET_TOP_INFO":
       return Object.assign({}, state, {
         topInfo: action.info
+      });
+    case "SET_OVERALL_GRAPH_INFO":
+      return Object.assign({}, state, {
+        overallGraphInfo: action.info
       });
     case "CLEAR_GRAPH":
       return Object.assign({}, state, {
@@ -101,7 +109,7 @@ const graphReducer = (state = initialState, action) => {
     case "SET_GRAPH_PATH":
       // create array of all nodes from entries
       let nodes = action.entries.map(e => ({
-        id: e.value,
+        id: parseInt(e.value),
         label: e.key,
         size: 1,
         color: "red"
@@ -117,12 +125,13 @@ const graphReducer = (state = initialState, action) => {
           // lookup this entry and next entry
           edges.push({
             id: `${id}->-->--${p[i + 1]}`,
-            source: id,
-            target: p[i + 1],
+            source: parseInt(id),
+            target: parseInt(p[i + 1]),
             color: "red"
           });
         });
       });
+      edges = _.uniqBy(edges, "id");
       return Object.assign({}, state, {
         graph: { nodes, edges }
       });
@@ -138,13 +147,14 @@ const graphReducer = (state = initialState, action) => {
         if (!n.id) console.log(n);
         edgesToAdd.push({
           id: `${action.node.id}->-->--${n.id}`,
-          source: action.node.id,
-          target: n.id,
+          source: parseInt(action.node.id),
+          target: parseInt(n.id),
           color: "black"
         });
       });
       // add in node to make sure it's in list of nodes
       action.neighbors.push(action.node);
+      edgesToAdd = _.uniqBy(edgesToAdd, "id");
       // return state
       return Object.assign({}, state, {
         graph: {
