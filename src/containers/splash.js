@@ -68,7 +68,12 @@ export function _createRandomGraph() {
 class Splash extends React.Component {
   constructor(props) {
     super(props);
+
+    let graphsLoading = {}
+    props.config.supportedGraphs.forEach(g => graphsLoading[g.name] = true)
+
     this.state = {
+      graphsLoading,
       loading: false,
       graph: _createRandomGraph()
     };
