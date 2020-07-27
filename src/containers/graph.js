@@ -13,7 +13,7 @@ import "../css/Graph.css";
 
 const DEBOUNCE_HOVER = 10;
 
-var onHoverDebounced = _.debounce(e => {
+var onHoverDebounced = _.debounce((e) => {
   setSelectedNode(e.data.node, false);
 }, DEBOUNCE_HOVER);
 
@@ -62,7 +62,7 @@ class Graph extends React.Component {
             <div className="sigmaContainer">
               <Sigma
                 id="sigma-graph"
-                onClickNode={e =>
+                onClickNode={(e) =>
                   fetchAndStoreNeighbors(e.data.node, () => {}, true)
                 }
                 onOverNode={onHoverDebounced}
@@ -73,7 +73,7 @@ class Graph extends React.Component {
                   defaultLabelSize: 50 / this.props.graph.nodes.length + 18,
                   drawEdges: true,
                   drawLabels: this.props.graph.nodes.length < 500,
-                  clone: false
+                  clone: false,
                 }}
                 style={{ height: window.innerHeight - 400 + "px" }}
               >
@@ -89,5 +89,5 @@ class Graph extends React.Component {
   }
 }
 
-let mapStateToProps = state => state.graph;
+let mapStateToProps = (state) => state.graph;
 export default connect(mapStateToProps)(Graph);

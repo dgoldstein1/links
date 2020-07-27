@@ -29,7 +29,7 @@ ErrorCard.propTypes = {
   error: PropTypes.string.isRequired,
   action: PropTypes.oneOf(["close", "reload"]).isRequired,
   onAction: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(["warning", "error"]).isRequired
+  type: PropTypes.oneOf(["warning", "error"]).isRequired,
 };
 
 export default ErrorCard;

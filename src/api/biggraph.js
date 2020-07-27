@@ -14,7 +14,7 @@ export function getNeighbors(id) {
     url: `${
       store.getState().appState.graphConfig.graphEndpoint
     }/neighbors?node=${id}&limit=${store.getState().graph.maxNeighbors}`,
-    onErrorPrefix: "Could not get neighbors"
+    onErrorPrefix: "Could not get neighbors",
   });
 }
 
@@ -34,7 +34,7 @@ export function shortestPath(start, end) {
     }/shortestPath?start=${start.id}&end=${end.id}&n=${
       store.getState().graph.maxShortestPaths
     }&directed=${store.getState().graph.directedShortestPath}`,
-    onErrorPrefix: `Could not get path from "${start.label}" to "${end.label}"`
+    onErrorPrefix: `Could not get path from "${start.label}" to "${end.label}"`,
   });
 }
 
@@ -42,23 +42,23 @@ export function centrality(nodes = []) {
   return makeRequest({
     method: "post",
     url: `${store.getState().appState.graphConfig.graphEndpoint}/centrality`,
-    body: nodes
+    body: nodes,
   });
 }
 
 export function overallGraphData() {
   return makeRequest({
     method: "get",
-    url: `${store.getState().appState.graphConfig.graphEndpoint}/info`
-  }).then(r => {
+    url: `${store.getState().appState.graphConfig.graphEndpoint}/info`,
+  }).then((r) => {
     return makeRequest({
       method: "get",
-      url: `${store.getState().appState.graphConfig.graphEndpoint}/top`
-    }).then(d => {
+      url: `${store.getState().appState.graphConfig.graphEndpoint}/top`,
+    }).then((d) => {
       return Promise.resolve({
         success: r.success && d.success,
         top: d.data,
-        info: r.data
+        info: r.data,
       });
     });
   });

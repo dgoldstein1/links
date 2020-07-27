@@ -9,13 +9,13 @@ configure({ adapter: new Adapter() });
 describe("components", () => {
   describe("search bar", () => {
     let defaultProps = {
-      onSelect: e => {},
+      onSelect: (e) => {},
       placeholder: "test",
       search: () => {},
       value: {
         label: "test1",
-        key: "test-key1"
-      }
+        key: "test-key1",
+      },
     };
     it("matches snapshot", () => {
       expect(<SearchBar {...defaultProps} />).toMatchSnapshot();
@@ -25,18 +25,18 @@ describe("components", () => {
       let newEntries = ["entry1", "entry2"];
       let props = {
         ...defaultProps,
-        search: e => {
+        search: (e) => {
           searchArgs = e;
           return Promise.resolve({
             success: true,
             data: {
-              entries: newEntries
-            }
+              entries: newEntries,
+            },
           });
-        }
+        },
       };
 
-      it("searches for new items", done => {
+      it("searches for new items", (done) => {
         searchArgs = undefined;
         let wrapper = shallow(<SearchBar {...props} />);
         expect(wrapper.state(["items"])).toEqual([]);
@@ -50,11 +50,11 @@ describe("components", () => {
       it("sets new value when for on change even if bad response from kv", () => {
         let newProps = {
           ...props,
-          search: e => {
+          search: (e) => {
             return Promise.resolve({
-              success: false
+              success: false,
             });
-          }
+          },
         };
         let wrapper = shallow(<SearchBar {...props} />);
         expect(wrapper.state(["value"])).toEqual(props.value.label);
@@ -77,11 +77,11 @@ describe("components", () => {
       let wrapper = shallow(<SearchBar {...defaultProps} />);
       let node = {
         id: 234,
-        label: "234"
+        label: "234",
       };
       let searchItem = {
         key: "3234",
-        value: 234
+        value: 234,
       };
 
       expect(wrapper.state(["value"])).toEqual(defaultProps.value.label);

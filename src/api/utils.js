@@ -3,12 +3,12 @@ import axios from "axios";
 // returns Promise{sucess, data, error}
 export function makeRequest({ method, url, onErrorPrefix = "", body }) {
   return axios[`${method}`](encodeURI(url), body)
-    .then(r => ({
+    .then((r) => ({
       success: true,
-      data: r.data
+      data: r.data,
     }))
-    .catch(e => ({
+    .catch((e) => ({
       success: false,
-      error: `${onErrorPrefix}: ${e.response.data.error || e.message}`
+      error: `${onErrorPrefix}: ${e.response.data.error || e.message}`,
     }));
 }

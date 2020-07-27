@@ -32,40 +32,40 @@ describe("MainView", () => {
         state: {
           appState: {
             view: "about",
-            loading: false
+            loading: false,
           },
           graph: {
-            layout: "cluster"
-          }
-        }
+            layout: "cluster",
+          },
+        },
       },
       {
         name: "settings page",
         state: {
           appState: {
             view: "settings",
-            loading: false
+            loading: false,
           },
           graph: {
-            layout: "cluster"
-          }
-        }
+            layout: "cluster",
+          },
+        },
       },
       {
         name: "path",
         state: {
           appState: {
             view: "settings",
-            loading: false
+            loading: false,
           },
           graph: {
-            layout: "cluster"
-          }
-        }
-      }
+            layout: "cluster",
+          },
+        },
+      },
     ];
 
-    testTable.forEach(t => {
+    testTable.forEach((t) => {
       it(t.name, () => {
         let store = mockStore(t.state);
         let wrapper = renderer.create(

@@ -82,8 +82,8 @@ function SelectedNodeCard(graph) {
 
 SelectedNodeCard.defaultProps = {
   description: "",
-  error: ""
+  error: "",
 };
 
-let mapStateToProps = state => state.graph;
+let mapStateToProps = (state) => state.graph;
 export default connect(mapStateToProps)(SelectedNodeCard);

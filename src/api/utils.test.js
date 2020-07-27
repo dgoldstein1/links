@@ -20,7 +20,7 @@ describe("api utils", () => {
         url: `/test`,
         onErrorPrefix: "error getting ...",
         responseCode: 200,
-        data: { test: "test" }
+        data: { test: "test" },
       },
       {
         name: "normal POST request",
@@ -29,7 +29,7 @@ describe("api utils", () => {
         url: `/test`,
         onErrorPrefix: "error getting ...",
         responseCode: 200,
-        data: { test: "test" }
+        data: { test: "test" },
       },
       {
         name: "GET request with response code 500",
@@ -37,17 +37,17 @@ describe("api utils", () => {
         url: `/test`,
         onErrorPrefix: "error getting ...",
         responseCode: 500,
-        data: { test: "test" }
-      }
+        data: { test: "test" },
+      },
     ];
-    testTable.forEach(t => {
-      it(t.name, done => {
+    testTable.forEach((t) => {
+      it(t.name, (done) => {
         let onFulfilled = sinon.spy();
         moxios.stubRequest(t.url, {
           status: t.responseCode,
-          response: t.data
+          response: t.data,
         });
-        makeRequest({ ...t }).then(r => {
+        makeRequest({ ...t }).then((r) => {
           expect(r).toMatchSnapshot();
           done();
         });

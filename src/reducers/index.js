@@ -8,12 +8,12 @@ import graph from "./graph";
 
 const Reducer = combineReducers({
   appState,
-  graph
+  graph,
 });
 
 const logger = createLogger({
   collapsed: true,
-  diff: true
+  diff: true,
 });
 
 let middleware = {};

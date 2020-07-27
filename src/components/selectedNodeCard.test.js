@@ -17,11 +17,11 @@ describe("selectedNodeCard", () => {
               description: "Test description",
               loading: false,
               node: {
-                label: "test"
-              }
-            }
-          }
-        }
+                label: "test",
+              },
+            },
+          },
+        },
       },
       {
         name: "no description",
@@ -31,11 +31,11 @@ describe("selectedNodeCard", () => {
               description: undefined,
               loading: false,
               node: {
-                label: "test"
-              }
-            }
-          }
-        }
+                label: "test",
+              },
+            },
+          },
+        },
       },
       {
         name: "description bigger than word limit",
@@ -46,15 +46,15 @@ describe("selectedNodeCard", () => {
                 "this is a test description longer than the word limit this is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limitthis is a test description longer than the word limit",
               loading: false,
               node: {
-                label: "test"
-              }
-            }
-          }
-        }
-      }
+                label: "test",
+              },
+            },
+          },
+        },
+      },
     ];
 
-    testTable.forEach(t => {
+    testTable.forEach((t) => {
       it(t.name, () => {
         let store = mockStore(t.state);
         let wrapper = renderer.create(

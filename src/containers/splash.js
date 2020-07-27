@@ -17,13 +17,13 @@ export function _getNodesForRandomGraph() {
   for (let i = 0; i < nNodes; i++) {
     nodes.push({
       id: i,
-      label: i
+      label: i,
     });
   }
   // connect at least a few nodes in 10x range
   for (let i = 100; i < 105; i++) {
     nodes.push({
-      id: i
+      id: i,
     });
   }
   return nodes;
@@ -35,7 +35,7 @@ export function _getRandomEdges() {
     edges.push({
       source: i,
       target: i + 1,
-      id: `${i} to ${i + 1}`
+      id: `${i} to ${i + 1}`,
     });
   }
   return edges;
@@ -49,14 +49,14 @@ export function _createRandomGraph() {
   let nodes = _getNodesForRandomGraph(),
     edges = _getRandomEdges();
   // create nodes array
-  nodes.forEach(n => {
-    nodes.forEach(nJ => {
+  nodes.forEach((n) => {
+    nodes.forEach((nJ) => {
       // randomly connect if is different node
       if (n.id !== nJ.id && getRandomInt(2) === 1) {
         edges.push({
           id: `${n.id} to ${nJ.id}`,
           source: n.id,
-          target: nJ.id
+          target: nJ.id,
         });
       }
     });
@@ -70,7 +70,7 @@ class Splash extends React.Component {
     super(props);
     this.state = {
       loading: false,
-      graph: _createRandomGraph()
+      graph: _createRandomGraph(),
     };
   }
 
@@ -89,9 +89,25 @@ class Splash extends React.Component {
         <div className="App-header">
           <h1 className="App-title">Links</h1>
           <p className="App-intro">Make Connections!</p>
-          {this.props.config.supportedGraphs.map(g => (
-            <button onClick={() => ChooseGraphType(g)}>{g.name}</button>
-          ))}
+          {this.props.config.supportedGraphs.map((g) => {
+            let isAvailable =
+              this.props.config.loadedGraphs &&
+              this.props.config.loadedGraphs[g.name];
+
+            console.log(isAvailable);
+            let color = "";
+            if (isAvailable === true) color = "primary";
+            if (isAvailable === false) color = "secondary";
+            return (
+              <button
+                disabled={isAvailable !== true}
+                className={color}
+                onClick={() => ChooseGraphType(g)}
+              >
+                {g.name}
+              </button>
+            );
+          })}
         </div>
         <LoadingSpinner
           graph={this.state.graph}
@@ -106,7 +122,7 @@ class Splash extends React.Component {
   }
 }
 
-let mapStateToProps = state => ({
-  config: state.appState.config
+let mapStateToProps = (state) => ({
+  config: state.appState.config,
 });
 export default connect(mapStateToProps)(Splash);

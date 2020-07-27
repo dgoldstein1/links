@@ -15,7 +15,7 @@ describe("components", () => {
     {
       name: "About",
       component: About,
-      props: {}
+      props: {},
     },
     {
       name: "error Card (error)",
@@ -24,8 +24,8 @@ describe("components", () => {
         error: "test error",
         action: "close",
         onAction: () => {},
-        type: "error"
-      }
+        type: "error",
+      },
     },
     {
       name: "error Card (warning)",
@@ -34,8 +34,8 @@ describe("components", () => {
         error: "test error",
         action: "reload",
         onAction: () => {},
-        type: "warning"
-      }
+        type: "warning",
+      },
     },
     {
       name: "Loading Spinner",
@@ -45,8 +45,8 @@ describe("components", () => {
         graph: { nodes: [], edges: [] },
         height: "150px",
         width: "150px",
-        loading: true
-      }
+        loading: true,
+      },
     },
     {
       name: "Loading Spinner (loading=false)",
@@ -56,12 +56,12 @@ describe("components", () => {
         graph: { nodes: [], edges: [] },
         height: "150px",
         width: "150px",
-        loading: false
-      }
-    }
+        loading: false,
+      },
+    },
   ];
 
-  testTable.forEach(t => {
+  testTable.forEach((t) => {
     it(t.name, () => {
       _matchesSnapshot(t.component, t.props);
     });
