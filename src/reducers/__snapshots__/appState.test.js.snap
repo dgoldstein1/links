@@ -3,11 +3,13 @@
 exports[`reducers appState SET_LANGUAGE sets new language 1`] = `
 Object {
   "config": Object {
+    "loadedGraphs": Object {},
     "supportedGraphs": Array [],
   },
   "graphConfig": Object {},
   "language": "newlang",
   "loading": true,
+  "topLoading": false,
   "view": "splash",
 }
 `;
@@ -15,11 +17,13 @@ Object {
 exports[`reducers appState SET_LOADING updates the store with new value of loading 1`] = `
 Object {
   "config": Object {
+    "loadedGraphs": Object {},
     "supportedGraphs": Array [],
   },
   "graphConfig": Object {},
   "language": "english",
   "loading": true,
+  "topLoading": false,
   "view": "splash",
 }
 `;
@@ -27,11 +31,13 @@ Object {
 exports[`reducers appState UPDATE_VIEW updates the store with a new view 1`] = `
 Object {
   "config": Object {
+    "loadedGraphs": Object {},
     "supportedGraphs": Array [],
   },
   "graphConfig": Object {},
   "language": "english",
   "loading": true,
+  "topLoading": false,
   "view": "newView",
 }
 `;
@@ -39,11 +45,13 @@ Object {
 exports[`reducers appState initializes with correct state 1`] = `
 Object {
   "config": Object {
+    "loadedGraphs": Object {},
     "supportedGraphs": Array [],
   },
   "graphConfig": Object {},
   "language": "english",
   "loading": true,
+  "topLoading": false,
   "view": "splash",
 }
 `;

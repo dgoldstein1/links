@@ -35,6 +35,12 @@ exports[`Header matches snapshots cluster 1`] = `
       src="title.png"
     />
   </a>
+  <button
+    id="about-this-graph"
+    onClick={[Function]}
+  >
+    about 'undefined'
+  </button>
   <div
     style={
       Object {
@@ -133,6 +139,12 @@ exports[`Header matches snapshots hierachy 1`] = `
       src="title.png"
     />
   </a>
+  <button
+    id="about-this-graph"
+    onClick={[Function]}
+  >
+    about 'undefined'
+  </button>
   <div
     style={
       Object {

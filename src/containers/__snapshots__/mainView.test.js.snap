@@ -18,6 +18,12 @@ exports[`MainView matches snapshots about page 1`] = `
           src="title.png"
         />
       </a>
+      <button
+        id="about-this-graph"
+        onClick={[Function]}
+      >
+        about 'undefined'
+      </button>
       <div
         style={
           Object {
@@ -492,6 +498,12 @@ exports[`MainView matches snapshots path 1`] = `
           src="title.png"
         />
       </a>
+      <button
+        id="about-this-graph"
+        onClick={[Function]}
+      >
+        about 'undefined'
+      </button>
       <div
         style={
           Object {
@@ -707,6 +719,12 @@ exports[`MainView matches snapshots settings page 1`] = `
           src="title.png"
         />
       </a>
+      <button
+        id="about-this-graph"
+        onClick={[Function]}
+      >
+        about 'undefined'
+      </button>
       <div
         style={
           Object {
@@ -900,128 +918,6 @@ exports[`MainView matches snapshots settings page 1`] = `
         </a>
       </footer>
     </div>
-  </div>
-</div>
-`;
-
-exports[`MainView matches snapshots splash page, is loading 1`] = `
-<div
-  id="mainView"
->
-  <div
-    className="App"
-  >
-    <div
-      className="App-header"
-    >
-      <h1
-        className="App-title"
-      >
-        Links
-      </h1>
-      <p
-        className="App-intro"
-      >
-        Make Connections!
-      </p>
-    </div>
-    <div
-      className="contentContainer"
-    >
-      <div
-        style={
-          Object {
-            "height": "400px",
-            "width": "1024px",
-          }
-        }
-      />
-    </div>
-    <footer
-      className="App-footer"
-    >
-      © 2019 David Goldstein |
-       
-      <a
-        href="http://davidcharlesgoldstein.com?ref=links-ui"
-      >
-        Personal Website
-      </a>
-       
-      | 
-      <a
-        href="/LICENSE"
-      >
-        License
-      </a>
-       | 
-      <a
-        href="/VERSION"
-      >
-        Version
-      </a>
-    </footer>
-  </div>
-</div>
-`;
-
-exports[`MainView matches snapshots splash page, no loading 1`] = `
-<div
-  id="mainView"
->
-  <div
-    className="App"
-  >
-    <div
-      className="App-header"
-    >
-      <h1
-        className="App-title"
-      >
-        Links
-      </h1>
-      <p
-        className="App-intro"
-      >
-        Make Connections!
-      </p>
-    </div>
-    <div
-      className="contentContainer"
-    >
-      <div
-        style={
-          Object {
-            "height": "400px",
-            "width": "1024px",
-          }
-        }
-      />
-    </div>
-    <footer
-      className="App-footer"
-    >
-      © 2019 David Goldstein |
-       
-      <a
-        href="http://davidcharlesgoldstein.com?ref=links-ui"
-      >
-        Personal Website
-      </a>
-       
-      | 
-      <a
-        href="/LICENSE"
-      >
-        License
-      </a>
-       | 
-      <a
-        href="/VERSION"
-      >
-        Version
-      </a>
-    </footer>
   </div>
 </div>
 `;

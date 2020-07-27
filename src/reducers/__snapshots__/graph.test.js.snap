@@ -12,6 +12,12 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -21,6 +27,10 @@ Object {
     "node": Object {},
   },
   "targetNode": Object {},
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
+  },
 }
 `;
 
@@ -36,6 +46,12 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -45,6 +61,10 @@ Object {
     "node": Object {},
   },
   "targetNode": Object {},
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
+  },
 }
 `;
 
@@ -60,6 +80,12 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -69,6 +95,10 @@ Object {
     "node": Object {},
   },
   "targetNode": Object {},
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
+  },
 }
 `;
 
@@ -84,6 +114,12 @@ Object {
   "loading": true,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -93,6 +129,10 @@ Object {
     "node": Object {},
   },
   "targetNode": Object {},
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
+  },
 }
 `;
 
@@ -108,6 +148,12 @@ Object {
   "loading": false,
   "maxNeighbors": 1000,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -117,6 +163,10 @@ Object {
     "node": Object {},
   },
   "targetNode": Object {},
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
+  },
 }
 `;
 
@@ -132,6 +182,12 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {
     "id": 1,
     "label": "test",
@@ -147,6 +203,10 @@ Object {
     "node": Object {},
   },
   "targetNode": Object {},
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
+  },
 }
 `;
 
@@ -162,6 +222,12 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -173,6 +239,10 @@ Object {
     },
   },
   "targetNode": Object {},
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
+  },
 }
 `;
 
@@ -188,6 +258,12 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {},
   "selectedNode": Object {
     "centrality": undefined,
@@ -198,6 +274,10 @@ Object {
     "node": Object {},
   },
   "targetNode": Object {},
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
+  },
 }
 `;
 
@@ -213,6 +293,12 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -223,6 +309,10 @@ Object {
   },
   "targetNode": Object {
     "label": "new target node",
+  },
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
   },
 }
 `;
@@ -256,6 +346,12 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -265,6 +361,10 @@ Object {
     "node": Object {},
   },
   "targetNode": Object {},
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
+  },
 }
 `;
 
@@ -443,6 +543,12 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -452,6 +558,10 @@ Object {
     "node": Object {},
   },
   "targetNode": Object {},
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
+  },
 }
 `;
 
@@ -476,6 +586,12 @@ Object {
   "loading": false,
   "maxNeighbors": 15,
   "maxShortestPaths": 5,
+  "overallGraphInfo": Object {
+    "averageInDegree": 0,
+    "averageOutDegree": 0,
+    "edges": 0,
+    "nodes": 0,
+  },
   "rootNode": Object {},
   "selectedNode": Object {
     "description": "",
@@ -485,5 +601,9 @@ Object {
     "node": Object {},
   },
   "targetNode": Object {},
+  "topInfo": Object {
+    "idCache": Object {},
+    "pageRank": Array [],
+  },
 }
 `;
