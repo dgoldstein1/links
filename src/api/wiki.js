@@ -3,7 +3,7 @@ import { store } from "../reducers";
 
 let _errOut = (s, e) => ({
   success: false,
-  error: `Could not get description from wikipedia for article ${s}: ${e}`
+  error: `Could not get description from wikipedia for article ${s}: ${e}`,
 });
 /**
  * @param s {string}
@@ -17,7 +17,7 @@ let _errOut = (s, e) => ({
   }
  **/
 export function getDescription(s) {
-  return _queryByTitle(s).then(r => {
+  return _queryByTitle(s).then((r) => {
     if (r.success) return Promise.resolve(r);
     // if can't find find exact title, try opensearch
     return _opensearch(s);
@@ -39,7 +39,7 @@ export function _queryByTitle(s, retry = 0) {
 
   return axios
     .get(encodeURI(url))
-    .then(r => {
+    .then((r) => {
       let pageId = Object.keys(r.data.query.pages)[0];
       /*jslint eqeq: true*/
       if (!pageId || pageId + "" === "-1") return _errOut(s, "no page found");
@@ -55,10 +55,10 @@ export function _queryByTitle(s, retry = 0) {
       url += `&pageids=${pageId}`;
       return axios
         .get(encodeURI(url))
-        .then(r => ({
+        .then((r) => ({
           success: true,
           description: extract,
-          img: r.data.query.pages[pageId].thumbnail
+          img: r.data.query.pages[pageId].thumbnail,
         }))
         .catch(_errOut);
     })
@@ -77,7 +77,7 @@ export function _opensearch(s) {
   url += `&search=${s}`;
   return axios
     .get(encodeURI(url))
-    .then(r => {
+    .then((r) => {
       let pageTitle = r.data[1];
       if (!pageTitle) return _errOut(s, "no page found");
       let extract = r.data[2];
@@ -90,12 +90,12 @@ export function _opensearch(s) {
       url += `&titles=${pageTitle}`;
       return axios
         .get(encodeURI(url))
-        .then(r => {
+        .then((r) => {
           let pageId = Object.keys(r.data.query.pages)[0];
           return {
             success: true,
             description: extract[0],
-            img: pageId && r.data.query.pages[pageId].thumbnail
+            img: pageId && r.data.query.pages[pageId].thumbnail,
           };
         })
         .catch(_errOut);

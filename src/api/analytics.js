@@ -14,11 +14,11 @@ export function postUserVisit() {
   // get client ip address
   return axios
     .get("/myip")
-    .then(r => {
+    .then((r) => {
       if (!r.data)
         return Promise.resolve({
           success: false,
-          error: "Could not get client ip address from reverse proxy"
+          error: "Could not get client ip address from reverse proxy",
         });
       let ip = r.data.ip && r.data.ip.split(":")[0];
       // first get ip address of user
@@ -26,25 +26,25 @@ export function postUserVisit() {
         `/analytics/api/geoIpServer/v1?apiKey=at_Mb3nWUvk1iAL4W97H5Fs1LxAXjRCn&ipAddress=${ip}`
       );
       // add in href, if exists
-      return axios.get(geoUrl).then(res => {
+      return axios.get(geoUrl).then((res) => {
         // check for failure
         if (!res.data)
           return Promise.resolve({
             success: false,
-            error: "Could not get IP address from 3rd party"
+            error: "Could not get IP address from 3rd party",
           });
         // now post this data to the backend
         return makeRequest({
           method: "post",
           url: "/analytics/server/visits",
           onErrorPrefix: "could not post json to analytics backend",
-          body: _formatDataToAnalyticsBackend(res)
+          body: _formatDataToAnalyticsBackend(res),
         });
       });
     })
-    .catch(e => ({
+    .catch((e) => ({
       success: false,
-      error: "could not get user IP address: " + e.message
+      error: "could not get user IP address: " + e.message,
     }));
 }
 
@@ -62,7 +62,7 @@ export function _formatDataToAnalyticsBackend(ipifyResponse) {
     longitude: ipifyResponse.data.location.lng,
     region_code: ipifyResponse.data.location.region,
     time_zone: "ipify" + ipifyResponse.data.location.timezone,
-    zip_code: ipifyResponse.data.location.postalCode
+    zip_code: ipifyResponse.data.location.postalCode,
   };
   // add in referrer code
   d.href = new URLSearchParams(window.location.search).get("href");

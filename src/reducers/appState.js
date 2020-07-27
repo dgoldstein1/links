@@ -3,42 +3,54 @@ const initialState = {
   loading: true, // the app is / isn't loading
   view: "splash", // one of "path", "splash", "about", "settings"
   config: {
-    supportedGraphs: []
+    supportedGraphs: [],
+    loadedGraphs: {},
   },
   graphConfig: {},
-  topLoading: false
+  topLoading: false,
 };
 
 const visitReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_TOP_LOADING":
       return Object.assign({}, state, {
-        topLoading: action.loading
+        topLoading: action.loading,
       });
 
     case "SET_CONFIG":
       return Object.assign({}, state, {
-        config: action.config
+        config: action.config,
+      });
+
+    case "SET_GRAPH_IS_AVAILABLE":
+      return Object.assign({}, state, {
+        config: {
+          ...state.config,
+          loadedGraphs: {
+            ...state.config.loadedGraphs,
+            [action.g.name]: action.isAvailable,
+          },
+        },
       });
 
     case "SET_CHOSEN_GRAPH_CONFIG":
       return Object.assign({}, state, {
-        graphConfig: action.g
+        graphConfig: action.g,
       });
 
     case "SET_LANGUAGE":
       return Object.assign({}, state, {
-        language: action.language
+        language: action.language,
       });
     // set when the app is loading
     case "SET_LOADING":
       return Object.assign({}, state, {
-        loading: action.loading === undefined ? false : action.loading
+        loading: action.loading === undefined ? false : action.loading,
       });
     // update where the user is currently looking
     case "UPDATE_VIEW":
       return Object.assign({}, state, {
-        view: action.view
+        view: action.view,
       });
     default:
       return state;

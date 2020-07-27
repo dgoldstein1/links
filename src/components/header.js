@@ -7,7 +7,7 @@ import {
   setStartPath,
   setTargetPath,
   expandAll,
-  fetchAndStoreTop
+  fetchAndStoreTop,
 } from "../actions/graph";
 import SearchBar from "./searchBar";
 import "../css/MainView.css";
@@ -78,9 +78,9 @@ function Header(p) {
   );
 }
 
-let mapStateToProps = state => ({
+let mapStateToProps = (state) => ({
   layout: state.graph.layout,
   rootNode: state.graph.rootNode,
-  targetNode: state.graph.targetNode
+  targetNode: state.graph.targetNode,
 });
 export default connect(mapStateToProps)(Header);

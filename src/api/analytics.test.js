@@ -20,21 +20,21 @@ describe("analytics", () => {
               lng: -92.8514,
               postalCode: "55033",
               timezone: "-06:00",
-              geonameId: 5029500
+              geonameId: 5029500,
             },
             as: {
               asn: 7922,
               name: "Comcast",
               route: "96.64.0.0/11",
               domain: "https://corporate.comcast.com/",
-              type: "Cable/DSL/ISP"
+              type: "Cable/DSL/ISP",
             },
-            isp: "Comcast Cable Communications, LLC"
-          }
-        }
-      }
+            isp: "Comcast Cable Communications, LLC",
+          },
+        },
+      },
     ];
-    testTable.forEach(t => {
+    testTable.forEach((t) => {
       it(t.name, () => {
         expect(_formatDataToAnalyticsBackend(t.res)).toMatchSnapshot();
       });
@@ -64,7 +64,7 @@ describe("analytics", () => {
           region_code: "VA",
           time_zone: "",
           zip_code: "20166",
-          visit_date: "2019-11-27T01:01:23.504356771Z"
+          visit_date: "2019-11-27T01:01:23.504356771Z",
         },
         responseCode: 200,
         geoIpResponse: {
@@ -77,17 +77,17 @@ describe("analytics", () => {
             lng: -77.44322967529297,
             postalCode: "20166",
             timezone: "-06:00",
-            geonameId: 5029500
+            geonameId: 5029500,
           },
           as: {
             asn: 7922,
             name: "Comcast",
             route: "96.64.0.0/11",
             domain: "https://corporate.comcast.com/",
-            type: "Cable/DSL/ISP"
+            type: "Cable/DSL/ISP",
           },
-          isp: "Comcast Cable Communications, LLC"
-        }
+          isp: "Comcast Cable Communications, LLC",
+        },
       },
       {
         name: "bad geoIpRequest",
@@ -104,33 +104,33 @@ describe("analytics", () => {
           region_code: "VA",
           time_zone: "",
           zip_code: "20166",
-          visit_date: "2019-11-27T01:01:23.504356771Z"
+          visit_date: "2019-11-27T01:01:23.504356771Z",
         },
         responseCode: 500,
-        geoIpResponse: {}
-      }
+        geoIpResponse: {},
+      },
     ];
-    testTable.forEach(t => {
-      it(t.name, done => {
+    testTable.forEach((t) => {
+      it(t.name, (done) => {
         let onFulfilled = sinon.spy();
         // geoIpCheck
         moxios.stubRequest(t.geoIpUrl, {
           status: t.responseCode,
-          response: t.geoIpResponse
+          response: t.geoIpResponse,
         });
         // analytics server "/visits" post
         moxios.stubRequest(t.analyticsServerUrl, {
           status: 200,
-          response: t.analyticsServerResponse
+          response: t.analyticsServerResponse,
         });
 
         moxios.stubRequest("/myip", {
           status: 200,
           response: {
-            ip: "8.8.8.8:2356"
-          }
+            ip: "8.8.8.8:2356",
+          },
         });
-        postUserVisit().then(r => {
+        postUserVisit().then((r) => {
           expect(r).toMatchSnapshot();
           done();
         });

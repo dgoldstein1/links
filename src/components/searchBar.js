@@ -8,7 +8,7 @@ class Search extends React.Component {
     super(props);
     this.state = {
       value: props.value.label,
-      items: []
+      items: [],
     };
     this._onChange = this._onChange.bind(this);
     this._renderItem = this._renderItem.bind(this);
@@ -19,7 +19,7 @@ class Search extends React.Component {
   _onChange(e) {
     if (e.target.value.length > 0) {
       // search and set items
-      this.props.search(e.target.value).then(r => {
+      this.props.search(e.target.value).then((r) => {
         if (!r.success) return console.error(r.error);
         // yay, success!
         this.setState({ items: r.data.entries || [] });
@@ -44,7 +44,7 @@ class Search extends React.Component {
   _onSelect(node, searchItem) {
     this.props.onSelect({
       id: searchItem.value,
-      label: searchItem.key
+      label: searchItem.key,
     });
     this.setState({ value: node });
   }
@@ -57,7 +57,7 @@ class Search extends React.Component {
         }
         items={this.state.items}
         inputProps={{ placeholder: this.props.placeholder }}
-        getItemValue={item => item.key}
+        getItemValue={(item) => item.key}
         renderItem={this._renderItem}
         value={this.state.value}
         onChange={this._onChange}
@@ -71,12 +71,12 @@ Search.propTypes = {
   onSelect: PropTypes.func,
   search: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  value: PropTypes.object
+  value: PropTypes.object,
 };
 
 Search.defaultProps = {
   onSelect: () => {},
-  value: { label: "" }
+  value: { label: "" },
 };
 
 export default Search;

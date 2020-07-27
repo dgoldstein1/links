@@ -12,19 +12,19 @@ describe("Header", () => {
       layout: "cluster",
       rootNode: {
         id: 1,
-        label: "root node"
+        label: "root node",
       },
       targetNode: {
         id: 2,
-        label: "target node"
-      }
-    }
+        label: "target node",
+      },
+    },
   };
   describe("matches snapshots", () => {
     let testTable = [
       {
         name: "cluster",
-        state: defaultState
+        state: defaultState,
       },
       {
         name: "hierachy",
@@ -32,13 +32,13 @@ describe("Header", () => {
           ...defaultState,
           graph: {
             ...defaultState.graph,
-            layout: "hierarchy"
-          }
-        }
-      }
+            layout: "hierarchy",
+          },
+        },
+      },
     ];
 
-    testTable.forEach(t => {
+    testTable.forEach((t) => {
       it(t.name, () => {
         let store = mockStore(t.state);
         let wrapper = renderer.create(

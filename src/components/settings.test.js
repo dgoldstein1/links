@@ -9,21 +9,21 @@ const mockStore = configureStore([]);
 describe("Settings", () => {
   const defaultState = {
     graph: {
-      maxNeighbors: 15
+      maxNeighbors: 15,
     },
     appState: {
-      language: "english"
-    }
+      language: "english",
+    },
   };
   describe("matches snapshots", () => {
     let testTable = [
       {
         name: "success",
-        state: defaultState
-      }
+        state: defaultState,
+      },
     ];
 
-    testTable.forEach(t => {
+    testTable.forEach((t) => {
       it(t.name, () => {
         let store = mockStore(t.state);
         let wrapper = renderer.create(
@@ -47,8 +47,8 @@ describe("Settings", () => {
     renderer.act(() => {
       let event = {
         target: {
-          value: "english"
-        }
+          value: "english",
+        },
       };
       t = wrapper.root
         .findByProps({ id: "language-select" })
@@ -68,8 +68,8 @@ describe("Settings", () => {
     renderer.act(() => {
       let event = {
         target: {
-          value: 234234
-        }
+          value: 234234,
+        },
       };
       t = wrapper.root
         .findByProps({ id: "neighbor-limit" })

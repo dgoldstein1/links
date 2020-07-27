@@ -4,7 +4,7 @@ describe("reducers", () => {
   describe("appState", () => {
     const initialState = {
       loading: true, // the app is / isn't loading
-      view: "splash"
+      view: "splash",
     };
 
     it("initializes with correct state", () => {
@@ -15,7 +15,7 @@ describe("reducers", () => {
       it("updates the store with a new view", () => {
         let action = {
           type: "UPDATE_VIEW",
-          view: "newView"
+          view: "newView",
         };
         expect(appState(undefined, action)).toMatchSnapshot();
       });
@@ -24,7 +24,7 @@ describe("reducers", () => {
       it("updates the store with new value of loading", () => {
         let action = {
           type: "SET_LOADING",
-          loading: true
+          loading: true,
         };
         expect(appState(undefined, action)).toMatchSnapshot();
       });

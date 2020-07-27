@@ -10,22 +10,22 @@ describe("Graph", () => {
   const defaultState = {
     graph: {
       graph: {
-        nodes: []
+        nodes: [],
       },
       layout: "cluster",
       selectedNode: {
         node: {
           label: "test",
-          id: 1
-        }
-      }
-    }
+          id: 1,
+        },
+      },
+    },
   };
   describe("matches snapshots", () => {
     let testTable = [
       {
         name: "cluster",
-        state: defaultState
+        state: defaultState,
       },
       {
         name: "loading",
@@ -33,9 +33,9 @@ describe("Graph", () => {
           ...defaultState,
           graph: {
             loading: true,
-            ...defaultState.graph
-          }
-        }
+            ...defaultState.graph,
+          },
+        },
       },
       {
         name: "error",
@@ -43,9 +43,9 @@ describe("Graph", () => {
           ...defaultState,
           graph: {
             error: "an error",
-            ...defaultState.graph
-          }
-        }
+            ...defaultState.graph,
+          },
+        },
       },
       {
         name: "hierarchy",
@@ -53,13 +53,13 @@ describe("Graph", () => {
           ...defaultState,
           graph: {
             ...defaultState.graph,
-            layout: "hierarchy"
-          }
-        }
-      }
+            layout: "hierarchy",
+          },
+        },
+      },
     ];
 
-    testTable.forEach(t => {
+    testTable.forEach((t) => {
       it(t.name, () => {
         let store = mockStore(t.state);
         let wrapper = renderer.create(
@@ -76,8 +76,8 @@ describe("Graph", () => {
       ...defaultState,
       graph: {
         error: "an error",
-        ...defaultState.graph
-      }
+        ...defaultState.graph,
+      },
     });
     let wrapper = renderer.create(
       <Provider store={store}>
@@ -105,9 +105,9 @@ describe("Graph", () => {
         data: {
           node: {
             id: 123,
-            label: "test"
-          }
-        }
+            label: "test",
+          },
+        },
       };
       wrapper.root.findByProps({ id: "sigma-graph" }).props.onClickNode(e);
     });

@@ -11,7 +11,7 @@ describe("wiki", () => {
         name: "query by title",
         s: "test",
         before: () => {},
-        expectedSuccess: false
+        expectedSuccess: false,
       },
       {
         name: "_opensearch",
@@ -31,38 +31,38 @@ describe("wiki", () => {
                     pageid: 668126,
                     ns: 0,
                     title: "dish",
-                    extract: "a dish is a dish"
-                  }
-                }
+                    extract: "a dish is a dish",
+                  },
+                },
               },
-              limits: { extracts: 20 }
+              limits: { extracts: 20 },
             },
             getImageUrl:
               "/services/wiki/w/api.php?action=query&prop=pageimages&format=json&pithumbsize=100&pageids=668126",
             getImageResponse: {
               batchcomplete: "",
               query: {
-                pages: { "668126": { pageid: 668126, ns: 0, title: "Dish" } }
-              }
-            }
+                pages: { "668126": { pageid: 668126, ns: 0, title: "Dish" } },
+              },
+            },
           };
           moxios.stubRequest(setup.url, {
             status: setup.responseCode,
-            response: setup.data
+            response: setup.data,
           });
           // mock get image, if any
           moxios.stubRequest(setup.getImageUrl, {
             status: 200,
-            response: setup.getImageResponse
+            response: setup.getImageResponse,
           });
         },
-        expectedSuccess: false
-      }
+        expectedSuccess: false,
+      },
     ];
-    testTable.forEach(t => {
-      it(t.name, done => {
+    testTable.forEach((t) => {
+      it(t.name, (done) => {
         t.before();
-        getDescription(t.s).then(r => {
+        getDescription(t.s).then((r) => {
           expect(r.success).toEqual(t.expectedSuccess);
           done();
         });
@@ -87,9 +87,9 @@ describe("wiki", () => {
           "al-helal",
           ["Al-Helal Islami Academy & College"],
           [
-            "Al-Helal Islami Academy & College (Bengali: \u0986\u09b2-\u09b9\u09c7\u09b2\u09be\u09b2 \u0987\u09b8\u09b2\u09be\u09ae\u09c0 \u098f\u0995\u09be\u09a1\u09c7\u09ae\u09bf \u098f\u09cd\u09af\u09be\u09a8\u09cd\u09a1 \u0995\u09b2\u09c7\u099c) is a private higher secondary school in Sapahar, Naogaon District, Bangladesh."
+            "Al-Helal Islami Academy & College (Bengali: \u0986\u09b2-\u09b9\u09c7\u09b2\u09be\u09b2 \u0987\u09b8\u09b2\u09be\u09ae\u09c0 \u098f\u0995\u09be\u09a1\u09c7\u09ae\u09bf \u098f\u09cd\u09af\u09be\u09a8\u09cd\u09a1 \u0995\u09b2\u09c7\u099c) is a private higher secondary school in Sapahar, Naogaon District, Bangladesh.",
           ],
-          ["https://en.wikipedia.org/wiki/Al-Helal_Islami_Academy_%26_College"]
+          ["https://en.wikipedia.org/wiki/Al-Helal_Islami_Academy_%26_College"],
         ],
         searchStatusCode: 200,
         getImageUrl:
@@ -97,9 +97,9 @@ describe("wiki", () => {
         getImageResponse: {
           batchcomplete: "",
           query: {
-            pages: { "668126": { pageid: 668126, ns: 0, title: "Dish" } }
-          }
-        }
+            pages: { "668126": { pageid: 668126, ns: 0, title: "Dish" } },
+          },
+        },
       },
       {
         name: "no page found",
@@ -107,22 +107,22 @@ describe("wiki", () => {
         searchUrl:
           "/services/wiki/w/api.php?action=opensearch&limit=1&namespace=0&format=json&search=dish",
         searchResponse: [],
-        searchStatusCode: 200
-      }
+        searchStatusCode: 200,
+      },
     ];
-    testTable.forEach(t => {
-      it(t.name, done => {
+    testTable.forEach((t) => {
+      it(t.name, (done) => {
         let onFulfilled = sinon.spy();
         moxios.stubRequest(t.searchUrl, {
           status: t.responseCode,
-          response: t.searchResponse
+          response: t.searchResponse,
         });
         // mock get image, if any
         moxios.stubRequest(t.getImageUrl, {
           status: 200,
-          response: t.getImageResponse
+          response: t.getImageResponse,
         });
-        _opensearch(t.s).then(r => {
+        _opensearch(t.s).then((r) => {
           expect(r).toMatchSnapshot();
           done();
         });
@@ -152,20 +152,20 @@ describe("wiki", () => {
                 pageid: 668126,
                 ns: 0,
                 title: "dish",
-                extract: "a dish is a dish"
-              }
-            }
+                extract: "a dish is a dish",
+              },
+            },
           },
-          limits: { extracts: 20 }
+          limits: { extracts: 20 },
         },
         getImageUrl:
           "/services/wiki/w/api.php?action=query&prop=pageimages&format=json&pithumbsize=100&pageids=668126",
         getImageResponse: {
           batchcomplete: "",
           query: {
-            pages: { "668126": { pageid: 668126, ns: 0, title: "Dish" } }
-          }
-        }
+            pages: { "668126": { pageid: 668126, ns: 0, title: "Dish" } },
+          },
+        },
       },
       {
         name: "500 response",
@@ -181,20 +181,20 @@ describe("wiki", () => {
                 pageid: 668126,
                 ns: 0,
                 title: "dish",
-                extract: "a dish is a dish"
-              }
-            }
+                extract: "a dish is a dish",
+              },
+            },
           },
-          limits: { extracts: 20 }
+          limits: { extracts: 20 },
         },
         getImageUrl:
           "/services/wiki/w/api.php?action=query&prop=pageimages&format=json&pithumbsize=100&pageids=668126",
         getImageResponse: {
           batchcomplete: "",
           query: {
-            pages: { "668126": { pageid: 668126, ns: 0, title: "Dish" } }
-          }
-        }
+            pages: { "668126": { pageid: 668126, ns: 0, title: "Dish" } },
+          },
+        },
       },
       {
         name: "no page id",
@@ -206,10 +206,10 @@ describe("wiki", () => {
           batchcomplete: "",
           query: {
             normalized: [{ from: "pesticidal", to: "Pesticidal" }],
-            pages: { "-1": { ns: 0, title: "Pesticidal", missing: "" } }
+            pages: { "-1": { ns: 0, title: "Pesticidal", missing: "" } },
           },
-          limits: { extracts: 20 }
-        }
+          limits: { extracts: 20 },
+        },
       },
       {
         name: "no extract found",
@@ -224,27 +224,27 @@ describe("wiki", () => {
               "668126": {
                 pageid: 668126,
                 ns: 0,
-                title: "dish"
-              }
-            }
+                title: "dish",
+              },
+            },
           },
-          limits: { extracts: 20 }
-        }
-      }
+          limits: { extracts: 20 },
+        },
+      },
     ];
-    testTable.forEach(t => {
-      it(t.name, done => {
+    testTable.forEach((t) => {
+      it(t.name, (done) => {
         let onFulfilled = sinon.spy();
         moxios.stubRequest(t.url, {
           status: t.responseCode,
-          response: t.data
+          response: t.data,
         });
         // mock get image, if any
         moxios.stubRequest(t.getImageUrl, {
           status: 200,
-          response: t.getImageResponse
+          response: t.getImageResponse,
         });
-        _queryByTitle(t.s).then(r => {
+        _queryByTitle(t.s).then((r) => {
           expect(r).toMatchSnapshot();
           done();
         });

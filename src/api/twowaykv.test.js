@@ -30,19 +30,19 @@ describe.skip("twowaykv", () => {
         data: [
           {
             key: "key",
-            value: 234234
-          }
-        ]
-      }
+            value: 234234,
+          },
+        ],
+      },
     ];
-    testTable.forEach(t => {
-      it(t.name, done => {
+    testTable.forEach((t) => {
+      it(t.name, (done) => {
         let onFulfilled = sinon.spy();
         moxios.stubRequest(t.url, {
           status: t.responseCode,
-          response: t.data
+          response: t.data,
         });
-        random(t.n).then(r => {
+        random(t.n).then((r) => {
           expect(r).toMatchSnapshot();
           done();
         });
@@ -66,19 +66,19 @@ describe.skip("twowaykv", () => {
         data: [
           {
             key: "key",
-            value: 234234
-          }
-        ]
-      }
+            value: 234234,
+          },
+        ],
+      },
     ];
-    testTable.forEach(t => {
-      it(t.name, done => {
+    testTable.forEach((t) => {
+      it(t.name, (done) => {
         let onFulfilled = sinon.spy();
         moxios.stubRequest(t.url, {
           status: t.responseCode,
-          response: t.data
+          response: t.data,
         });
-        entriesFromValues(t.ids).then(r => {
+        entriesFromValues(t.ids).then((r) => {
           expect(r).toMatchSnapshot();
           done();
         });
@@ -102,19 +102,19 @@ describe.skip("twowaykv", () => {
         data: [
           {
             key: "key",
-            value: 234234
-          }
-        ]
-      }
+            value: 234234,
+          },
+        ],
+      },
     ];
-    testTable.forEach(t => {
-      it(t.name, done => {
+    testTable.forEach((t) => {
+      it(t.name, (done) => {
         let onFulfilled = sinon.spy();
         moxios.stubRequest(t.url, {
           status: t.responseCode,
-          response: t.data
+          response: t.data,
         });
-        search(t.s).then(r => {
+        search(t.s).then((r) => {
           expect(r).toMatchSnapshot();
           done();
         });

@@ -15,7 +15,7 @@ function Settings(props) {
           <select
             id="language-select"
             value={props.language}
-            onChange={e =>
+            onChange={(e) =>
               store.dispatch({ type: "SET_LANGUAGE", language: e.target.value })
             }
           >
@@ -33,10 +33,10 @@ function Settings(props) {
             min="1"
             max="250"
             value={props.maxNeighbors}
-            onChange={e =>
+            onChange={(e) =>
               store.dispatch({
                 type: "SET_MAX_NEIGHBORS",
-                maxNeighbors: parseInt(e.target.value)
+                maxNeighbors: parseInt(e.target.value),
               })
             }
           />
@@ -50,10 +50,10 @@ function Settings(props) {
             min="1"
             max="250"
             value={props.maxShortestPaths}
-            onChange={e =>
+            onChange={(e) =>
               store.dispatch({
                 type: "SET_MAX_SHORTEST_PATHS",
-                maxShortestPaths: parseInt(e.target.value)
+                maxShortestPaths: parseInt(e.target.value),
               })
             }
           />
@@ -62,10 +62,10 @@ function Settings(props) {
           <select
             id="directed-shortest-path"
             value={props.directedShortestPath}
-            onChange={e =>
+            onChange={(e) =>
               store.dispatch({
                 type: "SET_DIRECTED_SHORTEST_PATH",
-                directedShortestPath: e.target.value === "true"
+                directedShortestPath: e.target.value === "true",
               })
             }
           >
@@ -85,10 +85,10 @@ function Settings(props) {
   );
 }
 
-let mapStateToProps = state => ({
+let mapStateToProps = (state) => ({
   language: state.appState.language,
   maxNeighbors: state.graph.maxNeighbors,
   maxShortestPaths: state.graph.maxShortestPaths,
-  directedShortestPath: state.graph.directedShortestPath
+  directedShortestPath: state.graph.directedShortestPath,
 });
 export default connect(mapStateToProps)(Settings);

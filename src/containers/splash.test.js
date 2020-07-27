@@ -12,11 +12,11 @@ describe.skip("Splash", () => {
     let testTable = [
       {
         name: "cluster",
-        state: defaultState
-      }
+        state: defaultState,
+      },
     ];
 
-    testTable.forEach(t => {
+    testTable.forEach((t) => {
       it(t.name, () => {
         let store = mockStore(t.state);
         let wrapper = renderer.create(

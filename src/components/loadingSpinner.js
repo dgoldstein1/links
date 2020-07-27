@@ -34,7 +34,7 @@ function LoadingSpinner(p) {
           labelThreshold: 0,
           drawEdges: true,
           clone: false,
-          animationsTime: p.animationsTime
+          animationsTime: p.animationsTime,
         }}
         style={{ height: p.height, width: window.innerWidth + "px" }}
       >
@@ -51,7 +51,7 @@ LoadingSpinner.propTypes = {
   graph: PropTypes.object.isRequired,
   height: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
-  width: PropTypes.string.isRequired
+  width: PropTypes.string.isRequired,
 };
 
 export default LoadingSpinner;

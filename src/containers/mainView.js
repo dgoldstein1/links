@@ -29,5 +29,5 @@ class MainView extends React.Component {
   }
 }
 
-let mapStateToProps = state => ({ ...state.appState });
+let mapStateToProps = (state) => ({ ...state.appState });
 export default connect(mapStateToProps)(MainView);

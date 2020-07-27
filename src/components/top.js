@@ -120,9 +120,9 @@ function Top(props) {
   );
 }
 
-let mapStateToProps = state => ({
+let mapStateToProps = (state) => ({
   topInfo: state.graph.topInfo,
   overallGraphInfo: state.graph.overallGraphInfo,
-  graphName: state.appState.graphConfig.name
+  graphName: state.appState.graphConfig.name,
 });
 export default connect(mapStateToProps)(Top);

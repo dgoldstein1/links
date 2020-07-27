@@ -15,7 +15,7 @@ export function random(n) {
   return makeRequest({
     method: "get",
     url: `${store.getState().appState.graphConfig.kvEndpoint}/random?n=${n}`,
-    onErrorPrefix: "Error getting random entry"
+    onErrorPrefix: "Error getting random entry",
   });
 }
 
@@ -26,14 +26,14 @@ export function random(n) {
  **/
 export function entriesFromValues(ids) {
   // make all ids int
-  ids = ids.map(i => parseInt(i));
+  ids = ids.map((i) => parseInt(i));
   return makeRequest({
     method: "post",
     url: `${
       store.getState().appState.graphConfig.kvEndpoint
     }/entriesFromValues`,
     onErrorPrefix: "Error getting entries from values",
-    body: ids
+    body: ids,
   });
 }
 
@@ -46,6 +46,6 @@ export function search(s) {
   return makeRequest({
     method: "get",
     url: `${store.getState().appState.graphConfig.kvEndpoint}/search?q=${s}`,
-    onErrorPrefix: "Error searching keys"
+    onErrorPrefix: "Error searching keys",
   });
 }
