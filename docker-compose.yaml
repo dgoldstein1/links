@@ -60,12 +60,12 @@ services:
       #################
       ## dev backend ##
       #################
-      - biggraphdev_incoming_path=/services/dev/biggraph/
-      - biggraphdev_outgoing_url=http://graph:5000
-      - twowaykvdev_incoming_path=/services/dev/twowaykv/
-      - twowaykvdev_outgoing_url=http://kv:5001
-      - lookupdev_incoming_path=/services/dev/wiki/
-      - lookupdev_outgoing_url=https://en.wikipedia.org
+      - biggraphdev_incoming_path=/services/synonymsAR/biggraph/
+      - biggraphdev_outgoing_url=https://www.linklanguageconnections.com/links-ar-synonyms/biggraph/
+      - twowaykvdev_incoming_path=/services/synonymsAR/twowaykv/
+      - twowaykvdev_outgoing_url=https://www.linklanguageconnections.com/links-ar-synonyms/twowaykv/
+      - lookupdev_incoming_path=/services/synonymsAR/wiki/
+      - lookupdev_outgoing_url=https://ar.wikipedia.org
       ######################
       ## counties backend ##
       ######################
