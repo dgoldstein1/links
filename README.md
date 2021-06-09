@@ -11,7 +11,7 @@ Exploration of links in different web frameworks, using [big-data graph DB](http
 
 
 ![screenshot](./src/images/screenshot.png)
-See a deployed version here: http://34.98.111.26/
+See a deployed version here: http://www.linklanguageconnections.com/
 
 
 ### Development
