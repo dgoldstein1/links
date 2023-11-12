@@ -3,7 +3,7 @@
   "version": "2.2.1",
   "private": true,
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^1.6.0",
     "lodash": "^4.17.15",
     "mini.css-react": "^1.0.3",
     "react": "^16.9.0",
